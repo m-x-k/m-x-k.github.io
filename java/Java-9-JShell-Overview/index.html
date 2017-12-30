@@ -348,6 +348,37 @@ jshell&gt; /edit 1
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /exit
 </code></pre></div></div>
 
+<hr />
+
+<h3 id="shortcuts">Shortcuts</h3>
+
+<p>JShell comes with a number of convenient shortcuts designed to make the experience faster for advanced users.</p>
+
+<h4 id="shift--tab">SHIFT + TAB</h4>
+
+<p>1) Autocomplete variable assignment</p>
+
+<p>If you create a new variable it will be automatically assigned to a <code class="highlighter-rouge">$&lt;NUM&gt;</code> variable. However you can assign this to your own variable name very quickly by holding down <code class="highlighter-rouge">SHIFT + TAB</code> followed by <code class="highlighter-rouge">v</code>.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; new Random<span class="o">()</span>
+</code></pre></div></div>
+<p>This will automatically pre-fill the expression for you and allow you to assign a varaible name of your choice:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; Random &lt;TYPE_YOUR_NAME&gt; <span class="o">=</span> new Random<span class="o">()</span>
+</code></pre></div></div>
+
+<p>2) Find, choose and import</p>
+
+<p>Type into jshell the name of your package or class and hold down <code class="highlighter-rouge">SHIFT + TAB</code> followed by <code class="highlighter-rouge">i</code>:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; Duration
+0: Do nothing
+1: import: java.time.Duration
+2: import: javafx.util.Duration
+3: import: javax.xml.datatype.Duration
+Choice:
+</code></pre></div></div>
+<p>You can then type which of the above packages you want and it will be imported for you automatically. For example typing <code class="highlighter-rouge">1</code> for the list above will output:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Imported: java.time.Duration
+</code></pre></div></div>
+
         
       </section>
 

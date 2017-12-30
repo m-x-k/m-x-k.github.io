@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2017-12-30T22:28:45+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Java 9 JShell overview</title><link href="https://m-x-k.github.io/java/Java-9-JShell-Overview/" rel="alternate" type="text/html" title="Java 9 JShell overview" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-JShell-Overview</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-JShell-Overview/">&lt;h2 id=&quot;jshell&quot;&gt;JShell&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2017-12-30T23:21:15+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Java 9 JShell overview</title><link href="https://m-x-k.github.io/java/Java-9-JShell-Overview/" rel="alternate" type="text/html" title="Java 9 JShell overview" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-JShell-Overview</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-JShell-Overview/">&lt;h2 id=&quot;jshell&quot;&gt;JShell&lt;/h2&gt;
 
 &lt;p&gt;Originally introduced as project Kulla, JShell is a great tool for new and experienced developers.&lt;/p&gt;
 
@@ -101,6 +101,37 @@ jshell&amp;gt; /edit 1
 
 &lt;p&gt;The preferred way to exit a jshell session is to use:&lt;/p&gt;
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;shortcuts&quot;&gt;Shortcuts&lt;/h3&gt;
+
+&lt;p&gt;JShell comes with a number of convenient shortcuts designed to make the experience faster for advanced users.&lt;/p&gt;
+
+&lt;h4 id=&quot;shift--tab&quot;&gt;SHIFT + TAB&lt;/h4&gt;
+
+&lt;p&gt;1) Autocomplete variable assignment&lt;/p&gt;
+
+&lt;p&gt;If you create a new variable it will be automatically assigned to a &lt;code class=&quot;highlighter-rouge&quot;&gt;$&amp;lt;NUM&amp;gt;&lt;/code&gt; variable. However you can assign this to your own variable name very quickly by holding down &lt;code class=&quot;highlighter-rouge&quot;&gt;SHIFT + TAB&lt;/code&gt; followed by &lt;code class=&quot;highlighter-rouge&quot;&gt;v&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; new Random&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This will automatically pre-fill the expression for you and allow you to assign a varaible name of your choice:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; Random &amp;lt;TYPE_YOUR_NAME&amp;gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; new Random&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;2) Find, choose and import&lt;/p&gt;
+
+&lt;p&gt;Type into jshell the name of your package or class and hold down &lt;code class=&quot;highlighter-rouge&quot;&gt;SHIFT + TAB&lt;/code&gt; followed by &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; Duration
+0: Do nothing
+1: import: java.time.Duration
+2: import: javafx.util.Duration
+3: import: javax.xml.datatype.Duration
+Choice:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;You can then type which of the above packages you want and it will be imported for you automatically. For example typing &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; for the list above will output:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Imported: java.time.Duration
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Java 9" /><category term="JShell" /><summary type="html">JShell</summary></entry><entry><title type="html">Getting started with OpenShift</title><link href="https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/" rel="alternate" type="text/html" title="Getting started with OpenShift" /><published>2017-12-25T11:40:00+00:00</published><updated>2017-12-25T11:40:00+00:00</updated><id>https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift</id><content type="html" xml:base="https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/">&lt;h2 id=&quot;openshift&quot;&gt;OpenShift&lt;/h2&gt;
 
 &lt;blockquote&gt;
