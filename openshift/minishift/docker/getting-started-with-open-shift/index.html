@@ -1,0 +1,766 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.8.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Getting started with OpenShift  MXK Software Craftmanship</title>
+
+
+
+
+<meta name="description" content="OpenShift">
+
+
+
+
+<meta name="author" content="Martin Kelly">
+
+<meta property="og:locale" content="en_gb">
+<meta property="og:site_name" content="MXK Software Craftmanship">
+<meta property="og:title" content="Getting started with OpenShift">
+
+
+  <link rel="canonical" href="https://m-x-k.github.io/pages/m-x-k/openshift/minishift/docker/getting-started-with-open-shift/">
+  <meta property="og:url" content="https://m-x-k.github.io/pages/m-x-k/openshift/minishift/docker/getting-started-with-open-shift/">
+
+
+
+  <meta property="og:description" content="OpenShift">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-12-25T11:40:00+00:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://m-x-k.github.io/pages/m-x-k/feed.xml" type="application/atom+xml" rel="alternate" title="MXK Software Craftmanship Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://m-x-k.github.io/pages/m-x-k/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://m-x-k.github.io/pages/m-x-k/">MXK Software Craftmanship</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/recent-posts/" >Recent Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/year-archive/" >Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/categories/" >Categories</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/tags/" >Tags</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://mxk.solutions" >External Link</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/pages/m-x-k/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/pages/m-x-k/categories/openshift" itemprop="item"><span itemprop="name">Openshift</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/pages/m-x-k/categories/minishift" itemprop="item"><span itemprop="name">Minishift</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/pages/m-x-k/categories/docker" itemprop="item"><span itemprop="name">Docker</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Getting started with OpenShift</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        
+        <a href="http://mxk.solutions">
+          <img src="https://m-x-k.github.io/pages/m-x-k/assets/images/Avatars4.png" alt="Martin Kelly" itemprop="image">
+        </a>
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <a href="http://mxk.solutions"><h3 class="author__name" itemprop="name">Martin Kelly</h3></a>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Software developer
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Edinburgh</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:mxksolutions@gmail.com">
+            <meta itemprop="email" content="mxksolutions@gmail.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/mxk-solutions" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/m-x-k" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://codepen.io/mxk" itemprop="sameAs">
+            <i class="fa fa-fw fa-codepen" aria-hidden="true"></i> CodePen
+          </a>
+        </li>
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Getting started with OpenShift">
+    <meta itemprop="description" content="OpenShift">
+    <meta itemprop="datePublished" content="December 25, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Getting started with OpenShift
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="openshift">OpenShift</h2>
+
+<blockquote>
+
+  <p>OpenShift provides a convenient abstraction over the concept of containers in the form of a PaaS (Platform as an application Service). At its core it utilises familiar container concepts provided by the likes of Docker and Kubernetes. This typically consists of an Orchestration Framework which can be used to scale applications on-demand based on usage but it also incorporates internal routing and firewall control via the use of application configuration files.</p>
+</blockquote>
+
+<p>As part of this blog entry we will provide a quick overview of the OpenShift features and how to get this up and running on your own development machine using the Open Sourced MiniShift implementation.</p>
+
+<h2 id="minishift">MiniShift</h2>
+
+<blockquote>
+
+  <p>The open sourced organisation <code class="highlighter-rouge">OpenShift origin</code> have provided a simple setup in the form of <code class="highlighter-rouge">MiniShift</code>. They have detailed instructions on <a href="https://docs.openshift.org/latest/minishift/getting-started/installing.html">how to install MiniShift</a> but in an attempt to stream line this I will be focusing on the MacOS installation guide.</p>
+</blockquote>
+
+<h2 id="macos-installation-quick-guide">MacOS Installation quick guide</h2>
+
+<h3 id="prerequisites">Prerequisites:</h3>
+
+<ul>
+  <li>OS X 10.10.3 Yosemite or later</li>
+  <li>Homebrew - convenient package installer for MacOS</li>
+  <li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> - choose the latest <code class="highlighter-rouge">OS X host</code> under VirtualBox platform packages. This should download the latest DMG binary to your machine where you can install it.</li>
+  <li><a href="https://github.com/mist64/xhyve">xhyve</a> - a hypervisor required to start the virtual machine.</li>
+</ul>
+
+<h3 id="setup">Setup:</h3>
+
+<p>At the time of writing you can install and setup MiniShift with all the requirements on MacOS for the first time using a basic script like the following:</p>
+
+<script src="https://gist.github.com/77b238f94b158944db4ceb66bec0fc9e.js"> </script>
+
+<h3 id="start-minishift">Start MiniShift:</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  minishift start
+  minishift ip                # Get the MiniShift IP Address
+  oc login -u system:admin    # Login as admin
+</code></pre></div></div>
+
+<h3 id="oc">OC:</h3>
+
+<p>Interaction with OpenShift is with the command line tool oc. To configure and set this up execute the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  eval $(minishift oc-env)    # Setup the OpenShift command line tool
+</code></pre></div></div>
+
+<h3 id="sample-application">Sample application:</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  oc new-app https://github.com/openshift/nodejs-ex -l name=myapp     # Deploy a sample app
+  oc expose svc/nodejs-ex                                             # Expose a route to the service
+  minishift openshift service nodejs-ex --in-browser                  # Open the app in your browser
+  oc status                                                           # View project status
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="warning">WARNING</h4>
+
+<p><em style="color: #00adb5; font-size: 80%">
+If you encounter issues loading the sample application in your browser its is possible that the DNS is not resolving correctly. In my case the url “http://dev-python3-myproject.192.168.XX.XX.nip.io” was not resolving due to an issue with <code class="highlighter-rouge">nip.io</code> which provides wildcard support for DNS names. After some investigation it turns out the problem for me was my router which was blocking DNS resolution.
+</em></p>
+
+<p><em style="color: #00adb5; font-size: 80%">
+If you encounter this specific issue you can resolve it by updating your machine to use the google DNS server (i.e. 8.8.8.8). In my case all I had to do was edit “/etc/resolv.conf” and replace the nameserver line with “nameserver 8.8.8.8”. You may need to reset this value if it is overwritten so its worth creating a small script to update it. Finally you will probably need to expose the route again in order to get it working.
+</em></p>
+
+<hr />
+
+<h3 id="stop-minishift">Stop MiniShift:</h3>
+
+<p>When your finished playing with MiniShift you can stop it easily with the following command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  minishift stop
+</code></pre></div></div>
+
+<h2 id="ok-so-whats-next">Ok so whats next?</h2>
+
+<blockquote>
+
+  <p>Ok so installing a sample app is fairly straightforward but what do we do if we want to take our applications and use a real OpenShift instance in the Cloud. Well luckily cloud providers have started to provide convenient guides on how to set all this up. For instance <a href="https://aws.amazon.com/about-aws/whats-new/2017/09/red-hat-openshift-container-platform-on-the-aws-cloud-quick-start-reference-deployment/">AWS provides a quick overview on their technical blog covering this very topic</a>.</p>
+</blockquote>
+
+<h2 id="additional-links">Additional links:</h2>
+
+<ul>
+  <li><a href="https://www.openshift.com/">OpenShift</a></li>
+  <li><a href="https://www.openshift.org/">OpenShift Origin</a></li>
+  <li><a href="https://docs.openshift.org/latest/minishift/getting-started/installing.html">Installing MiniShift</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/tags/docker" class="page__taxonomy-item" rel="tag">Docker</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/tags/minishift" class="page__taxonomy-item" rel="tag">MiniShift</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/tags/openshift" class="page__taxonomy-item" rel="tag">OpenShift</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/categories/docker" class="page__taxonomy-item" rel="tag">Docker</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/categories/minishift" class="page__taxonomy-item" rel="tag">MiniShift</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/categories/openshift" class="page__taxonomy-item" rel="tag">OpenShift</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-12-25T11:40:00+00:00">December 25, 2017</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Getting+started+with+OpenShift%20https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fopenshift%2Fminishift%2Fdocker%2Fgetting-started-with-open-shift%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fopenshift%2Fminishift%2Fdocker%2Fgetting-started-with-open-shift%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fopenshift%2Fminishift%2Fdocker%2Fgetting-started-with-open-shift%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fopenshift%2Fminishift%2Fdocker%2Fgetting-started-with-open-shift%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="https://m-x-k.github.io/pages/m-x-k/python/python-pip-setup-with-artifactory/" class="pagination--pager" title="Python PIP Setup with artifactory
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/python/python-pip-setup-with-artifactory/" rel="permalink">Python PIP Setup with artifactory
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Installing a local artifactory instance:
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/jekyll/creating-blog-with-github-pages-and-jekyll/" rel="permalink">Creating a Blog with Jekyll and GitHub pages
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Steps to create a sample blog created using Jekyll and hosted on GitHub.
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/javascript/revealjs/Presentation-slides-with-Reveal/" rel="permalink">Presentation slides with Reveal.js
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web cl...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/python/Useful-List-Of-Python-Resources/" rel="permalink">Useful List Of Python Resources
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+    
+    
+      <li><a href="https://github.com/m-x-k"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="https://m-x-k.github.io/pages/m-x-k/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 MXK Software Craftmanship. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="https://m-x-k.github.io/pages/m-x-k/assets/js/main.min.js"></script>
+
+
+
+  <script src="https://m-x-k.github.io/pages/m-x-k/assets/js/lunr.min.js"></script>
+  <script src="https://m-x-k.github.io/pages/m-x-k/assets/js/lunr-en.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111584934-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111584934-1');
+</script>
+
+
+
+
+  </body>
+</html>

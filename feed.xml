@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/pages/m-x-k/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/pages/m-x-k/" rel="alternate" type="text/html" /><updated>2017-12-30T13:30:17+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Getting started with OpenShift</title><link href="https://m-x-k.github.io/pages/m-x-k/openshift/minishift/docker/getting-started-with-open-shift/" rel="alternate" type="text/html" title="Getting started with OpenShift" /><published>2017-12-25T11:40:00+00:00</published><updated>2017-12-25T11:40:00+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/openshift/minishift/docker/getting-started-with-open-shift</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/openshift/minishift/docker/getting-started-with-open-shift/">&lt;h2 id=&quot;openshift&quot;&gt;OpenShift&lt;/h2&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;OpenShift provides a convenient abstraction over the concept of containers in the form of a PaaS (Platform as an application Service). At its core it utilises familiar container concepts provided by the likes of Docker and Kubernetes. This typically consists of an Orchestration Framework which can be used to scale applications on-demand based on usage but it also incorporates internal routing and firewall control via the use of application configuration files.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;As part of this blog entry we will provide a quick overview of the OpenShift features and how to get this up and running on your own development machine using the Open Sourced MiniShift implementation.&lt;/p&gt;
+
+&lt;h2 id=&quot;minishift&quot;&gt;MiniShift&lt;/h2&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;The open sourced organisation &lt;code class=&quot;highlighter-rouge&quot;&gt;OpenShift origin&lt;/code&gt; have provided a simple setup in the form of &lt;code class=&quot;highlighter-rouge&quot;&gt;MiniShift&lt;/code&gt;. They have detailed instructions on &lt;a href=&quot;https://docs.openshift.org/latest/minishift/getting-started/installing.html&quot;&gt;how to install MiniShift&lt;/a&gt; but in an attempt to stream line this I will be focusing on the MacOS installation guide.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;macos-installation-quick-guide&quot;&gt;MacOS Installation quick guide&lt;/h2&gt;
+
+&lt;h3 id=&quot;prerequisites&quot;&gt;Prerequisites:&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;OS X 10.10.3 Yosemite or later&lt;/li&gt;
+  &lt;li&gt;Homebrew - convenient package installer for MacOS&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;VirtualBox&lt;/a&gt; - choose the latest &lt;code class=&quot;highlighter-rouge&quot;&gt;OS X host&lt;/code&gt; under VirtualBox platform packages. This should download the latest DMG binary to your machine where you can install it.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mist64/xhyve&quot;&gt;xhyve&lt;/a&gt; - a hypervisor required to start the virtual machine.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;setup&quot;&gt;Setup:&lt;/h3&gt;
+
+&lt;p&gt;At the time of writing you can install and setup MiniShift with all the requirements on MacOS for the first time using a basic script like the following:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/77b238f94b158944db4ceb66bec0fc9e.js&quot;&gt; &lt;/script&gt;
+
+&lt;h3 id=&quot;start-minishift&quot;&gt;Start MiniShift:&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  minishift start
+  minishift ip                # Get the MiniShift IP Address
+  oc login -u system:admin    # Login as admin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;oc&quot;&gt;OC:&lt;/h3&gt;
+
+&lt;p&gt;Interaction with OpenShift is with the command line tool oc. To configure and set this up execute the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  eval $(minishift oc-env)    # Setup the OpenShift command line tool
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;sample-application&quot;&gt;Sample application:&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  oc new-app https://github.com/openshift/nodejs-ex -l name=myapp     # Deploy a sample app
+  oc expose svc/nodejs-ex                                             # Expose a route to the service
+  minishift openshift service nodejs-ex --in-browser                  # Open the app in your browser
+  oc status                                                           # View project status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;warning&quot;&gt;WARNING&lt;/h4&gt;
+
+&lt;p&gt;&lt;em style=&quot;color: #00adb5; font-size: 80%&quot;&gt;
+If you encounter issues loading the sample application in your browser its is possible that the DNS is not resolving correctly. In my case the url “http://dev-python3-myproject.192.168.XX.XX.nip.io” was not resolving due to an issue with &lt;code class=&quot;highlighter-rouge&quot;&gt;nip.io&lt;/code&gt; which provides wildcard support for DNS names. After some investigation it turns out the problem for me was my router which was blocking DNS resolution.
+&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em style=&quot;color: #00adb5; font-size: 80%&quot;&gt;
+If you encounter this specific issue you can resolve it by updating your machine to use the google DNS server (i.e. 8.8.8.8). In my case all I had to do was edit “/etc/resolv.conf” and replace the nameserver line with “nameserver 8.8.8.8”. You may need to reset this value if it is overwritten so its worth creating a small script to update it. Finally you will probably need to expose the route again in order to get it working.
+&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;stop-minishift&quot;&gt;Stop MiniShift:&lt;/h3&gt;
+
+&lt;p&gt;When your finished playing with MiniShift you can stop it easily with the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  minishift stop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ok-so-whats-next&quot;&gt;Ok so whats next?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Ok so installing a sample app is fairly straightforward but what do we do if we want to take our applications and use a real OpenShift instance in the Cloud. Well luckily cloud providers have started to provide convenient guides on how to set all this up. For instance &lt;a href=&quot;https://aws.amazon.com/about-aws/whats-new/2017/09/red-hat-openshift-container-platform-on-the-aws-cloud-quick-start-reference-deployment/&quot;&gt;AWS provides a quick overview on their technical blog covering this very topic&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;additional-links&quot;&gt;Additional links:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.openshift.com/&quot;&gt;OpenShift&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.openshift.org/&quot;&gt;OpenShift Origin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.openshift.org/latest/minishift/getting-started/installing.html&quot;&gt;Installing MiniShift&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="OpenShift" /><category term="MiniShift" /><category term="Docker" /><summary type="html">OpenShift</summary></entry><entry><title type="html">Python PIP Setup with artifactory</title><link href="https://m-x-k.github.io/pages/m-x-k/python/python-pip-setup-with-artifactory/" rel="alternate" type="text/html" title="Python PIP Setup with artifactory" /><published>2017-12-22T20:00:00+00:00</published><updated>2017-12-22T20:00:00+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/python/python-pip-setup-with-artifactory</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/python/python-pip-setup-with-artifactory/">&lt;h2 id=&quot;installing-a-local-artifactory-instance&quot;&gt;Installing a local artifactory instance:&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull docker.bintray.io/jfrog/artifactory-oss:latest
+docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In browser open http://localhost:8081&lt;/li&gt;
+  &lt;li&gt;Add new remote repository: http://localhost:8081/artifactory/webapp/#/admin/repositories/remote
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://www.jfrog.com/confluence/display/RTF/PyPI+Repositories&quot;&gt;Setup your artifactory instance with PyPI&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Using the remote repositories that you created you should be able to setup your local environment (or container). I usually script this up with something simple like the following:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&quot;https://gist.github.com/4a6acaea415e6ff112c5980996147fc4.js&quot;&gt; &lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You can also perform &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install&lt;/code&gt; commands pointed directly if you want to test it. For example:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install --index-url http://localhost:8081/artifactory/api/pypi/repo-pypi-virtual/simple requests
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Some additional commands can be useful here such as &lt;code class=&quot;highlighter-rouge&quot;&gt;--disable-pip-version-check&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;--trusted-host &amp;lt;HOST&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="python" /><category term="artifactory" /><category term="pypi" /><summary type="html">Installing a local artifactory instance:</summary></entry><entry><title type="html">Creating a Blog with Jekyll and GitHub pages</title><link href="https://m-x-k.github.io/pages/m-x-k/jekyll/creating-blog-with-github-pages-and-jekyll/" rel="alternate" type="text/html" title="Creating a Blog with Jekyll and GitHub pages" /><published>2017-12-20T08:50:20+00:00</published><updated>2017-12-20T08:50:20+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/jekyll/creating-blog-with-github-pages-and-jekyll</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/jekyll/creating-blog-with-github-pages-and-jekyll/">&lt;h2 id=&quot;steps-to-create-a-sample-blog-created-using-jekyll-and-hosted-on-github&quot;&gt;Steps to create a sample blog created using Jekyll and hosted on GitHub.&lt;/h2&gt;
+
+&lt;h3 id=&quot;setup&quot;&gt;Setup&lt;/h3&gt;
+
+&lt;p&gt;If you want to create a similar blog you can either fork this &lt;a href=&quot;https://github.com/m-x-k/m-x-k.github.io&quot;&gt;implementation&lt;/a&gt; or create a new one by installing:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Ruby&lt;/li&gt;
+  &lt;li&gt;Jekyll&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gem install jekyll&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;jekyll new .&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;development&quot;&gt;Development&lt;/h3&gt;
+
+&lt;p&gt;To setup your environment with all the required plugins run the command &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll build&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The blog entries can be tested locally using the command &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; and loading &lt;a href=&quot;http://localhost:4000&quot;&gt;http://localhost:4000&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;New blog entries can be added to the &lt;code class=&quot;highlighter-rouge&quot;&gt;_post&lt;/code&gt; folder and follow the standard markdown syntax.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-pages&quot;&gt;GitHub pages&lt;/h3&gt;
+
+&lt;p&gt;To view this blog goto: &lt;a href=&quot;https://github.com/USERNAME.github.io&quot;&gt;https://github.com/USERNAME.github.io&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A number of the Jekyll plugins will not work by default with GitHub pages. I have noticed a number of issues with pagination when using custom themes. This blog for example uses the minimal &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes&quot;&gt;Minimal Mistakes&lt;/a&gt; plugin which requires pagination for recent posts. At the time of writing &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll-paginate-v2&lt;/code&gt; isn’t supported by GitHub pages. It is however possible to get unsupported plugins to work via a number of alternative deployment options but the majority of these are quite complex for this introduction tutorial.&lt;/p&gt;
+
+&lt;p&gt;Note: its also possible to use GitLab pages&lt;/p&gt;
+
+&lt;h3 id=&quot;plugins&quot;&gt;Plugins&lt;/h3&gt;
+
+&lt;p&gt;Jekyll has many useful plugins including for example &lt;a href=&quot;https://github.com/jekyll/jekyll-gist&quot;&gt;jekyll-gist&lt;/a&gt; which allows you to embed gists into your blog entries.&lt;/p&gt;
+
+&lt;h3 id=&quot;additional&quot;&gt;Additional&lt;/h3&gt;
+
+&lt;h4 id=&quot;useful-links&quot;&gt;Useful links&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Jekyll installation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/&quot;&gt;GitHub pages help&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/viewing-jekyll-build-error-messages/&quot;&gt;GitHub pages error messages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Jekyll" /><category term="GitHub" /><summary type="html">Steps to create a sample blog created using Jekyll and hosted on GitHub.</summary></entry><entry><title type="html">Presentation slides with Reveal.js</title><link href="https://m-x-k.github.io/pages/m-x-k/javascript/revealjs/Presentation-slides-with-Reveal/" rel="alternate" type="text/html" title="Presentation slides with Reveal.js" /><published>2017-11-21T20:20:41+00:00</published><updated>2017-11-21T20:20:41+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/javascript/revealjs/Presentation-slides-with-Reveal</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/javascript/revealjs/Presentation-slides-with-Reveal/">&lt;p&gt;Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web client over at &lt;a href=&quot;https://slides.com/&quot;&gt;https://slides.com/&lt;/a&gt; I personally prefer to download the latest version directly from the github account &lt;a href=&quot;https://github.com/hakimel/reveal.js/releases/latest&quot;&gt;Latest release&lt;/a&gt; in order to generate your slide presentation by hand.&lt;/p&gt;
+
+&lt;p&gt;Steps to get it all up and running:&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;Create a new folder and extract the latest reveal.js code into a sub-folder called &quot;reveal.js&quot;&lt;/li&gt;
+	&lt;li&gt;In the root of your project copy the following html code into a file named index.html&lt;/li&gt;
+	&lt;li&gt;Open the index.html file with your browser of choice (note: chrome seems to be the preferred option)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script src=&quot;https://gist.github.com/fd6d40367b49bd811d6f99a9065f919a.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;The above sample is just a quick setup to get you going but there are many features in this library that you can take advantage of:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Markdown support using &quot;&amp;lt;&lt;span class=&quot;pl-ent&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;pl-e&quot;&gt;data-markdown&amp;gt; ...&quot;&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;PDF support by going to &quot;?print-pdf&quot; in chrome. The sample above provides support for this using a small javascript tag which makes use of some inbuilt javascript libraries.&lt;/li&gt;
+	&lt;li&gt;Hidden notes support using &quot;&amp;lt;section data-separator-notes=...&amp;gt;&quot;&lt;/li&gt;
+	&lt;li&gt;Slide data transitions such as &quot;fading&quot; in and out, zooming as well as controlling the speed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many more features that you can play about with including embedded videos, images and other multimedia. One feature that particularly interests me is embedding external markdown files. In terms of project development teams would be able to provide customer demos along side your versioned code base. It’s also possible to override the existing css but you may find this to be difficult when using the markdown content due to the way that this is converted by reveal.js on the fly.&lt;/p&gt;
+
+&lt;p&gt;For a quick introduction on other features in the current version 3 release have a look at the following slideshare from the author of Reveal.js Hakim El Hattab:&lt;/p&gt;
+
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/e3ACCuYrg0rSiG&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/hakimel/revealjs-300&quot; title=&quot;reveal.js 3.0.0&quot; target=&quot;_blank&quot;&gt;reveal.js 3.0.0&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/hakimel&quot; target=&quot;_blank&quot;&gt;Hakim El Hattab&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Javascript" /><category term="RevealJS" /><summary type="html">Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web client over at https://slides.com/ I personally prefer to download the latest version directly from the github account Latest release in order to generate your slide presentation by hand.</summary></entry><entry><title type="html">Useful List Of Python Resources</title><link href="https://m-x-k.github.io/pages/m-x-k/python/Useful-List-Of-Python-Resources/" rel="alternate" type="text/html" title="Useful List Of Python Resources" /><published>2017-11-19T20:00:10+00:00</published><updated>2017-11-19T20:00:10+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/python/Useful-List-Of-Python-Resources</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/python/Useful-List-Of-Python-Resources/">&lt;script src=&quot;https://gist.github.com/dda4cd4647375073e01c293cc56640db.js&quot;&gt; &lt;/script&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Python" /><summary type="html"></summary></entry><entry><title type="html">Creating a Gists Webpage With ReactJS</title><link href="https://m-x-k.github.io/pages/m-x-k/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS/" rel="alternate" type="text/html" title="Creating a Gists Webpage With ReactJS" /><published>2017-11-13T19:00:00+00:00</published><updated>2017-11-13T19:00:00+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS/">&lt;p&gt;I decided to build a simple ReactJS webpage to render my personal Gists from GitHub as an basic kata.&lt;/p&gt;
+
+&lt;p&gt;However while the ReactJS part was fairly straightforward I was once again reminded about Cross Site Scripting (XSS) issues when trying to call API’s from another domain using javascript. Thankfully JQuery jsonp still works:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;componentDidMount(){
+    $.ajax({
+      url: &quot;https://api.github.com/users/m-x-k/gists&quot;,
+      jsonp: &quot;$jsonp&quot;
+    }).done(function(data) {
+      console.log(data);
+      this.setState({gists: data});
+    }.bind(this));    
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Obviously in a production situation this isn’t what we would rely on!!!&lt;/p&gt;
+
+&lt;p&gt;Reverse proxies like Nginx, HAProxy or Apache are much better suited to revolve these types of issues.&lt;/p&gt;
+
+&lt;p&gt;Ideally we would setup a reverse proxy on “api.github.com” so that we can share a common domain for the client side requests. For example if your web page url was http://my.gists.com/index.html you might setup a reverse proxy like http://my.gists.com/api/m-x-k/gists.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: while its possible to mitigate the problem with headers it’s not an ideal solution as it depends on browser support.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://codepen.io/mxk/pen/WEJBbg&quot;&gt;https://codepen.io/mxk/pen/WEJBbg&lt;/a&gt;&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Javascript" /><category term="ReactJS" /><summary type="html">I decided to build a simple ReactJS webpage to render my personal Gists from GitHub as an basic kata.</summary></entry><entry><title type="html">Rapid prototyping with code templates</title><link href="https://m-x-k.github.io/pages/m-x-k/python/cookiecutter/Rapid-prototyping-with-code-templates/" rel="alternate" type="text/html" title="Rapid prototyping with code templates" /><published>2017-11-12T20:00:10+00:00</published><updated>2017-11-12T20:00:10+00:00</updated><id>https://m-x-k.github.io/pages/m-x-k/python/cookiecutter/Rapid-prototyping-with-code-templates</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/python/cookiecutter/Rapid-prototyping-with-code-templates/">&lt;p&gt;Over the last few years I have been using Python quite a lot to build rapid prototypes. By far the best command line tool I’ve found for this is the python ‘cookiecutter’ project below:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/audreyr/cookiecutter&quot;&gt;https://github.com/audreyr/cookiecutter&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;There are a large number of &lt;a href=&quot;https://github.com/audreyr/cookiecutter#python&quot;&gt;sample cookiecutter projects&lt;/a&gt; out there but it makes sense to build and maintain your own if you want to get the latest setup.&lt;/p&gt;
+
+&lt;p&gt;For ease of use I have a number of linux command line aliases to create new projects from my own code template projects:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/a849a8b7d2da0f54dc35c4fb9b42983d.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;In some cases these code template projects have been customised to my own preferences with IDE support etc … but for the most part they tend to be fairly vanilla in case other people might find them useful and also to allow me to customise each new project. So for example with Java applications I tend to prefer IntelliJ with Gradle but beyond that for me it doesn’t make sense to preload all of your favourite java libraries.&lt;/p&gt;
+
+&lt;p&gt;In some work places I have noticed a tendency to try and standardise code structure with similar code template tools (e.g. maven archetypes). In many cases this can save project setup time but I tend not to favour this approach. Ideally in agile development teams it is best to reach a group consensus based on the project requirements first and then trying to agree on code standards such as naming, structure etc … A good place to start is often Uncle Bob’s Clean coders book which is widely distributed and possibly combining this with Extreme Programming techniques such as TDD, Pair Programming or Mobbing. This combined approach often gets extremely good results allowing for a wider group consensus and shared ownership.&lt;/p&gt;
+
+&lt;p&gt;However in many situations the first place to start on a project is a quick prototype. It can therefore be convenient to use code templates in these situations. This actually helps to reinforce the concept that code implemented as part of the prototype is ‘temporary’ and therefore should be discarded and reimplemented by the team from scratch.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Python" /><category term="Cookiecutter" /><summary type="html">Over the last few years I have been using Python quite a lot to build rapid prototypes. By far the best command line tool I’ve found for this is the python ‘cookiecutter’ project below:</summary></entry><entry><title type="html">Building a responsive photo gallery</title><link href="https://m-x-k.github.io/pages/m-x-k/javascript/Building-a-responsive-photo-gallery/" rel="alternate" type="text/html" title="Building a responsive photo gallery" /><published>2017-10-08T21:00:10+01:00</published><updated>2017-10-08T21:00:10+01:00</updated><id>https://m-x-k.github.io/pages/m-x-k/javascript/Building-a-responsive-photo-gallery</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/javascript/Building-a-responsive-photo-gallery/">&lt;p&gt;Recently I needed to build a photo gallery for a website built with ReactJS. I came across a convenient react library “react-photo-gallery” which was ideal for this purpose. As a proof of concept I built a small Spring Boot app with ReactJS support:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/m-x-k/photo-gallery&quot;&gt;https://github.com/m-x-k/photo-gallery&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The application contains a few sample images which can easily be orientated to fit various devices and screen sizes for responsive behaviour.&lt;/p&gt;
+
+&lt;p&gt;I also needed to provide a demo to show off some of the functionality before implementing further. Luckily Heroku provides a great environment for sample demo sites. As usual Heroku can be a little slow on the first load as it builds the app on demand. You can reach the demo site below:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://responsive-photo-gallery.herokuapp.com/&quot;&gt;https://responsive-photo-gallery.herokuapp.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The code implementation was straight forward to setup with the project split into two separate folders. One for the spring boot ‘src’ code and the other ‘ui’ folder for the ReactJS code. Support for Docker has been included as well as details and scripts on to upload the app and any photos to a Heroku account. The only tricky part was getting the folder permissions just right for the photos to load successfully.&lt;/p&gt;
+
+&lt;p&gt;At the minute I tend to favour Gradle for building Java projects. It provides a robust DSL with various plugins and support for Maven etc … When it comes to Javascript building I tend to favour NPM/Yarn with Webpack especially for the ease of setup when it comes to ES6 transpiling. The combination allowed me to quickly setup an application structure supporting full stack builds on demand.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Javascript" /><category term="ReactJS" /><summary type="html">Recently I needed to build a photo gallery for a website built with ReactJS. I came across a convenient react library “react-photo-gallery” which was ideal for this purpose. As a proof of concept I built a small Spring Boot app with ReactJS support:</summary></entry><entry><title type="html">Kubernetes Administration Techniques</title><link href="https://m-x-k.github.io/pages/m-x-k/kubernetes/Kubernetes-administration-techniques/" rel="alternate" type="text/html" title="Kubernetes Administration Techniques" /><published>2017-08-11T12:00:00+01:00</published><updated>2017-08-11T12:00:00+01:00</updated><id>https://m-x-k.github.io/pages/m-x-k/kubernetes/Kubernetes-administration-techniques</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/kubernetes/Kubernetes-administration-techniques/">&lt;blockquote&gt;
+
+  &lt;p&gt;This blog entry is intended as a guide to &lt;em&gt;some&lt;/em&gt; of the Kubernetes Administration features. It is not exhaustive list but instead is intended to serve as an introduction to some of these commands and hopefully provide enough information to learn about more advanced features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;kubernetes-administration-techniques&quot;&gt;Kubernetes Administration Techniques&lt;/h2&gt;
+
+&lt;p&gt;Following on from my recent blog entry which provided an &lt;a href=&quot;/kubernetes/Introduction-to-kubernetes/&quot;&gt;Introduction into Kubernetes&lt;/a&gt; this post outlines some of the basic concepts and techniques which can be used to administer and maintain your Kubernetes pods and services.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;minikube-dashboard&quot;&gt;Minikube Dashboard&lt;/h3&gt;
+
+&lt;p&gt;You can get a simple Dashboard for your Minikube instance in your browser by running the following command:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;minikube dashboard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From within your browser you should be able to inspect and maintain cluster concepts such as pods, services, namespaces, volumes, roles etc … as well as workloads, storage, discovery and load balancing.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;replicaset&quot;&gt;Replicaset&lt;/h3&gt;
+
+&lt;p&gt;In order to monitor &lt;code class=&quot;highlighter-rouge&quot;&gt;Pods&lt;/code&gt; you need to know how many should be running at any given time. This is achieved through the concept of a replicaset. It is also the responsibility of the replicaset to create the pod instances for you rather than having to do this manually.&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;extensions/v1beta1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ReplicaSets&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;3&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bar&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bar&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;selector&lt;/code&gt; here is used to help count the number of a particular set of &lt;code class=&quot;highlighter-rouge&quot;&gt;Pods&lt;/code&gt; (e.g. 3) and we understand that these are associated with the nginx service according to the template specification.&lt;/p&gt;
+
+&lt;p&gt;There are different types of replicaset api’s supported. The api version &lt;code class=&quot;highlighter-rouge&quot;&gt;extensions/v1beta1&lt;/code&gt; here is the advanced beta version of Kubernetes which supports the concept of replica sets.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; rs.yaml     &lt;span class=&quot;c&quot;&gt;# Create a replicaset from the above yaml configuration&lt;/span&gt;
+kubectl get replicaset        &lt;span class=&quot;c&quot;&gt;# List all replicasets&lt;/span&gt;
+kubectl get pods              &lt;span class=&quot;c&quot;&gt;# List all pods - should now contain our 3 instances from the replicaset&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With the replicaset in place if any of the pods should stop for whatever reason Kubernetes should create another pod instance as required.&lt;/p&gt;
+
+&lt;p&gt;If you need to manually adjust this replicaset to increase or decrease the number of running pod instances you can run:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl scale rs nginx &lt;span class=&quot;nt&quot;&gt;--replicas&lt;/span&gt; 5
+kubectl get endpoints
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;kubernetes-api&quot;&gt;Kubernetes API&lt;/h3&gt;
+
+&lt;p&gt;If you want to investigate the Kubernetes API from the command line you can run the following:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl proxy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In another terminal you can then call the resulting endpoint locally with curl to get the list of Kubernetes API endpoints:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl localhost:8001
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Exmaple output:&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;paths&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/api/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/admissionregistration.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/admissionregistration.k8s.io/v1alpha1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/apiextensions.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/apiextensions.k8s.io/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/apiregistration.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/apiregistration.k8s.io/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/apps&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/apps/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/apps/v1beta2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/authentication.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/authentication.k8s.io/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/authentication.k8s.io/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/authorization.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/authorization.k8s.io/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/authorization.k8s.io/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/autoscaling&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/autoscaling/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/autoscaling/v2beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/batch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/batch/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/batch/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/batch/v2alpha1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/certificates.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/certificates.k8s.io/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/extensions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/extensions/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/networking.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/networking.k8s.io/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/policy&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/policy/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/rbac.authorization.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/rbac.authorization.k8s.io/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/rbac.authorization.k8s.io/v1alpha1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/rbac.authorization.k8s.io/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/scheduling.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/scheduling.k8s.io/v1alpha1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/settings.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/settings.k8s.io/v1alpha1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/storage.k8s.io&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/storage.k8s.io/v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/apis/storage.k8s.io/v1beta1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/autoregister-completion&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/etcd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/ping&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/apiservice-openapi-controller&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/apiservice-registration-controller&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/apiservice-status-available-controller&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/bootstrap-controller&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/ca-registration&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/generic-apiserver-start-informers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/kube-apiserver-autoregistration&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/start-apiextensions-controllers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/start-apiextensions-informers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/start-kube-aggregator-informers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/healthz/poststarthook/start-kube-apiserver-informers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/logs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/metrics&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/swagger-2.0.0.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/swagger-2.0.0.pb-v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/swagger-2.0.0.pb-v1.gz&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/swagger.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/swaggerapi&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/ui&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/ui/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/version&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;utilities&quot;&gt;Utilities&lt;/h3&gt;
+
+&lt;p&gt;If you need to run commands inside your cluster instance you can use &lt;a href=&quot;https://busybox.net/about.html&quot;&gt;busybox&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl run busy &lt;span class=&quot;nt&quot;&gt;-ti&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--image&lt;/span&gt; busybox &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; /bin/sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will open a shell where for instance you can run commands like &lt;code class=&quot;highlighter-rouge&quot;&gt;nslookup&lt;/code&gt; against your service names. However most of this information is exposed via the usual kubectl commands (e.g. kubectl get svc).&lt;/p&gt;
+
+&lt;p&gt;A list of the busybox supported commands is currently available on wikipedia at the following link:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://busybox.net/downloads/BusyBox.html&quot;&gt;BusyBox commands&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;namespaces&quot;&gt;Namespaces&lt;/h3&gt;
+
+&lt;p&gt;Namespaces can be created and assigned to a number of pods. This allows for greater flexibility and maintenance of your pods.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get namespaces              &lt;span class=&quot;c&quot;&gt;# Get all namespaces&lt;/span&gt;
+kubectl get pods &lt;span class=&quot;nt&quot;&gt;--all-namespaces&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;# Get all pods with their namespaces&lt;/span&gt;
+kubectl get pods &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &amp;lt;NAMESPACE&amp;gt;     &lt;span class=&quot;c&quot;&gt;# Get all pods with the matching namespace&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There many ways that you can use this feature. For instance you can assign namespaces per individual or you could assign a namespace for a particular environment such as dev, test or prod. Another option is to extend the concept of namespaces for a particular environment so for example in dev have a namespace for each individual team, in prod this might be at an application level due to the number of pods required for a live environment.&lt;/p&gt;
+
+&lt;p&gt;You can also use namespaces to determine quotas out-of-the-box with namespaces which you will see in the next section.&lt;/p&gt;
+
+&lt;h3 id=&quot;resource-quotas&quot;&gt;Resource Quotas&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create resourcequotas &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--hard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pods&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1 &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &amp;lt;NAMESPACE&amp;gt;
+kubectl get resourcequotas &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &amp;lt;NAMESPACE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Based on the above resource quota Kubernetes will complain when you next try to create a &lt;code class=&quot;highlighter-rouge&quot;&gt;pod&lt;/code&gt; instance attached to the given namespace. The quota here is limited to &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; but the number can be whatever you require. You can even come back and &lt;code class=&quot;highlighter-rouge&quot;&gt;edit&lt;/code&gt; the resourcequota if you need to:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl edit resourcequota &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &amp;lt;NAMESPACE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will open your favourite editor and allow you to modify the yaml file configuration for your resource quota.&lt;/p&gt;
+
+&lt;p&gt;If you want to you can even use these quotas to determine network policies but that would require additional add-ons.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Hopefully you’ve learnt a few new things about how Kubernetes administration. There are a lot of other topics that I haven’t covered some of which may be redundant if you already know them from other orchestration tools or from container tools like Docker.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Kubernetes" /><category term="Docker" /><summary type="html">This blog entry is intended as a guide to some of the Kubernetes Administration features. It is not exhaustive list but instead is intended to serve as an introduction to some of these commands and hopefully provide enough information to learn about more advanced features.</summary></entry><entry><title type="html">Introduction to Kubernetes</title><link href="https://m-x-k.github.io/pages/m-x-k/kubernetes/Introduction-to-kubernetes/" rel="alternate" type="text/html" title="Introduction to Kubernetes" /><published>2017-08-10T12:00:00+01:00</published><updated>2017-08-10T12:00:00+01:00</updated><id>https://m-x-k.github.io/pages/m-x-k/kubernetes/Introduction-to-kubernetes</id><content type="html" xml:base="https://m-x-k.github.io/pages/m-x-k/kubernetes/Introduction-to-kubernetes/">&lt;blockquote&gt;
+
+  &lt;p&gt;Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;introduction-to-kubernetes&quot;&gt;Introduction to Kubernetes&lt;/h1&gt;
+
+&lt;p&gt;Kubernetes is open-sourced software for automating deployment, scaling and management of containerised applications.&lt;/p&gt;
+
+&lt;p&gt;The term &lt;code class=&quot;highlighter-rouge&quot;&gt;kubernetes&lt;/code&gt; is actually Greek and stands for the steersman or helmsman, further building on the concept of shipping containers.&lt;/p&gt;
+
+&lt;h2 id=&quot;origin&quot;&gt;Origin&lt;/h2&gt;
+
+&lt;p&gt;Kubernetes was the result of 15 years of research at Google. The concept was originally built from the &lt;code class=&quot;highlighter-rouge&quot;&gt;Google Borg&lt;/code&gt; system which was a large scale cluster manager that would run hundreds of thousands of jobs ranging from different applications across clusters with tens of thousands of machines. This resulted in a white paper in 2015 which outlined the foundation for Kubernetes. Underlying &lt;code class=&quot;highlighter-rouge&quot;&gt;Borg&lt;/code&gt; techniques such as &lt;code class=&quot;highlighter-rouge&quot;&gt;cgroups&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;linux namespaces&lt;/code&gt; formed the heart of containers as part of the open-sourced Linux kernel.&lt;/p&gt;
+
+&lt;h3 id=&quot;macos-install&quot;&gt;MacOS install&lt;/h3&gt;
+
+&lt;p&gt;At the time of writing this is the setup for working with Kubernetes on a MacOS machine.&lt;/p&gt;
+
+&lt;h4 id=&quot;minikube&quot;&gt;&lt;a href=&quot;https://github.com/kubernetes/minikube&quot;&gt;Minikube&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew cask install minikube    # Install
+minikube start                # Start
+minikube dashboard            # Open dashboard browser
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;kubectl&quot;&gt;&lt;a href=&quot;https://kubernetes.io/docs/tasks/tools/install-kubectl/&quot;&gt;Kubectl&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Kubectl is the Kubernetes command-line tool used to deploy and manage applications on Kubernetes.&lt;/p&gt;
+
+&lt;p&gt;Download the latest Kubectl instance, make it executable and move it into you MacOS PATH.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For a list of different resources that you can get with kubectl run:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;kubernetes-pod&quot;&gt;Kubernetes Pod&lt;/h3&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;At a basic conceptual level you can think of a &lt;code class=&quot;highlighter-rouge&quot;&gt;Pod&lt;/code&gt; as an abstraction around the concept of a machine. In other words it has an IP address, a set of processes, a set of volumes etc … While this is similar to what a &lt;code class=&quot;highlighter-rouge&quot;&gt;container&lt;/code&gt; is, a &lt;code class=&quot;highlighter-rouge&quot;&gt;Pod&lt;/code&gt; (as in a pod of whales) also is a group of one or more containers, with shared storage/network and a specification for how to run the containers. In other words the contents of a pod are co-located and co-scheduled and run a shared context. The “one-container-per-Pod” model is the most common Kubernetes use case.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Simple &lt;code class=&quot;highlighter-rouge&quot;&gt;Redis&lt;/code&gt; example of a Kubernetes pod:&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;myredispod&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create and run this pod inside the minikube vm:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create -f pod.yaml      # Create the pod
+kubectl get pods                # View all pods
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Enter the running pod &lt;code class=&quot;highlighter-rouge&quot;&gt;redis&lt;/code&gt; instance:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl exec -it myredispod -- redis-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;kubernetes-service&quot;&gt;Kubernetes Service&lt;/h3&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Kubernetes can also define a &lt;code class=&quot;highlighter-rouge&quot;&gt;service&lt;/code&gt; which in this case is an abstraction around the concept of a Microservice.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The following is an example service yaml file:&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bar&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NodePort&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;80&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can see from the example service above that the &lt;code class=&quot;highlighter-rouge&quot;&gt;Service&lt;/code&gt; is made up of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Pod&lt;/code&gt; foobar.&lt;/p&gt;
+
+&lt;p&gt;Creating a Kubernetes service:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; service.yaml      &lt;span class=&quot;c&quot;&gt;# Create a service with the above specification&lt;/span&gt;
+kubectl get services                &lt;span class=&quot;c&quot;&gt;# List all services&lt;/span&gt;
+kubectl get endpoints               &lt;span class=&quot;c&quot;&gt;# List all endpoints&lt;/span&gt;
+kubectl label pods nginx foobar     &lt;span class=&quot;c&quot;&gt;# Tag the nginx serivce&lt;/span&gt;
+kubectl get pods &lt;span class=&quot;nt&quot;&gt;--show-labels&lt;/span&gt;      &lt;span class=&quot;c&quot;&gt;# List all the pods with their labels&lt;/span&gt;
+minikube service nginx              &lt;span class=&quot;c&quot;&gt;# Start the nginx service&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Labels are a key part of how we can attach and monitor pod’s etc in Kubernetes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;alternatives&quot;&gt;Alternatives&lt;/h2&gt;
+
+&lt;p&gt;There are many orchestration tools designed to manage containers at scale. There are many pros and cons to consider when trying to determine which is ideal for your organisation.&lt;/p&gt;
+
+&lt;p&gt;Some alternatives include:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Docker Swarm&lt;/li&gt;
+  &lt;li&gt;Hashicorp Nomad&lt;/li&gt;
+  &lt;li&gt;Apache Mesos&lt;/li&gt;
+  &lt;li&gt;Rancher&lt;/li&gt;
+  &lt;li&gt;OpenShift&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Kubernetes" /><category term="Docker" /><summary type="html">Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!</summary></entry></feed>

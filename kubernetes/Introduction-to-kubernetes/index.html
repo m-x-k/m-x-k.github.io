@@ -1,0 +1,765 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.8.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Introduction to Kubernetes  MXK Software Craftmanship</title>
+
+
+
+
+<meta name="description" content="  Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!">
+
+
+
+
+<meta name="author" content="Martin Kelly">
+
+<meta property="og:locale" content="en_gb">
+<meta property="og:site_name" content="MXK Software Craftmanship">
+<meta property="og:title" content="Introduction to Kubernetes">
+
+
+  <link rel="canonical" href="https://m-x-k.github.io/pages/m-x-k/kubernetes/Introduction-to-kubernetes/">
+  <meta property="og:url" content="https://m-x-k.github.io/pages/m-x-k/kubernetes/Introduction-to-kubernetes/">
+
+
+
+  <meta property="og:description" content="  Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-08-10T12:00:00+01:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://m-x-k.github.io/pages/m-x-k/feed.xml" type="application/atom+xml" rel="alternate" title="MXK Software Craftmanship Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://m-x-k.github.io/pages/m-x-k/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://m-x-k.github.io/pages/m-x-k/">MXK Software Craftmanship</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/recent-posts/" >Recent Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/year-archive/" >Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/categories/" >Categories</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/tags/" >Tags</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io/pages/m-x-k/about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://mxk.solutions" >External Link</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/pages/m-x-k/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/pages/m-x-k/categories/kubernetes" itemprop="item"><span itemprop="name">Kubernetes</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Introduction to Kubernetes</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        
+        <a href="http://mxk.solutions">
+          <img src="https://m-x-k.github.io/pages/m-x-k/assets/images/Avatars4.png" alt="Martin Kelly" itemprop="image">
+        </a>
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <a href="http://mxk.solutions"><h3 class="author__name" itemprop="name">Martin Kelly</h3></a>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Software developer
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Edinburgh</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:mxksolutions@gmail.com">
+            <meta itemprop="email" content="mxksolutions@gmail.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/mxk-solutions" itemprop="sameAs">
+            <i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/m-x-k" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://codepen.io/mxk" itemprop="sameAs">
+            <i class="fa fa-fw fa-codepen" aria-hidden="true"></i> CodePen
+          </a>
+        </li>
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Introduction to Kubernetes">
+    <meta itemprop="description" content="  Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!">
+    <meta itemprop="datePublished" content="August 10, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Introduction to Kubernetes
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <blockquote>
+
+  <p>Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!</p>
+</blockquote>
+
+<h1 id="introduction-to-kubernetes">Introduction to Kubernetes</h1>
+
+<p>Kubernetes is open-sourced software for automating deployment, scaling and management of containerised applications.</p>
+
+<p>The term <code class="highlighter-rouge">kubernetes</code> is actually Greek and stands for the steersman or helmsman, further building on the concept of shipping containers.</p>
+
+<h2 id="origin">Origin</h2>
+
+<p>Kubernetes was the result of 15 years of research at Google. The concept was originally built from the <code class="highlighter-rouge">Google Borg</code> system which was a large scale cluster manager that would run hundreds of thousands of jobs ranging from different applications across clusters with tens of thousands of machines. This resulted in a white paper in 2015 which outlined the foundation for Kubernetes. Underlying <code class="highlighter-rouge">Borg</code> techniques such as <code class="highlighter-rouge">cgroups</code> and <code class="highlighter-rouge">linux namespaces</code> formed the heart of containers as part of the open-sourced Linux kernel.</p>
+
+<h3 id="macos-install">MacOS install</h3>
+
+<p>At the time of writing this is the setup for working with Kubernetes on a MacOS machine.</p>
+
+<h4 id="minikube"><a href="https://github.com/kubernetes/minikube">Minikube</a></h4>
+
+<p>Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew cask install minikube    # Install
+minikube start                # Start
+minikube dashboard            # Open dashboard browser
+</code></pre></div></div>
+
+<h4 id="kubectl"><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">Kubectl</a></h4>
+
+<p>Kubectl is the Kubernetes command-line tool used to deploy and manage applications on Kubernetes.</p>
+
+<p>Download the latest Kubectl instance, make it executable and move it into you MacOS PATH.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+</code></pre></div></div>
+
+<p>For a list of different resources that you can get with kubectl run:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl get
+</code></pre></div></div>
+
+<h3 id="kubernetes-pod">Kubernetes Pod</h3>
+
+<blockquote>
+
+  <p>At a basic conceptual level you can think of a <code class="highlighter-rouge">Pod</code> as an abstraction around the concept of a machine. In other words it has an IP address, a set of processes, a set of volumes etc … While this is similar to what a <code class="highlighter-rouge">container</code> is, a <code class="highlighter-rouge">Pod</code> (as in a pod of whales) also is a group of one or more containers, with shared storage/network and a specification for how to run the containers. In other words the contents of a pod are co-located and co-scheduled and run a shared context. The “one-container-per-Pod” model is the most common Kubernetes use case.</p>
+</blockquote>
+
+<p>Simple <code class="highlighter-rouge">Redis</code> example of a Kubernetes pod:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">myredispod</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">image</span><span class="pi">:</span> <span class="s">redis</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">redis</span>
+</code></pre></div></div>
+
+<p>Create and run this pod inside the minikube vm:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl create -f pod.yaml      # Create the pod
+kubectl get pods                # View all pods
+</code></pre></div></div>
+
+<p>Enter the running pod <code class="highlighter-rouge">redis</code> instance:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl exec -it myredispod -- redis-cli
+</code></pre></div></div>
+
+<h3 id="kubernetes-service">Kubernetes Service</h3>
+
+<blockquote>
+
+  <p>Kubernetes can also define a <code class="highlighter-rouge">service</code> which in this case is an abstraction around the concept of a Microservice.</p>
+</blockquote>
+
+<p>The following is an example service yaml file:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">nginx</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">foo</span><span class="pi">:</span> <span class="s">bar</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">NodePort</span>
+  <span class="na">ports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">port</span><span class="pi">:</span> <span class="s">80</span>
+    <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+</code></pre></div></div>
+
+<p>You can see from the example service above that the <code class="highlighter-rouge">Service</code> is made up of the <code class="highlighter-rouge">Pod</code> foobar.</p>
+
+<p>Creating a Kubernetes service:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl create <span class="nt">-f</span> service.yaml      <span class="c"># Create a service with the above specification</span>
+kubectl get services                <span class="c"># List all services</span>
+kubectl get endpoints               <span class="c"># List all endpoints</span>
+kubectl label pods nginx foobar     <span class="c"># Tag the nginx serivce</span>
+kubectl get pods <span class="nt">--show-labels</span>      <span class="c"># List all the pods with their labels</span>
+minikube service nginx              <span class="c"># Start the nginx service</span>
+</code></pre></div></div>
+
+<blockquote>
+
+  <p>Labels are a key part of how we can attach and monitor pod’s etc in Kubernetes.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="alternatives">Alternatives</h2>
+
+<p>There are many orchestration tools designed to manage containers at scale. There are many pros and cons to consider when trying to determine which is ideal for your organisation.</p>
+
+<p>Some alternatives include:</p>
+<ul>
+  <li>Docker Swarm</li>
+  <li>Hashicorp Nomad</li>
+  <li>Apache Mesos</li>
+  <li>Rancher</li>
+  <li>OpenShift</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/tags/docker" class="page__taxonomy-item" rel="tag">Docker</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/tags/kubernetes" class="page__taxonomy-item" rel="tag">Kubernetes</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/pages/m-x-k/categories/kubernetes" class="page__taxonomy-item" rel="tag">Kubernetes</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-08-10T12:00:00+01:00">August 10, 2017</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Introduction+to+Kubernetes%20https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fkubernetes%2FIntroduction-to-kubernetes%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fkubernetes%2FIntroduction-to-kubernetes%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fkubernetes%2FIntroduction-to-kubernetes%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fm-x-k.github.io%2Fpages%2Fm-x-k%2Fkubernetes%2FIntroduction-to-kubernetes%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="https://m-x-k.github.io/pages/m-x-k/analytics/gtm/google-anaytics/" class="pagination--pager" title="Google Analytics with Google Tag Manager
+">Previous</a>
+    
+    
+      <a href="https://m-x-k.github.io/pages/m-x-k/kubernetes/Kubernetes-administration-techniques/" class="pagination--pager" title="Kubernetes Administration Techniques
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/openshift/minishift/docker/getting-started-with-open-shift/" rel="permalink">Getting started with OpenShift
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">OpenShift
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/python/python-pip-setup-with-artifactory/" rel="permalink">Python PIP Setup with artifactory
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Installing a local artifactory instance:
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/jekyll/creating-blog-with-github-pages-and-jekyll/" rel="permalink">Creating a Blog with Jekyll and GitHub pages
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Steps to create a sample blog created using Jekyll and hosted on GitHub.
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="https://m-x-k.github.io/pages/m-x-k/javascript/revealjs/Presentation-slides-with-Reveal/" rel="permalink">Presentation slides with Reveal.js
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web cl...</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+    
+    
+      <li><a href="https://github.com/m-x-k"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="https://m-x-k.github.io/pages/m-x-k/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 MXK Software Craftmanship. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="https://m-x-k.github.io/pages/m-x-k/assets/js/main.min.js"></script>
+
+
+
+  <script src="https://m-x-k.github.io/pages/m-x-k/assets/js/lunr.min.js"></script>
+  <script src="https://m-x-k.github.io/pages/m-x-k/assets/js/lunr-en.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111584934-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111584934-1');
+</script>
+
+
+
+
+  </body>
+</html>
