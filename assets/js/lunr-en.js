@@ -148,7 +148,7 @@ var store = [
       
       {
         "title": "Creating a python flask app",
-        "url": "https://m-x-k.github.io/pages/m-x-k/python/Creating-a-python-flask-app/",
+        "url": "https://m-x-k.github.io/python/Creating-a-python-flask-app/",
         "excerpt": "Creating a Python Flask application The following is simple tutorial on setting up your first python web application using flask....",
         "teaser":
           
@@ -159,7 +159,7 @@ var store = [
       
       {
         "title": "Using Tmuxinator for Python Apps",
-        "url": "https://m-x-k.github.io/pages/m-x-k/tmux/Using-Tmuxinator-for-python-apps/",
+        "url": "https://m-x-k.github.io/tmux/Using-Tmuxinator-for-python-apps/",
         "excerpt": "Using Tmuxinator for Python Apps With the dawn of Microservices its becoming more common to have to run and maintain...",
         "teaser":
           
@@ -170,7 +170,7 @@ var store = [
       
       {
         "title": "Primer on Docker",
-        "url": "https://m-x-k.github.io/pages/m-x-k/docker/primer-on-docker/",
+        "url": "https://m-x-k.github.io/docker/primer-on-docker/",
         "excerpt": "Docker It’s easy to get lost in all the hype behind docker and the use of containers. Over at the...",
         "teaser":
           
@@ -181,7 +181,7 @@ var store = [
       
       {
         "title": "Google Analytics with Google Tag Manager",
-        "url": "https://m-x-k.github.io/pages/m-x-k/analytics/gtm/google-anaytics/",
+        "url": "https://m-x-k.github.io/analytics/gtm/google-anaytics/",
         "excerpt": "Google Analytics If you want to track user behaviour on your websites Google Analytics combined with Google Tag Manager is...",
         "teaser":
           
@@ -192,7 +192,7 @@ var store = [
       
       {
         "title": "Introduction to Kubernetes",
-        "url": "https://m-x-k.github.io/pages/m-x-k/kubernetes/Introduction-to-kubernetes/",
+        "url": "https://m-x-k.github.io/kubernetes/Introduction-to-kubernetes/",
         "excerpt": "Note: it is recommended to read up on how Docker works before trying to understand Kubernetes! Introduction to Kubernetes Kubernetes...",
         "teaser":
           
@@ -203,7 +203,7 @@ var store = [
       
       {
         "title": "Kubernetes Administration Techniques",
-        "url": "https://m-x-k.github.io/pages/m-x-k/kubernetes/Kubernetes-administration-techniques/",
+        "url": "https://m-x-k.github.io/kubernetes/Kubernetes-administration-techniques/",
         "excerpt": "This blog entry is intended as a guide to some of the Kubernetes Administration features. It is not exhaustive list...",
         "teaser":
           
@@ -214,7 +214,7 @@ var store = [
       
       {
         "title": "Building a responsive photo gallery",
-        "url": "https://m-x-k.github.io/pages/m-x-k/javascript/Building-a-responsive-photo-gallery/",
+        "url": "https://m-x-k.github.io/javascript/Building-a-responsive-photo-gallery/",
         "excerpt": "Recently I needed to build a photo gallery for a website built with ReactJS. I came across a convenient react...",
         "teaser":
           
@@ -225,7 +225,7 @@ var store = [
       
       {
         "title": "Rapid prototyping with code templates",
-        "url": "https://m-x-k.github.io/pages/m-x-k/python/cookiecutter/Rapid-prototyping-with-code-templates/",
+        "url": "https://m-x-k.github.io/python/cookiecutter/Rapid-prototyping-with-code-templates/",
         "excerpt": "Over the last few years I have been using Python quite a lot to build rapid prototypes. By far the...",
         "teaser":
           
@@ -236,7 +236,7 @@ var store = [
       
       {
         "title": "Creating a Gists Webpage With ReactJS",
-        "url": "https://m-x-k.github.io/pages/m-x-k/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS/",
+        "url": "https://m-x-k.github.io/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS/",
         "excerpt": "I decided to build a simple ReactJS webpage to render my personal Gists from GitHub as an basic kata. However...",
         "teaser":
           
@@ -247,7 +247,7 @@ var store = [
       
       {
         "title": "Useful List Of Python Resources",
-        "url": "https://m-x-k.github.io/pages/m-x-k/python/Useful-List-Of-Python-Resources/",
+        "url": "https://m-x-k.github.io/python/Useful-List-Of-Python-Resources/",
         "excerpt": "\n\n",
         "teaser":
           
@@ -258,7 +258,7 @@ var store = [
       
       {
         "title": "Presentation slides with Reveal.js",
-        "url": "https://m-x-k.github.io/pages/m-x-k/javascript/revealjs/Presentation-slides-with-Reveal/",
+        "url": "https://m-x-k.github.io/javascript/revealjs/Presentation-slides-with-Reveal/",
         "excerpt": "Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create...",
         "teaser":
           
@@ -269,7 +269,7 @@ var store = [
       
       {
         "title": "Creating a Blog with Jekyll and GitHub pages",
-        "url": "https://m-x-k.github.io/pages/m-x-k/jekyll/creating-blog-with-github-pages-and-jekyll/",
+        "url": "https://m-x-k.github.io/jekyll/creating-blog-with-github-pages-and-jekyll/",
         "excerpt": "Steps to create a sample blog created using Jekyll and hosted on GitHub. Setup If you want to create a...",
         "teaser":
           
@@ -280,7 +280,7 @@ var store = [
       
       {
         "title": "Python PIP Setup with artifactory",
-        "url": "https://m-x-k.github.io/pages/m-x-k/python/python-pip-setup-with-artifactory/",
+        "url": "https://m-x-k.github.io/python/python-pip-setup-with-artifactory/",
         "excerpt": "Installing a local artifactory instance: docker pull docker.bintray.io/jfrog/artifactory-oss:latest docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss In browser open http://localhost:8081...",
         "teaser":
           
@@ -291,7 +291,7 @@ var store = [
       
       {
         "title": "Getting started with OpenShift",
-        "url": "https://m-x-k.github.io/pages/m-x-k/openshift/minishift/docker/getting-started-with-open-shift/",
+        "url": "https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/",
         "excerpt": "OpenShift OpenShift provides a convenient abstraction over the concept of containers in the form of a PaaS (Platform as an...",
         "teaser":
           
