@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2017-12-30T13:55:09+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Getting started with OpenShift</title><link href="https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/" rel="alternate" type="text/html" title="Getting started with OpenShift" /><published>2017-12-25T11:40:00+00:00</published><updated>2017-12-25T11:40:00+00:00</updated><id>https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift</id><content type="html" xml:base="https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/">&lt;h2 id=&quot;openshift&quot;&gt;OpenShift&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2017-12-30T22:28:45+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Java 9 JShell overview</title><link href="https://m-x-k.github.io/java/Java-9-JShell-Overview/" rel="alternate" type="text/html" title="Java 9 JShell overview" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-JShell-Overview</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-JShell-Overview/">&lt;h2 id=&quot;jshell&quot;&gt;JShell&lt;/h2&gt;
+
+&lt;p&gt;Originally introduced as project Kulla, JShell is a great tool for new and experienced developers.&lt;/p&gt;
+
+&lt;p&gt;JShell  is a read-eval-print-loop (REPL) tool which can be used to quickly interact with Java from the command line without the need to compile your code.&lt;/p&gt;
+
+&lt;h3 id=&quot;macos-setup-for-jshell&quot;&gt;MacOS setup for JShell:&lt;/h3&gt;
+&lt;script src=&quot;https://gist.github.com/382cb9a852e4f26f86c9c7267149267d.js&quot;&gt; &lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;You can start up the JShell console via a terminal window session:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jshell
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From there you can execute java statements. While it is possible to combine some statements into one line such as a for loop it is preferred practice to got with a more reactive programming style such as java streams. For example:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; import java.util.stream.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+jshell&amp;gt; IntStream.range&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0, 10&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.map&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;i -&amp;gt; i &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; i&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.toArray&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&amp;gt;&lt;/span&gt; int[10] &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After executing the above you can now use &lt;code class=&quot;highlighter-rouge&quot;&gt;$1&lt;/code&gt; in future expressions inside the current jshell session.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;JShell is utilimately a great tool for users to explore the core Java API.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;printing-with-jshell&quot;&gt;Printing with JShell&lt;/h3&gt;
+
+&lt;p&gt;To support printing with JShell you need to run it with the print option:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jshell &lt;span class=&quot;nt&quot;&gt;--start&lt;/span&gt; DEFAULT &lt;span class=&quot;nt&quot;&gt;--start&lt;/span&gt; PRINTING
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With support for &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; you can now execute statements like the following:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Pi is %.5f&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;, Math.PI&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+jshell&amp;gt; println&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Print me!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Without the jshell &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; options you will get an error that the method doesn’t exist. You can get around this by creating your own methods but it adds extra effort.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;edit&quot;&gt;Edit&lt;/h3&gt;
+
+&lt;p&gt;Its also possible to edit JShell in a separate java editor by typing:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /edit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you have recently created a method in your session history you can extend this to edit that method:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; void testMe&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+jshell&amp;gt; System.out.println&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;testing&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+jshell&amp;gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+jshell&amp;gt; /edit 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Alternatively you can switch to your favourite editor with:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /set editor /usr/bin/vim
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;list&quot;&gt;List&lt;/h3&gt;
+
+&lt;p&gt;It’s also possible to &lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt; any methods created in your current session:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want to list the all of the current imports you can execute:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /imports
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;save-and-open&quot;&gt;Save and Open&lt;/h3&gt;
+
+&lt;p&gt;A useful feature in jshell is the &lt;code class=&quot;highlighter-rouge&quot;&gt;save&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;open&lt;/code&gt; commands. If you need to save a snippet source to a file you can execute:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /save &amp;lt;FILE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;By default this will save all commands and snippets currently active in your session. There are several variations that you can use with this such as &lt;code class=&quot;highlighter-rouge&quot;&gt;/save -all | -history | -start&lt;/code&gt;. Each of these will extract a slight variation of your commands which you can find more information on through the jshell help.&lt;/p&gt;
+
+&lt;p&gt;Conversely if you need to &lt;code class=&quot;highlighter-rouge&quot;&gt;open&lt;/code&gt; files back up again you can execute:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /open &amp;lt;FILE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To be honest I which this feature was a little more intuitive. In most cases you will really want to save either methods or one liners in which case it would seem better to me to have a separate set of commands for this. Also I would really like to automatically preload methods/functions for newly created jshell sessions but so far I haven’t found an ideal way to do this.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;help&quot;&gt;Help&lt;/h3&gt;
+
+&lt;p&gt;If you want to find out about other supported commands you can run:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /help
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;exit&quot;&gt;Exit&lt;/h3&gt;
+
+&lt;p&gt;The preferred way to exit a jshell session is to use:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Java 9" /><category term="JShell" /><summary type="html">JShell</summary></entry><entry><title type="html">Getting started with OpenShift</title><link href="https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/" rel="alternate" type="text/html" title="Getting started with OpenShift" /><published>2017-12-25T11:40:00+00:00</published><updated>2017-12-25T11:40:00+00:00</updated><id>https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift</id><content type="html" xml:base="https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/">&lt;h2 id=&quot;openshift&quot;&gt;OpenShift&lt;/h2&gt;
 
 &lt;blockquote&gt;
 
@@ -424,124 +527,4 @@ kubectl get resourcequotas &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; &amp
 
 &lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
 
-&lt;p&gt;Hopefully you’ve learnt a few new things about how Kubernetes administration. There are a lot of other topics that I haven’t covered some of which may be redundant if you already know them from other orchestration tools or from container tools like Docker.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Kubernetes" /><category term="Docker" /><summary type="html">This blog entry is intended as a guide to some of the Kubernetes Administration features. It is not exhaustive list but instead is intended to serve as an introduction to some of these commands and hopefully provide enough information to learn about more advanced features.</summary></entry><entry><title type="html">Introduction to Kubernetes</title><link href="https://m-x-k.github.io/kubernetes/Introduction-to-kubernetes/" rel="alternate" type="text/html" title="Introduction to Kubernetes" /><published>2017-08-10T12:00:00+01:00</published><updated>2017-08-10T12:00:00+01:00</updated><id>https://m-x-k.github.io/kubernetes/Introduction-to-kubernetes</id><content type="html" xml:base="https://m-x-k.github.io/kubernetes/Introduction-to-kubernetes/">&lt;blockquote&gt;
-
-  &lt;p&gt;Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;introduction-to-kubernetes&quot;&gt;Introduction to Kubernetes&lt;/h1&gt;
-
-&lt;p&gt;Kubernetes is open-sourced software for automating deployment, scaling and management of containerised applications.&lt;/p&gt;
-
-&lt;p&gt;The term &lt;code class=&quot;highlighter-rouge&quot;&gt;kubernetes&lt;/code&gt; is actually Greek and stands for the steersman or helmsman, further building on the concept of shipping containers.&lt;/p&gt;
-
-&lt;h2 id=&quot;origin&quot;&gt;Origin&lt;/h2&gt;
-
-&lt;p&gt;Kubernetes was the result of 15 years of research at Google. The concept was originally built from the &lt;code class=&quot;highlighter-rouge&quot;&gt;Google Borg&lt;/code&gt; system which was a large scale cluster manager that would run hundreds of thousands of jobs ranging from different applications across clusters with tens of thousands of machines. This resulted in a white paper in 2015 which outlined the foundation for Kubernetes. Underlying &lt;code class=&quot;highlighter-rouge&quot;&gt;Borg&lt;/code&gt; techniques such as &lt;code class=&quot;highlighter-rouge&quot;&gt;cgroups&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;linux namespaces&lt;/code&gt; formed the heart of containers as part of the open-sourced Linux kernel.&lt;/p&gt;
-
-&lt;h3 id=&quot;macos-install&quot;&gt;MacOS install&lt;/h3&gt;
-
-&lt;p&gt;At the time of writing this is the setup for working with Kubernetes on a MacOS machine.&lt;/p&gt;
-
-&lt;h4 id=&quot;minikube&quot;&gt;&lt;a href=&quot;https://github.com/kubernetes/minikube&quot;&gt;Minikube&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew cask install minikube    # Install
-minikube start                # Start
-minikube dashboard            # Open dashboard browser
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;kubectl&quot;&gt;&lt;a href=&quot;https://kubernetes.io/docs/tasks/tools/install-kubectl/&quot;&gt;Kubectl&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Kubectl is the Kubernetes command-line tool used to deploy and manage applications on Kubernetes.&lt;/p&gt;
-
-&lt;p&gt;Download the latest Kubectl instance, make it executable and move it into you MacOS PATH.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For a list of different resources that you can get with kubectl run:&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;kubernetes-pod&quot;&gt;Kubernetes Pod&lt;/h3&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;At a basic conceptual level you can think of a &lt;code class=&quot;highlighter-rouge&quot;&gt;Pod&lt;/code&gt; as an abstraction around the concept of a machine. In other words it has an IP address, a set of processes, a set of volumes etc … While this is similar to what a &lt;code class=&quot;highlighter-rouge&quot;&gt;container&lt;/code&gt; is, a &lt;code class=&quot;highlighter-rouge&quot;&gt;Pod&lt;/code&gt; (as in a pod of whales) also is a group of one or more containers, with shared storage/network and a specification for how to run the containers. In other words the contents of a pod are co-located and co-scheduled and run a shared context. The “one-container-per-Pod” model is the most common Kubernetes use case.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Simple &lt;code class=&quot;highlighter-rouge&quot;&gt;Redis&lt;/code&gt; example of a Kubernetes pod:&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;myredispod&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Create and run this pod inside the minikube vm:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create -f pod.yaml      # Create the pod
-kubectl get pods                # View all pods
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Enter the running pod &lt;code class=&quot;highlighter-rouge&quot;&gt;redis&lt;/code&gt; instance:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl exec -it myredispod -- redis-cli
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;kubernetes-service&quot;&gt;Kubernetes Service&lt;/h3&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;Kubernetes can also define a &lt;code class=&quot;highlighter-rouge&quot;&gt;service&lt;/code&gt; which in this case is an abstraction around the concept of a Microservice.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The following is an example service yaml file:&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;service&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bar&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NodePort&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;80&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;TCP&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can see from the example service above that the &lt;code class=&quot;highlighter-rouge&quot;&gt;Service&lt;/code&gt; is made up of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Pod&lt;/code&gt; foobar.&lt;/p&gt;
-
-&lt;p&gt;Creating a Kubernetes service:&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl create &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; service.yaml      &lt;span class=&quot;c&quot;&gt;# Create a service with the above specification&lt;/span&gt;
-kubectl get services                &lt;span class=&quot;c&quot;&gt;# List all services&lt;/span&gt;
-kubectl get endpoints               &lt;span class=&quot;c&quot;&gt;# List all endpoints&lt;/span&gt;
-kubectl label pods nginx foobar     &lt;span class=&quot;c&quot;&gt;# Tag the nginx serivce&lt;/span&gt;
-kubectl get pods &lt;span class=&quot;nt&quot;&gt;--show-labels&lt;/span&gt;      &lt;span class=&quot;c&quot;&gt;# List all the pods with their labels&lt;/span&gt;
-minikube service nginx              &lt;span class=&quot;c&quot;&gt;# Start the nginx service&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-
-  &lt;p&gt;Labels are a key part of how we can attach and monitor pod’s etc in Kubernetes.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;alternatives&quot;&gt;Alternatives&lt;/h2&gt;
-
-&lt;p&gt;There are many orchestration tools designed to manage containers at scale. There are many pros and cons to consider when trying to determine which is ideal for your organisation.&lt;/p&gt;
-
-&lt;p&gt;Some alternatives include:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Docker Swarm&lt;/li&gt;
-  &lt;li&gt;Hashicorp Nomad&lt;/li&gt;
-  &lt;li&gt;Apache Mesos&lt;/li&gt;
-  &lt;li&gt;Rancher&lt;/li&gt;
-  &lt;li&gt;OpenShift&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Kubernetes" /><category term="Docker" /><summary type="html">Note: it is recommended to read up on how Docker works before trying to understand Kubernetes!</summary></entry></feed>
+&lt;p&gt;Hopefully you’ve learnt a few new things about how Kubernetes administration. There are a lot of other topics that I haven’t covered some of which may be redundant if you already know them from other orchestration tools or from container tools like Docker.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Kubernetes" /><category term="Docker" /><summary type="html">This blog entry is intended as a guide to some of the Kubernetes Administration features. It is not exhaustive list but instead is intended to serve as an introduction to some of these commands and hopefully provide enough information to learn about more advanced features.</summary></entry></feed>

@@ -1,0 +1,486 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.8.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Java 9 JShell overview  MXK Software Craftmanship</title>
+
+
+
+
+<meta name="description" content="JShell">
+
+
+
+
+<meta name="author" content="Martin Kelly">
+
+<meta property="og:locale" content="en_gb">
+<meta property="og:site_name" content="MXK Software Craftmanship">
+<meta property="og:title" content="Java 9 JShell overview">
+
+
+  <link rel="canonical" href="https://m-x-k.github.io//java/Java-9-JShell-Overview/">
+  <meta property="og:url" content="https://m-x-k.github.io//java/Java-9-JShell-Overview/">
+
+
+
+  <meta property="og:description" content="JShell">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-12-30T11:40:00+00:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://m-x-k.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="MXK Software Craftmanship Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://m-x-k.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://m-x-k.github.io/">MXK Software Craftmanship</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//recent-posts/" >Recent Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//year-archive/" >Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//categories/" >Categories</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//tags/" >Tags</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://mxk.solutions" >External Link</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      <link rel="stylesheet" href="/assets/css/custom.css">
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/categories/java" itemprop="item"><span itemprop="name">Java</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Java 9 JShell overview</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Java 9 JShell overview">
+    <meta itemprop="description" content="JShell">
+    <meta itemprop="datePublished" content="December 30, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Java 9 JShell overview
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="jshell">JShell</h2>
+
+<p>Originally introduced as project Kulla, JShell is a great tool for new and experienced developers.</p>
+
+<p>JShell  is a read-eval-print-loop (REPL) tool which can be used to quickly interact with Java from the command line without the need to compile your code.</p>
+
+<h3 id="macos-setup-for-jshell">MacOS setup for JShell:</h3>
+<script src="https://gist.github.com/382cb9a852e4f26f86c9c7267149267d.js"> </script>
+
+<hr />
+
+<p>You can start up the JShell console via a terminal window session:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jshell
+</code></pre></div></div>
+
+<p>From there you can execute java statements. While it is possible to combine some statements into one line such as a for loop it is preferred practice to got with a more reactive programming style such as java streams. For example:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; import java.util.stream.<span class="k">*</span>
+jshell&gt; IntStream.range<span class="o">(</span>0, 10<span class="o">)</span>.map<span class="o">(</span>i -&gt; i <span class="k">*</span> i<span class="o">)</span>.toArray<span class="o">()</span>
+<span class="nv">$1</span> <span class="o">==&gt;</span> int[10] <span class="o">{</span> 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 <span class="o">}</span>
+</code></pre></div></div>
+
+<p>After executing the above you can now use <code class="highlighter-rouge">$1</code> in future expressions inside the current jshell session.</p>
+
+<blockquote>
+
+  <p>JShell is utilimately a great tool for users to explore the core Java API.</p>
+</blockquote>
+
+<h3 id="printing-with-jshell">Printing with JShell</h3>
+
+<p>To support printing with JShell you need to run it with the print option:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>jshell <span class="nt">--start</span> DEFAULT <span class="nt">--start</span> PRINTING
+</code></pre></div></div>
+
+<p>With support for <code class="highlighter-rouge">print</code> you can now execute statements like the following:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; <span class="nb">printf</span><span class="o">(</span><span class="s2">"Pi is %.5f</span><span class="se">\n</span><span class="s2">"</span>, Math.PI<span class="o">)</span>
+jshell&gt; println<span class="o">(</span> <span class="s2">"Print me!"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Without the jshell <code class="highlighter-rouge">print</code> options you will get an error that the method doesn’t exist. You can get around this by creating your own methods but it adds extra effort.</p>
+
+<hr />
+
+<h3 id="edit">Edit</h3>
+
+<p>Its also possible to edit JShell in a separate java editor by typing:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /edit
+</code></pre></div></div>
+
+<p>If you have recently created a method in your session history you can extend this to edit that method:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; void testMe<span class="o">()</span> <span class="o">{</span>
+jshell&gt; System.out.println<span class="o">(</span><span class="s2">"testing"</span><span class="o">)</span><span class="p">;</span>  
+jshell&gt; <span class="o">}</span>
+jshell&gt; /edit 1
+</code></pre></div></div>
+
+<p>Alternatively you can switch to your favourite editor with:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /set editor /usr/bin/vim
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="list">List</h3>
+
+<p>It’s also possible to <code class="highlighter-rouge">list</code> any methods created in your current session:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /list
+</code></pre></div></div>
+
+<p>If you want to list the all of the current imports you can execute:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /imports
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="save-and-open">Save and Open</h3>
+
+<p>A useful feature in jshell is the <code class="highlighter-rouge">save</code> and <code class="highlighter-rouge">open</code> commands. If you need to save a snippet source to a file you can execute:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /save &lt;FILE&gt;
+</code></pre></div></div>
+
+<p>By default this will save all commands and snippets currently active in your session. There are several variations that you can use with this such as <code class="highlighter-rouge">/save -all | -history | -start</code>. Each of these will extract a slight variation of your commands which you can find more information on through the jshell help.</p>
+
+<p>Conversely if you need to <code class="highlighter-rouge">open</code> files back up again you can execute:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /open &lt;FILE&gt;
+</code></pre></div></div>
+
+<p>To be honest I which this feature was a little more intuitive. In most cases you will really want to save either methods or one liners in which case it would seem better to me to have a separate set of commands for this. Also I would really like to automatically preload methods/functions for newly created jshell sessions but so far I haven’t found an ideal way to do this.</p>
+
+<hr />
+
+<h3 id="help">Help</h3>
+
+<p>If you want to find out about other supported commands you can run:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /help
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="exit">Exit</h3>
+
+<p>The preferred way to exit a jshell session is to use:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /exit
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/java-9" class="page__taxonomy-item" rel="tag">Java 9</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/jshell" class="page__taxonomy-item" rel="tag">JShell</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/categories/java" class="page__taxonomy-item" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-12-30T11:40:00+00:00">December 30, 2017</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/" class="pagination--pager" title="Getting started with OpenShift
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+    
+    
+      <li><a href="https://github.com/m-x-k"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="https://m-x-k.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 MXK Software Craftmanship. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="https://m-x-k.github.io/assets/js/main.min.js"></script>
+
+
+
+  <script src="https://m-x-k.github.io/assets/js/lunr.min.js"></script>
+  <script src="https://m-x-k.github.io/assets/js/lunr-en.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111584934-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111584934-1');
+</script>
+
+
+
+
+  </body>
+</html>

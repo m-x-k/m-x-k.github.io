@@ -135,6 +135,15 @@ var idx = lunr(function () {
       })
       
     
+      this.add({
+          title: "Java 9 JShell overview",
+          excerpt: "JShell Originally introduced as project Kulla, JShell is a great tool for new and experienced developers. JShell is a read-eval-print-loop...",
+          categories: ["Java"],
+          tags: ["Java 9","JShell"],
+          id: 14
+      })
+      
+    
   
 });
 
@@ -293,6 +302,17 @@ var store = [
         "title": "Getting started with OpenShift",
         "url": "https://m-x-k.github.io/openshift/minishift/docker/getting-started-with-open-shift/",
         "excerpt": "OpenShift OpenShift provides a convenient abstraction over the concept of containers in the form of a PaaS (Platform as an...",
+        "teaser":
+          
+            null
+          
+      },
+    
+      
+      {
+        "title": "Java 9 JShell overview",
+        "url": "https://m-x-k.github.io/java/Java-9-JShell-Overview/",
+        "excerpt": "JShell Originally introduced as project Kulla, JShell is a great tool for new and experienced developers. JShell is a read-eval-print-loop...",
         "teaser":
           
             null
