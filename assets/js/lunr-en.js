@@ -144,6 +144,24 @@ var idx = lunr(function () {
       })
       
     
+      this.add({
+          title: "Java 9 Collection Literals",
+          excerpt: "List.of and Set.of Example: List&lt;Integer&gt; digits = List.of(3, 1, 4, 5, 9, 2); Set&lt;Integer&gt; digits = Set.of(2, 7, 31, 127,...",
+          categories: ["Java"],
+          tags: ["Java 9","Collection Literals"],
+          id: 15
+      })
+      
+    
+      this.add({
+          title: "AWS IAM Overview",
+          excerpt: "Over at the AWS Training center they provide a set of tutorials, which in some cases are free. I recently...",
+          categories: ["AWS"],
+          tags: ["AWS","IAM"],
+          id: 16
+      })
+      
+    
   
 });
 
@@ -313,6 +331,28 @@ var store = [
         "title": "Java 9 JShell overview",
         "url": "https://m-x-k.github.io/java/Java-9-JShell-Overview/",
         "excerpt": "JShell Originally introduced as project Kulla, JShell is a great tool for new and experienced developers. JShell is a read-eval-print-loop...",
+        "teaser":
+          
+            null
+          
+      },
+    
+      
+      {
+        "title": "Java 9 Collection Literals",
+        "url": "https://m-x-k.github.io/java/Java-9-Collection-Literals/",
+        "excerpt": "List.of and Set.of Example: List&lt;Integer&gt; digits = List.of(3, 1, 4, 5, 9, 2); Set&lt;Integer&gt; digits = Set.of(2, 7, 31, 127,...",
+        "teaser":
+          
+            null
+          
+      },
+    
+      
+      {
+        "title": "AWS IAM Overview",
+        "url": "https://m-x-k.github.io/aws/AWS-IAM-Tutorial/",
+        "excerpt": "Over at the AWS Training center they provide a set of tutorials, which in some cases are free. I recently...",
         "teaser":
           
             null
