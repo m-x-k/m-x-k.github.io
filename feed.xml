@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2018-01-01T19:12:59+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">AWS IAM Overview</title><link href="https://m-x-k.github.io/aws/AWS-IAM-Tutorial/" rel="alternate" type="text/html" title="AWS IAM Overview" /><published>2018-01-01T11:40:00+00:00</published><updated>2018-01-01T11:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-IAM-Tutorial</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-IAM-Tutorial/">&lt;p&gt;Over at the AWS Training center they provide a set of tutorials, which in some cases are free.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2018-01-02T15:16:03+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">AWS Shared Responsibility Model</title><link href="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/" rel="alternate" type="text/html" title="AWS Shared Responsibility Model" /><published>2018-01-01T13:40:00+00:00</published><updated>2018-01-01T13:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/">&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Area&lt;/th&gt;
+      &lt;th&gt;Responsibility&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;User Data&lt;/td&gt;
+      &lt;td&gt;Organisation&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Application&lt;/td&gt;
+      &lt;td&gt;Organisation&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Guest OS&lt;/td&gt;
+      &lt;td&gt;Organisation&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Hypervisor&lt;/td&gt;
+      &lt;td&gt;AWS&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Network&lt;/td&gt;
+      &lt;td&gt;AWS&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Physical&lt;/td&gt;
+      &lt;td&gt;AWS&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The top three areas &lt;code class=&quot;highlighter-rouge&quot;&gt;User Data&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Application&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Guest OS&lt;/code&gt; are all the responsibility of the organisation using AWS. Typically you would think of these three areas as the EC2 service. Below these areas organisation data is not visible to AWS which helps to ensure that your customer data is protected.&lt;/p&gt;
+
+&lt;h3 id=&quot;aws-compliance&quot;&gt;AWS Compliance&lt;/h3&gt;
+
+&lt;p&gt;The areas of the Shared Responsibility Model that are not visible to the organisation using AWS are regularly checked as part of compliance.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/compliance&quot;&gt;AWS Compliance&lt;/a&gt; - provides detail from a number of 3rd Party audits that regularly go through the entire AWS stack to ensure compliance&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="SharedResponsibilityModel" /><summary type="html">Area Responsibility User Data Organisation Application Organisation Guest OS Organisation Hypervisor AWS Network AWS Physical AWS</summary></entry><entry><title type="html">AWS IAM Overview</title><link href="https://m-x-k.github.io/aws/AWS-IAM-Overview/" rel="alternate" type="text/html" title="AWS IAM Overview" /><published>2018-01-01T12:40:00+00:00</published><updated>2018-01-01T12:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-IAM-Overview</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-IAM-Overview/">&lt;p&gt;Over at the AWS Training center they provide a set of tutorials, which in some cases are free.
 I recently registered to and watched the IAM tutorial &lt;code class=&quot;highlighter-rouge&quot;&gt;Authentication and Authorization with AWS Identity and Access Management&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;In an attempt to capture some of the detail for future reference and learning I have provided the following synopsis:&lt;/p&gt;
@@ -54,7 +99,154 @@ I recently registered to and watched the IAM tutorial &lt;code class=&quot;highl
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 
 &lt;p&gt;What impressed me was the way that the content was delivered in this tutorial.
-The course presenter &lt;code class=&quot;highlighter-rouge&quot;&gt;Blaine Sundrud&lt;/code&gt; working against a dark backdrop to provide an overview from the reverse angle of the viewer. You can find more free online AWS developer tutorials &lt;a href=&quot;https://aws.amazon.com/training/path-developing/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="IAM" /><summary type="html">Over at the AWS Training center they provide a set of tutorials, which in some cases are free. I recently registered to and watched the IAM tutorial Authentication and Authorization with AWS Identity and Access Management.</summary></entry><entry><title type="html">Java 9 Collection Literals</title><link href="https://m-x-k.github.io/java/Java-9-Collection-Literals/" rel="alternate" type="text/html" title="Java 9 Collection Literals" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-Collection-Literals</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-Collection-Literals/">&lt;h2 id=&quot;listof-and-setof&quot;&gt;List.of and Set.of&lt;/h2&gt;
+The course presenter &lt;code class=&quot;highlighter-rouge&quot;&gt;Blaine Sundrud&lt;/code&gt; working against a dark backdrop to provide an overview from the reverse angle of the viewer. You can find more free online AWS developer tutorials &lt;a href=&quot;https://aws.amazon.com/training/path-developing/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="IAM" /><summary type="html">Over at the AWS Training center they provide a set of tutorials, which in some cases are free. I recently registered to and watched the IAM tutorial Authentication and Authorization with AWS Identity and Access Management.</summary></entry><entry><title type="html">AWS App Services and Dev Tools Overview</title><link href="https://m-x-k.github.io/aws/AWS-Application-Services-Tutorial/" rel="alternate" type="text/html" title="AWS App Services and Dev Tools Overview" /><published>2018-01-01T11:40:00+00:00</published><updated>2018-01-01T11:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-Application-Services-Tutorial</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-Application-Services-Tutorial/">&lt;h2 id=&quot;aws-api-gateway&quot;&gt;&lt;a href=&quot;https://aws.amazon.com/api-gateway&quot;&gt;AWS API Gateway&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;A fully managed service to assist developers when creating, publishing, maintaining, monitoring, and securing APIs at scale.&lt;/p&gt;
+
+&lt;p&gt;Organisations can leverage this API Gateway to gain access to application specific API’s. This can be used for public facing API’s or restricted access to for instance background services.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Benefit&lt;/th&gt;
+      &lt;th&gt;Detail&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Performance at scale&lt;/td&gt;
+      &lt;td&gt;Traffic management, throttling rules etc …&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Monitoring&lt;/td&gt;
+      &lt;td&gt;Monitor traffic, latency, error rates&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Streamline API&lt;/td&gt;
+      &lt;td&gt;Run multiple API versions at the same time&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Security Controls&lt;/td&gt;
+      &lt;td&gt;Various API Authorisation mechanisms supported&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Serverless support&lt;/td&gt;
+      &lt;td&gt;Ability to utilise AWS Lambda functions without the need for expensive server resource&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;aws-step-functions&quot;&gt;&lt;a href=&quot;https://aws.amazon.com/step-functions&quot;&gt;AWS Step Functions&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Step Functions are based on the concepts of tasks and state machines.&lt;/li&gt;
+  &lt;li&gt;You define state machines using the JSON-based Amazon States Language&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Comment&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello World Example&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;StartAt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;HelloWorld&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;States&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;HelloWorld&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Task&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Resource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;arn:aws:lambda:REGION:ACCOUNT_ID:function:FUNCTION_NAME&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;End&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;This provides a convenient orchestration tool for complex workflow systems. Especially if those workflows  change frequently over time. Hopefully tools like this can have a positive impact over those older enterprise workflow systems. Only time will tell if teams will continue to have a sense of ownership of the product development here.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;aws-developer-tools&quot;&gt;AWS Developer Tools&lt;/h2&gt;
+
+&lt;p&gt;Includes:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;AWS Developer Tool&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://aws.amazon.com/codepipeline/&quot;&gt;Code Pipeline&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;release automation service&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://aws.amazon.com/codecommit/&quot;&gt;Code Commit&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;source control service leveraging private Git repositories with secure commits&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://aws.amazon.com/codebuild/&quot;&gt;Code Build&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;build and test execution service&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://aws.amazon.com/codedeploy/&quot;&gt;Code Deploy&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;deployment orchestration service&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;https://aws.amazon.com/codestar/&quot;&gt;Code Star&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;continuous delivery toolchain service&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Using the above Developer Tools AWS suggest that businesses can benefit form the same release cycle for Continuous Delivery that they follow. In order to deliver faster customer releases and get continuous feedback.&lt;/p&gt;
+
+&lt;h3 id=&quot;is-it-worth-the-effort&quot;&gt;Is it worth the effort?&lt;/h3&gt;
+
+&lt;p&gt;In most software development companies each of those developer tools would probably already exist in some form. Whether it be Git source control or pipelines using software like Jenkins or TravisCI. Many development teams may not want to fully align to the AWS development suite just to achieve that ultimate Continuous Delivery goal. After all the more these tools are used the more your business will be locked into the AWS products suite lifecycle. Ultimately the question still remains &lt;code class=&quot;highlighter-rouge&quot;&gt;Whats in it for us?&lt;/code&gt; and thats a question really for the development team members so that they can take responsibility.&lt;/p&gt;
+
+&lt;p&gt;When assessing these developer tools in your own organisation a good place to start would be to look at what products your development teams are supporting:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Question&lt;/th&gt;
+      &lt;th&gt;Check&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Do you have any public facing systems? (current/future)&lt;/td&gt;
+      &lt;td&gt;&lt;input id=&quot;checkBox&quot; type=&quot;checkbox&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Do you have any internal systems? (current/future)&lt;/td&gt;
+      &lt;td&gt;&lt;input id=&quot;checkBox&quot; type=&quot;checkbox&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;You you have any Open Sourced code? (current/future)&lt;/td&gt;
+      &lt;td&gt;&lt;input id=&quot;checkBox&quot; type=&quot;checkbox&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Do you require any coordinated application deployments?&lt;/td&gt;
+      &lt;td&gt;&lt;input id=&quot;checkBox&quot; type=&quot;checkbox&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Do you have other development tools not supported out-of-the-box by the AWS Developer Tools?&lt;/td&gt;
+      &lt;td&gt;&lt;input id=&quot;checkBox&quot; type=&quot;checkbox&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;You will likely have additional questions specific to your organisation and ultimately unless you are a startup organisation you will need to assess the time it will take to migrate to use the AWS Developer Tools. If you can start with one system you should be able to predict the time it will take to migrate the others.&lt;/p&gt;
+
+&lt;p&gt;Once you have a better idea of any possible negative impact its worth assessing what benefits this is going to bring to your organisation over your current setup. A single product tool set should in theory be quicker to setup and work with. Also the ability to secure access to your code and deployment configuration would give a stronger argument towards using an all-in-one solution. I particularly like the additional security features provided by the likes of &lt;code class=&quot;highlighter-rouge&quot;&gt;Code Commit&lt;/code&gt; and the option to use Git Hooks to trigger Push Notifications and AWS Lambda functions.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;a-word-of-caution&quot;&gt;A word of caution:&lt;/h4&gt;
+&lt;p&gt;At this point I wish I could say one way or another whether these tools can live up to the hype. Amazon use them internally so they should already be tried and tested. Most organisations I know are only investing in them for deployment of their AWS Lambda functions but not for their more complex applications.&lt;/p&gt;
+
+&lt;p&gt;Personally I would urge some caution when depending on too many different deployment tools within your organisation in order to avoid unnecessary complexity and confusion and over time. Otherwise it could leave your organisation with a lot of potential technical debt to sort out down the line.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="DeveloperTools" /><summary type="html">AWS API Gateway</summary></entry><entry><title type="html">Java 9 Collection Literals</title><link href="https://m-x-k.github.io/java/Java-9-Collection-Literals/" rel="alternate" type="text/html" title="Java 9 Collection Literals" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-Collection-Literals</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-Collection-Literals/">&lt;h2 id=&quot;listof-and-setof&quot;&gt;List.of and Set.of&lt;/h2&gt;
 
 &lt;p&gt;Example:&lt;/p&gt;
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;digits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -432,39 +624,4 @@ docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactor
 &lt;p&gt;For a quick introduction on other features in the current version 3 release have a look at the following slideshare from the author of Reveal.js Hakim El Hattab:&lt;/p&gt;
 
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/e3ACCuYrg0rSiG&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
-&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/hakimel/revealjs-300&quot; title=&quot;reveal.js 3.0.0&quot; target=&quot;_blank&quot;&gt;reveal.js 3.0.0&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/hakimel&quot; target=&quot;_blank&quot;&gt;Hakim El Hattab&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Javascript" /><category term="RevealJS" /><summary type="html">Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web client over at https://slides.com/ I personally prefer to download the latest version directly from the github account Latest release in order to generate your slide presentation by hand.</summary></entry><entry><title type="html">Useful List Of Python Resources</title><link href="https://m-x-k.github.io/python/Useful-List-Of-Python-Resources/" rel="alternate" type="text/html" title="Useful List Of Python Resources" /><published>2017-11-19T20:00:10+00:00</published><updated>2017-11-19T20:00:10+00:00</updated><id>https://m-x-k.github.io/python/Useful-List-Of-Python-Resources</id><content type="html" xml:base="https://m-x-k.github.io/python/Useful-List-Of-Python-Resources/">&lt;script src=&quot;https://gist.github.com/dda4cd4647375073e01c293cc56640db.js&quot;&gt; &lt;/script&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Python" /><summary type="html"></summary></entry><entry><title type="html">Creating a Gists Webpage With ReactJS</title><link href="https://m-x-k.github.io/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS/" rel="alternate" type="text/html" title="Creating a Gists Webpage With ReactJS" /><published>2017-11-13T19:00:00+00:00</published><updated>2017-11-13T19:00:00+00:00</updated><id>https://m-x-k.github.io/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS</id><content type="html" xml:base="https://m-x-k.github.io/javascript/reactjs/Creating-a-Gists-Webpage-With-ReactJS/">&lt;p&gt;I decided to build a simple ReactJS webpage to render my personal Gists from GitHub as an basic kata.&lt;/p&gt;
-
-&lt;p&gt;However while the ReactJS part was fairly straightforward I was once again reminded about Cross Site Scripting (XSS) issues when trying to call API’s from another domain using javascript. Thankfully JQuery jsonp still works:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;componentDidMount(){
-    $.ajax({
-      url: &quot;https://api.github.com/users/m-x-k/gists&quot;,
-      jsonp: &quot;$jsonp&quot;
-    }).done(function(data) {
-      console.log(data);
-      this.setState({gists: data});
-    }.bind(this));    
-}&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Obviously in a production situation this isn’t what we would rely on!!!&lt;/p&gt;
-
-&lt;p&gt;Reverse proxies like Nginx, HAProxy or Apache are much better suited to revolve these types of issues.&lt;/p&gt;
-
-&lt;p&gt;Ideally we would setup a reverse proxy on “api.github.com” so that we can share a common domain for the client side requests. For example if your web page url was http://my.gists.com/index.html you might setup a reverse proxy like http://my.gists.com/api/m-x-k/gists.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Note: while its possible to mitigate the problem with headers it’s not an ideal solution as it depends on browser support.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://codepen.io/mxk/pen/WEJBbg&quot;&gt;https://codepen.io/mxk/pen/WEJBbg&lt;/a&gt;&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Javascript" /><category term="ReactJS" /><summary type="html">I decided to build a simple ReactJS webpage to render my personal Gists from GitHub as an basic kata.</summary></entry><entry><title type="html">Rapid prototyping with code templates</title><link href="https://m-x-k.github.io/python/cookiecutter/Rapid-prototyping-with-code-templates/" rel="alternate" type="text/html" title="Rapid prototyping with code templates" /><published>2017-11-12T20:00:10+00:00</published><updated>2017-11-12T20:00:10+00:00</updated><id>https://m-x-k.github.io/python/cookiecutter/Rapid-prototyping-with-code-templates</id><content type="html" xml:base="https://m-x-k.github.io/python/cookiecutter/Rapid-prototyping-with-code-templates/">&lt;p&gt;Over the last few years I have been using Python quite a lot to build rapid prototypes. By far the best command line tool I’ve found for this is the python ‘cookiecutter’ project below:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/audreyr/cookiecutter&quot;&gt;https://github.com/audreyr/cookiecutter&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;There are a large number of &lt;a href=&quot;https://github.com/audreyr/cookiecutter#python&quot;&gt;sample cookiecutter projects&lt;/a&gt; out there but it makes sense to build and maintain your own if you want to get the latest setup.&lt;/p&gt;
-
-&lt;p&gt;For ease of use I have a number of linux command line aliases to create new projects from my own code template projects:&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/a849a8b7d2da0f54dc35c4fb9b42983d.js&quot;&gt; &lt;/script&gt;
-
-&lt;p&gt;In some cases these code template projects have been customised to my own preferences with IDE support etc … but for the most part they tend to be fairly vanilla in case other people might find them useful and also to allow me to customise each new project. So for example with Java applications I tend to prefer IntelliJ with Gradle but beyond that for me it doesn’t make sense to preload all of your favourite java libraries.&lt;/p&gt;
-
-&lt;p&gt;In some work places I have noticed a tendency to try and standardise code structure with similar code template tools (e.g. maven archetypes). In many cases this can save project setup time but I tend not to favour this approach. Ideally in agile development teams it is best to reach a group consensus based on the project requirements first and then trying to agree on code standards such as naming, structure etc … A good place to start is often Uncle Bob’s Clean coders book which is widely distributed and possibly combining this with Extreme Programming techniques such as TDD, Pair Programming or Mobbing. This combined approach often gets extremely good results allowing for a wider group consensus and shared ownership.&lt;/p&gt;
-
-&lt;p&gt;However in many situations the first place to start on a project is a quick prototype. It can therefore be convenient to use code templates in these situations. This actually helps to reinforce the concept that code implemented as part of the prototype is ‘temporary’ and therefore should be discarded and reimplemented by the team from scratch.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Python" /><category term="Cookiecutter" /><summary type="html">Over the last few years I have been using Python quite a lot to build rapid prototypes. By far the best command line tool I’ve found for this is the python ‘cookiecutter’ project below:</summary></entry></feed>
+&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/hakimel/revealjs-300&quot; title=&quot;reveal.js 3.0.0&quot; target=&quot;_blank&quot;&gt;reveal.js 3.0.0&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/hakimel&quot; target=&quot;_blank&quot;&gt;Hakim El Hattab&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Javascript" /><category term="RevealJS" /><summary type="html">Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web client over at https://slides.com/ I personally prefer to download the latest version directly from the github account Latest release in order to generate your slide presentation by hand.</summary></entry><entry><title type="html">Useful List Of Python Resources</title><link href="https://m-x-k.github.io/python/Useful-List-Of-Python-Resources/" rel="alternate" type="text/html" title="Useful List Of Python Resources" /><published>2017-11-19T20:00:10+00:00</published><updated>2017-11-19T20:00:10+00:00</updated><id>https://m-x-k.github.io/python/Useful-List-Of-Python-Resources</id><content type="html" xml:base="https://m-x-k.github.io/python/Useful-List-Of-Python-Resources/">&lt;script src=&quot;https://gist.github.com/dda4cd4647375073e01c293cc56640db.js&quot;&gt; &lt;/script&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Python" /><summary type="html"></summary></entry></feed>

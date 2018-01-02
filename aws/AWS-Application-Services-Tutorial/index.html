@@ -1,0 +1,531 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.8.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>AWS App Services and Dev Tools Overview  MXK Software Craftmanship</title>
+
+
+
+
+<meta name="description" content="AWS API Gateway">
+
+
+
+
+<meta name="author" content="Martin Kelly">
+
+<meta property="og:locale" content="en_gb">
+<meta property="og:site_name" content="MXK Software Craftmanship">
+<meta property="og:title" content="AWS App Services and Dev Tools Overview">
+
+
+  <link rel="canonical" href="https://m-x-k.github.io//aws/AWS-Application-Services-Tutorial/">
+  <meta property="og:url" content="https://m-x-k.github.io//aws/AWS-Application-Services-Tutorial/">
+
+
+
+  <meta property="og:description" content="AWS API Gateway">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2018-01-01T11:40:00+00:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://m-x-k.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="MXK Software Craftmanship Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://m-x-k.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://m-x-k.github.io/">MXK Software Craftmanship</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//recent-posts/" >Recent Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//year-archive/" >Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//categories/" >Categories</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//tags/" >Tags</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://mxk.solutions" >External Link</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      <link rel="stylesheet" href="/assets/css/custom.css">
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/categories/aws" itemprop="item"><span itemprop="name">Aws</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">AWS App Services and Dev Tools Overview</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="AWS App Services and Dev Tools Overview">
+    <meta itemprop="description" content="AWS API Gateway">
+    <meta itemprop="datePublished" content="January 01, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">AWS App Services and Dev Tools Overview
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="aws-api-gateway"><a href="https://aws.amazon.com/api-gateway">AWS API Gateway</a></h2>
+
+<p>A fully managed service to assist developers when creating, publishing, maintaining, monitoring, and securing APIs at scale.</p>
+
+<p>Organisations can leverage this API Gateway to gain access to application specific API’s. This can be used for public facing API’s or restricted access to for instance background services.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Benefit</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Performance at scale</td>
+      <td>Traffic management, throttling rules etc …</td>
+    </tr>
+    <tr>
+      <td>Monitoring</td>
+      <td>Monitor traffic, latency, error rates</td>
+    </tr>
+    <tr>
+      <td>Streamline API</td>
+      <td>Run multiple API versions at the same time</td>
+    </tr>
+    <tr>
+      <td>Security Controls</td>
+      <td>Various API Authorisation mechanisms supported</td>
+    </tr>
+    <tr>
+      <td>Serverless support</td>
+      <td>Ability to utilise AWS Lambda functions without the need for expensive server resource</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="aws-step-functions"><a href="https://aws.amazon.com/step-functions">AWS Step Functions</a></h2>
+
+<ul>
+  <li>Step Functions are based on the concepts of tasks and state machines.</li>
+  <li>You define state machines using the JSON-based Amazon States Language</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"Comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World Example"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"StartAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HelloWorld"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"States"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"HelloWorld"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:lambda:REGION:ACCOUNT_ID:function:FUNCTION_NAME"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"End"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+
+  <p>This provides a convenient orchestration tool for complex workflow systems. Especially if those workflows  change frequently over time. Hopefully tools like this can have a positive impact over those older enterprise workflow systems. Only time will tell if teams will continue to have a sense of ownership of the product development here.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="aws-developer-tools">AWS Developer Tools</h2>
+
+<p>Includes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>AWS Developer Tool</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://aws.amazon.com/codepipeline/">Code Pipeline</a></td>
+      <td>release automation service</td>
+    </tr>
+    <tr>
+      <td><a href="https://aws.amazon.com/codecommit/">Code Commit</a></td>
+      <td>source control service leveraging private Git repositories with secure commits</td>
+    </tr>
+    <tr>
+      <td><a href="https://aws.amazon.com/codebuild/">Code Build</a></td>
+      <td>build and test execution service</td>
+    </tr>
+    <tr>
+      <td><a href="https://aws.amazon.com/codedeploy/">Code Deploy</a></td>
+      <td>deployment orchestration service</td>
+    </tr>
+    <tr>
+      <td><a href="https://aws.amazon.com/codestar/">Code Star</a></td>
+      <td>continuous delivery toolchain service</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Using the above Developer Tools AWS suggest that businesses can benefit form the same release cycle for Continuous Delivery that they follow. In order to deliver faster customer releases and get continuous feedback.</p>
+
+<h3 id="is-it-worth-the-effort">Is it worth the effort?</h3>
+
+<p>In most software development companies each of those developer tools would probably already exist in some form. Whether it be Git source control or pipelines using software like Jenkins or TravisCI. Many development teams may not want to fully align to the AWS development suite just to achieve that ultimate Continuous Delivery goal. After all the more these tools are used the more your business will be locked into the AWS products suite lifecycle. Ultimately the question still remains <code class="highlighter-rouge">Whats in it for us?</code> and thats a question really for the development team members so that they can take responsibility.</p>
+
+<p>When assessing these developer tools in your own organisation a good place to start would be to look at what products your development teams are supporting:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Check</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Do you have any public facing systems? (current/future)</td>
+      <td><input id="checkBox" type="checkbox" /></td>
+    </tr>
+    <tr>
+      <td>Do you have any internal systems? (current/future)</td>
+      <td><input id="checkBox" type="checkbox" /></td>
+    </tr>
+    <tr>
+      <td>You you have any Open Sourced code? (current/future)</td>
+      <td><input id="checkBox" type="checkbox" /></td>
+    </tr>
+    <tr>
+      <td>Do you require any coordinated application deployments?</td>
+      <td><input id="checkBox" type="checkbox" /></td>
+    </tr>
+    <tr>
+      <td>Do you have other development tools not supported out-of-the-box by the AWS Developer Tools?</td>
+      <td><input id="checkBox" type="checkbox" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You will likely have additional questions specific to your organisation and ultimately unless you are a startup organisation you will need to assess the time it will take to migrate to use the AWS Developer Tools. If you can start with one system you should be able to predict the time it will take to migrate the others.</p>
+
+<p>Once you have a better idea of any possible negative impact its worth assessing what benefits this is going to bring to your organisation over your current setup. A single product tool set should in theory be quicker to setup and work with. Also the ability to secure access to your code and deployment configuration would give a stronger argument towards using an all-in-one solution. I particularly like the additional security features provided by the likes of <code class="highlighter-rouge">Code Commit</code> and the option to use Git Hooks to trigger Push Notifications and AWS Lambda functions.</p>
+
+<hr />
+
+<h4 id="a-word-of-caution">A word of caution:</h4>
+<p>At this point I wish I could say one way or another whether these tools can live up to the hype. Amazon use them internally so they should already be tried and tested. Most organisations I know are only investing in them for deployment of their AWS Lambda functions but not for their more complex applications.</p>
+
+<p>Personally I would urge some caution when depending on too many different deployment tools within your organisation in order to avoid unnecessary complexity and confusion and over time. Otherwise it could leave your organisation with a lot of potential technical debt to sort out down the line.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/aws" class="page__taxonomy-item" rel="tag">AWS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/developertools" class="page__taxonomy-item" rel="tag">DeveloperTools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/categories/aws" class="page__taxonomy-item" rel="tag">AWS</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-01-01T11:40:00+00:00">January 01, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="https://m-x-k.github.io/java/Java-9-Collection-Literals/" class="pagination--pager" title="Java 9 Collection Literals
+">Previous</a>
+    
+    
+      <a href="https://m-x-k.github.io/aws/AWS-IAM-Overview/" class="pagination--pager" title="AWS IAM Overview
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+    
+    
+      <li><a href="https://github.com/m-x-k"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="https://m-x-k.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 MXK Software Craftmanship. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="https://m-x-k.github.io/assets/js/main.min.js"></script>
+
+
+
+  <script src="https://m-x-k.github.io/assets/js/lunr.min.js"></script>
+  <script src="https://m-x-k.github.io/assets/js/lunr-en.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111584934-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111584934-1');
+</script>
+
+
+
+
+  </body>
+</html>

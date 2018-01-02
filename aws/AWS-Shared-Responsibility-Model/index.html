@@ -19,12 +19,12 @@
 
 
 
-<title>Java 9 Collection Literals  MXK Software Craftmanship</title>
+<title>AWS Shared Responsibility Model  MXK Software Craftmanship</title>
 
 
 
 
-<meta name="description" content="List.of and Set.of">
+<meta name="description" content="            Area      Responsibility                  User Data      Organisation              Application      Organisation              Guest OS      Organisation                  Hypervisor      AWS              Network      AWS              Physical      AWS      ">
 
 
 
@@ -33,15 +33,15 @@
 
 <meta property="og:locale" content="en_gb">
 <meta property="og:site_name" content="MXK Software Craftmanship">
-<meta property="og:title" content="Java 9 Collection Literals">
+<meta property="og:title" content="AWS Shared Responsibility Model">
 
 
-  <link rel="canonical" href="https://m-x-k.github.io//java/Java-9-Collection-Literals/">
-  <meta property="og:url" content="https://m-x-k.github.io//java/Java-9-Collection-Literals/">
+  <link rel="canonical" href="https://m-x-k.github.io//aws/AWS-Shared-Responsibility-Model/">
+  <meta property="og:url" content="https://m-x-k.github.io//aws/AWS-Shared-Responsibility-Model/">
 
 
 
-  <meta property="og:description" content="List.of and Set.of">
+  <meta property="og:description" content="            Area      Responsibility                  User Data      Organisation              Application      Organisation              Guest OS      Organisation                  Hypervisor      AWS              Network      AWS              Physical      AWS      ">
 
 
 
@@ -64,7 +64,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2017-12-30T11:40:00+00:00">
+  <meta property="article:published_time" content="2018-01-01T13:40:00+00:00">
 
 
 
@@ -206,7 +206,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="https://m-x-k.github.io/categories/java" itemprop="item"><span itemprop="name">Java</span></a>
+          <a href="https://m-x-k.github.io/categories/aws" itemprop="item"><span itemprop="name">Aws</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -214,7 +214,7 @@
     
       
       
-        <li class="current">Java 9 Collection Literals</li>
+        <li class="current">AWS Shared Responsibility Model</li>
       
     
   </ol>
@@ -227,15 +227,15 @@
   
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Java 9 Collection Literals">
-    <meta itemprop="description" content="List.of and Set.of">
-    <meta itemprop="datePublished" content="December 30, 2017">
+    <meta itemprop="headline" content="AWS Shared Responsibility Model">
+    <meta itemprop="description" content="            Area      Responsibility                  User Data      Organisation              Application      Organisation              Guest OS      Organisation                  Hypervisor      AWS              Network      AWS              Physical      AWS      ">
+    <meta itemprop="datePublished" content="January 01, 2018">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Java 9 Collection Literals
+          <h1 class="page__title" itemprop="headline">AWS Shared Responsibility Model
 </h1>
           
         </header>
@@ -243,72 +243,52 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="listof-and-setof">List.of and Set.of</h2>
+        <table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Responsibility</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>User Data</td>
+      <td>Organisation</td>
+    </tr>
+    <tr>
+      <td>Application</td>
+      <td>Organisation</td>
+    </tr>
+    <tr>
+      <td>Guest OS</td>
+      <td>Organisation</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Hypervisor</td>
+      <td>AWS</td>
+    </tr>
+    <tr>
+      <td>Network</td>
+      <td>AWS</td>
+    </tr>
+    <tr>
+      <td>Physical</td>
+      <td>AWS</td>
+    </tr>
+  </tfoot>
+</table>
 
-<p>Example:</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">digits</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+<p>The top three areas <code class="highlighter-rouge">User Data</code>, <code class="highlighter-rouge">Application</code> and <code class="highlighter-rouge">Guest OS</code> are all the responsibility of the organisation using AWS. Typically you would think of these three areas as the EC2 service. Below these areas organisation data is not visible to AWS which helps to ensure that your customer data is protected.</p>
 
-<span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">digits</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">127</span><span class="o">,</span> <span class="mi">8191</span><span class="o">,</span> <span class="mi">131871</span><span class="o">);</span>
-</code></pre></div></div>
+<h3 id="aws-compliance">AWS Compliance</h3>
 
-<h3 id="points-to-note">Points to note:</h3>
+<p>The areas of the Shared Responsibility Model that are not visible to the organisation using AWS are regularly checked as part of compliance.</p>
 
-<h4 id="similarities-to-java-8-streams">Similarities to Java 8 Streams</h4>
-<blockquote>
-
-  <p>We already came across the <code class="highlighter-rouge">of</code> function in Java 8 when we seen <code class="highlighter-rouge">Stream.of</code>.</p>
-</blockquote>
-
-<h4 id="null-not-supported">Null not supported</h4>
-<blockquote>
-
-  <p>It’s also not allowed to insert a null value into the <code class="highlighter-rouge">of</code> function as this is the preferred coding-style these days.</p>
-</blockquote>
-
-<h4 id="immutable-object-returned">Immutable object returned</h4>
-<blockquote>
-
-  <p>It should also be noted here that while similar to <code class="highlighter-rouge">Arrays.asList</code> the objects returned by the <code class="highlighter-rouge">of</code> functions here are <code class="highlighter-rouge">immutable</code>. As a result if you try to <code class="highlighter-rouge">sort</code> or modify the collection you will get an <code class="highlighter-rouge">java.lang.UnsupportedOperationException</code>.</p>
-</blockquote>
-
-<hr />
-
-<h2 id="mapof">Map.of</h2>
-
-<p>The new <code class="highlighter-rouge">Map.of</code> function is follows the api structure <code class="highlighter-rouge">static &lt;E&gt; List&lt;E&gt; of(E... elements)</code>.</p>
-
-<p>The syntax for using the new <code class="highlighter-rouge">Map.of</code> function is as follows:</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">jshell</span><span class="o">&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"Jan"</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">"Feb"</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="s">"March"</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
-<span class="err">$</span><span class="mi">1</span> <span class="o">==&gt;</span> <span class="o">{</span><span class="n">Feb</span><span class="o">=</span><span class="mi">2</span><span class="o">,</span> <span class="n">March</span><span class="o">=</span><span class="mi">3</span><span class="o">,</span> <span class="n">Jan</span><span class="o">=</span><span class="mi">1</span><span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="points-to-note-1">Points to note:</h3>
-
-<h4 id="varags-syntax-instead-of-mapk-v">Varags syntax instead of Map&lt;K, V&gt;</h4>
-<blockquote>
-
-  <p>Since the type of <code class="highlighter-rouge">Key</code> or <code class="highlighter-rouge">Value</code> can change we need to use a flat varags structure to represent the data. This can seem odd when looking at data that is difficult to separate such as: <code class="highlighter-rouge">Map.of(1,1,2,2,3,3)</code>.</p>
-</blockquote>
-
-<h4 id="null-not-supported-1">Null not supported</h4>
-<blockquote>
-
-  <p>Again <code class="highlighter-rouge">null</code> is not supported here.</p>
-</blockquote>
-
-<h4 id="maximum-of-11-entries">Maximum of 11 entries</h4>
-<blockquote>
-
-  <p>Over 11 entries will produce an error. To get around this you will need to use <code class="highlighter-rouge">Map.ofEntries(Map.Entry ...)</code></p>
-</blockquote>
-
-<hr />
-
-<h3 id="summary">Summary</h3>
-
-<p>As you can see Java 9 has introduced some useful new functions but in many cases they appear to come with them a number of technical intricacies.</p>
-
-<p>While the above features do provide syntactical sugar we can only hope that in time they will improve. Perhaps they will begin to serve a foundation for future changes to the core Java language but only time will tell. For the time being they remain useful when programming in a reactive style.</p>
+<ul>
+  <li><a href="https://aws.amazon.com/compliance">AWS Compliance</a> - provides detail from a number of 3rd Party audits that regularly go through the entire AWS stack to ensure compliance</li>
+</ul>
 
         
       </section>
@@ -329,11 +309,11 @@
     
       
       
-      <a href="https://m-x-k.github.io/tags/collection-literals" class="page__taxonomy-item" rel="tag">Collection Literals</a><span class="sep">, </span>
+      <a href="https://m-x-k.github.io/tags/aws" class="page__taxonomy-item" rel="tag">AWS</a><span class="sep">, </span>
     
       
       
-      <a href="https://m-x-k.github.io/tags/java-9" class="page__taxonomy-item" rel="tag">Java 9</a>
+      <a href="https://m-x-k.github.io/tags/sharedresponsibilitymodel" class="page__taxonomy-item" rel="tag">SharedResponsibilityModel</a>
     
     </span>
   </p>
@@ -354,14 +334,14 @@
     
       
       
-      <a href="https://m-x-k.github.io/categories/java" class="page__taxonomy-item" rel="tag">Java</a>
+      <a href="https://m-x-k.github.io/categories/aws" class="page__taxonomy-item" rel="tag">AWS</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-12-30T11:40:00+00:00">December 30, 2017</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-01-01T13:40:00+00:00">January 01, 2018</time></p>
         
       </footer>
 
@@ -370,12 +350,11 @@
       
   <nav class="pagination">
     
-      <a href="https://m-x-k.github.io/java/Java-9-JShell-Overview/" class="pagination--pager" title="Java 9 JShell overview
+      <a href="https://m-x-k.github.io/aws/AWS-IAM-Overview/" class="pagination--pager" title="AWS IAM Overview
 ">Previous</a>
     
     
-      <a href="https://m-x-k.github.io/aws/AWS-Application-Services-Tutorial/" class="pagination--pager" title="AWS App Services and Dev Tools Overview
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 

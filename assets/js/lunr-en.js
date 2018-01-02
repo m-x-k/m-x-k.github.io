@@ -154,11 +154,29 @@ var idx = lunr(function () {
       
     
       this.add({
+          title: "AWS App Services and Dev Tools Overview",
+          excerpt: "AWS API Gateway A fully managed service to assist developers when creating, publishing, maintaining, monitoring, and securing APIs at scale....",
+          categories: ["AWS"],
+          tags: ["AWS","DeveloperTools"],
+          id: 16
+      })
+      
+    
+      this.add({
           title: "AWS IAM Overview",
           excerpt: "Over at the AWS Training center they provide a set of tutorials, which in some cases are free. I recently...",
           categories: ["AWS"],
           tags: ["AWS","IAM"],
-          id: 16
+          id: 17
+      })
+      
+    
+      this.add({
+          title: "AWS Shared Responsibility Model",
+          excerpt: "Area Responsibility User Data Organisation Application Organisation Guest OS Organisation Hypervisor AWS Network AWS Physical AWS The top three areas...",
+          categories: ["AWS"],
+          tags: ["AWS","SharedResponsibilityModel"],
+          id: 18
       })
       
     
@@ -350,9 +368,31 @@ var store = [
     
       
       {
+        "title": "AWS App Services and Dev Tools Overview",
+        "url": "https://m-x-k.github.io/aws/AWS-Application-Services-Tutorial/",
+        "excerpt": "AWS API Gateway A fully managed service to assist developers when creating, publishing, maintaining, monitoring, and securing APIs at scale....",
+        "teaser":
+          
+            null
+          
+      },
+    
+      
+      {
         "title": "AWS IAM Overview",
-        "url": "https://m-x-k.github.io/aws/AWS-IAM-Tutorial/",
+        "url": "https://m-x-k.github.io/aws/AWS-IAM-Overview/",
         "excerpt": "Over at the AWS Training center they provide a set of tutorials, which in some cases are free. I recently...",
+        "teaser":
+          
+            null
+          
+      },
+    
+      
+      {
+        "title": "AWS Shared Responsibility Model",
+        "url": "https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/",
+        "excerpt": "Area Responsibility User Data Organisation Application Organisation Guest OS Organisation Hypervisor AWS Network AWS Physical AWS The top three areas...",
         "teaser":
           
             null
