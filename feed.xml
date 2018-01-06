@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2018-01-02T15:19:27+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">AWS Shared Responsibility Model</title><link href="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/" rel="alternate" type="text/html" title="AWS Shared Responsibility Model" /><published>2018-01-01T13:40:00+00:00</published><updated>2018-01-01T13:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/">&lt;table&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2018-01-06T15:07:57+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Building a monitoring dashboard with React and Python</title><link href="https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python/" rel="alternate" type="text/html" title="Building a monitoring dashboard with React and Python" /><published>2018-01-05T11:00:00+00:00</published><updated>2018-01-05T11:00:00+00:00</updated><id>https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python</id><content type="html" xml:base="https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python/">&lt;p&gt;Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.&lt;/p&gt;
+
+&lt;h3 id=&quot;codepenio-developing&quot;&gt;Codepen.io developing&lt;/h3&gt;
+
+&lt;p&gt;As a quick mockup I created this &lt;a href=&quot;https://codepen.io/mxk/pen/WdEpVd?editors=0010&quot;&gt;codepen&lt;/a&gt; using the React and ReactDOM CDN. It uses a static hashmap to represent the individual services. The content was written using &lt;code class=&quot;highlighter-rouge&quot;&gt;JSX&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ES7&lt;/code&gt; synatx so it also requires a &lt;code class=&quot;highlighter-rouge&quot;&gt;babel transpiler&lt;/code&gt; to convert before rendering.&lt;/p&gt;
+
+&lt;p data-embed-version=&quot;2&quot; data-height=&quot;800&quot; data-preview=&quot;false&quot; data-theme-id=&quot;11473&quot; data-default-tab=&quot;result&quot; data-user=&quot;mxk&quot; data-slug-hash=&quot;WdEpVd&quot; class=&quot;codepen&quot;&gt;See the &lt;a href=&quot;https://codepen.io/mxk/pen/WdEpVd&quot;&gt;pen&lt;/a&gt; on &lt;a href=&quot;//codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;script async=&quot;&quot; src=&quot;https://production-assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;recommended-best-practices-for-react-development&quot;&gt;Recommended best practices for React development&lt;/h3&gt;
+
+&lt;p&gt;I tried to follow some of the recommended best practices for React development. One the main points in React development is to split your components into two separate types:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Presentational&lt;/code&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;Are concerned with &lt;code class=&quot;highlighter-rouge&quot;&gt;how things look&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Should be written as functional components unless they need state, lifecycle hooks, or performance optimizations in which case Class is required&lt;/li&gt;
+      &lt;li&gt;Examples: Page, Sidebar, Story, UserInfo, List&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Container&lt;/code&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;Are concerned with &lt;code class=&quot;highlighter-rouge&quot;&gt;how things work&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Provide the data and behavior to presentational or other container components&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;benefits-of-this-approach&quot;&gt;Benefits of This Approach&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Better separation of concerns&lt;/li&gt;
+  &lt;li&gt;Better reusability&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Aside from that I didn’t opt to use any state based frameworks such as &lt;code class=&quot;highlighter-rouge&quot;&gt;Redux&lt;/code&gt;. To be honest I did look into this but the extra effort and complexity made this difficult to implement. I think one of the problems here is the use of different javascript syntax. As a result of recent enchancements into the core langauge from ES5, ES6, up to ES7 and combined with JSX syntax it can be very tricky to find examples to match your own. Personally I would be concerned if javascript was my core development language at minute, the result overtime of such fragmentation in a langauge could make it difficult to maintain different code bases.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;project-developing&quot;&gt;Project developing&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/m-x-k/mini-monitoring-dashboard&quot;&gt;Mini Monitoring Dashboard - GitHub Project&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The next stage was to combine the above changes into an all-in-one server side solution. For the most part this was just a copy and paste of the core HTML, CSS and JSX elements into my server side code base.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;I should point out that I intentionally opted for Python as my server side solution rather than use Nodejs. In hindsight it would have been more convenient to use Nodejs especially for support of Common JS modules but I knew that at some point this project was going to have to be integrated into another python code base.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;updating-jsx&quot;&gt;Updating JSX&lt;/h3&gt;
+
+&lt;p&gt;With the dashboard code available in the python flask &lt;code class=&quot;highlighter-rouge&quot;&gt;templates&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; folders the next step was to provide a solution to transpile the ES7 and JSX syntax into a javascript file. If I had time I could have setup WebPack or some other javascript build tool to do this for me but since I was using Python this seemed overkill. My solution was to build the following script:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+npm install &lt;span class=&quot;nt&quot;&gt;--save-dev&lt;/span&gt; babel-cli babel-plugin-transform-react-jsx babel-preset-es2017
+babel src/static/js/app.jsx &lt;span class=&quot;nt&quot;&gt;--plugins&lt;/span&gt; transform-react-jsx &lt;span class=&quot;nt&quot;&gt;--presets&lt;/span&gt; es2017 &lt;span class=&quot;nt&quot;&gt;--out-file&lt;/span&gt; src/static/js/app.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;axios&quot;&gt;Axios&lt;/h3&gt;
+
+&lt;p&gt;In the past for Ajax calls I would use &lt;code class=&quot;highlighter-rouge&quot;&gt;jQuery&lt;/code&gt; but these days its a little overkill when combined with other javascript frameworks. As an alternative I decided to go with &lt;code class=&quot;highlighter-rouge&quot;&gt;Axios&lt;/code&gt;. I created the following function to call the &lt;code class=&quot;highlighter-rouge&quot;&gt;/example&lt;/code&gt; endpoint asynchronously and set the state attribute &lt;code class=&quot;highlighter-rouge&quot;&gt;services&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;fetchData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;axios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/example'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The next step was to periodically update the screen every 10 seconds or so. I could have just refreshed the page with &lt;code class=&quot;highlighter-rouge&quot;&gt;window.reload&lt;/code&gt; or a html meta tag but the user experience isn’t very nice. React Components can use &lt;code class=&quot;highlighter-rouge&quot;&gt;intervals&lt;/code&gt; to periodically update content so I went with that approach:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// on page load&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fetchData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;componentWillMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// updates every 10 seconds&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fetchData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;intervalId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;clearInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;intervalId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="React" /><category term="Axios" /><category term="Python" /><summary type="html">Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.</summary></entry><entry><title type="html">AWS Shared Responsibility Model</title><link href="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/" rel="alternate" type="text/html" title="AWS Shared Responsibility Model" /><published>2018-01-01T13:40:00+00:00</published><updated>2018-01-01T13:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/">&lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
       &lt;th&gt;Area&lt;/th&gt;
@@ -43,7 +141,90 @@
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/compliance&quot;&gt;AWS Compliance&lt;/a&gt; - provides detail from a number of 3rd Party audits that regularly go through the entire AWS stack to ensure compliance&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="SharedResponsibilityModel" /><summary type="html">Area Responsibility User Data Organisation Application Organisation Guest OS Organisation Hypervisor AWS Network AWS Physical AWS</summary></entry><entry><title type="html">AWS IAM Overview</title><link href="https://m-x-k.github.io/aws/AWS-IAM-Overview/" rel="alternate" type="text/html" title="AWS IAM Overview" /><published>2018-01-01T12:40:00+00:00</published><updated>2018-01-01T12:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-IAM-Overview</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-IAM-Overview/">&lt;p&gt;Over at the AWS Training center they provide a set of tutorials, which in some cases are free.
+&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="SharedResponsibilityModel" /><summary type="html">Area Responsibility User Data Organisation Application Organisation Guest OS Organisation Hypervisor AWS Network AWS Physical AWS</summary></entry><entry><title type="html">Google Cloud Platform - GoLang Example</title><link href="https://m-x-k.github.io/googlecloudplatform/GoogleCloudPlatform-Go-Example/" rel="alternate" type="text/html" title="Google Cloud Platform - GoLang Example" /><published>2018-01-01T12:40:00+00:00</published><updated>2018-01-01T12:40:00+00:00</updated><id>https://m-x-k.github.io/googlecloudplatform/GoogleCloudPlatform-Go-Example</id><content type="html" xml:base="https://m-x-k.github.io/googlecloudplatform/GoogleCloudPlatform-Go-Example/">&lt;h2 id=&quot;google-cloud-platform-hello-world-example-with-golang&quot;&gt;Google Cloud Platform Hello World example with GoLang&lt;/h2&gt;
+
+&lt;p&gt;For some time now I’ve been tempted to spend some time learning the Google Cloud Platform for developing my own projects. With so many cloud platform solutions out there it can be difficult to know where best to invest your free learning time. However if you can step back from trying to learn new languages and frameworks you might find that many of the Cloud Platforms out there already offer great tutorials to help you get setup quickly. In this post I will be attempting to follow the Google Cloud Platform tutorial for a simple GoLang application in an attempt to get better up to speed with developing both GoLang and the Google Cloud Platform.&lt;/p&gt;
+
+&lt;h3 id=&quot;initial-setup&quot;&gt;Initial setup:&lt;/h3&gt;
+
+&lt;p&gt;After the initial Google Cloud Platform account setup you will be prompted with a tutorial to get started on the app engine. The entire process can take some time so you will probably need to make notes and come back every once in a while.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-the-github-example-project&quot;&gt;Using the github example project&lt;/h3&gt;
+
+&lt;p&gt;The tutorial will take you through steps where you copy and paste commands similar to the following into the Google Cloud Shell:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;TUTORIALDIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;src/mywebsite-1045/go_gae_quickstart-2018-01-02-15-49
+git clone https://github.com/GoogleCloudPlatform/appengine-guestbook-go.git &lt;span class=&quot;nv&quot;&gt;$TUTORIALDIR&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$TUTORIALDIR&lt;/span&gt;
+git checkout part1-helloworld
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;The above example just takes the default hello world example but you can of course &lt;a href=&quot;https://github.com/GoogleCloudPlatform/appengine-guestbook-go#fork-destination-box&quot;&gt;fork this implementation&lt;/a&gt; and substitute the endpoints with your forked project to generate your own example. Just remember that there are different branches used here.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;google-cloud-shell&quot;&gt;Google Cloud Shell&lt;/h3&gt;
+
+&lt;p&gt;The Google Cloud Shell is a web console which is authorised to your account. This is convenient for first time setup and tutorials but before long you will want to get your favourite terminal setup to work with the &lt;a href=&quot;https://cloud.google.com/sdk/gcloud/&quot;&gt;gcloud&lt;/a&gt; command.&lt;/p&gt;
+
+&lt;p&gt;In order to install &lt;code class=&quot;highlighter-rouge&quot;&gt;gcloud&lt;/code&gt; locally you will need to &lt;a href=&quot;https://cloud.google.com/sdk/downloads&quot;&gt;install and initialise the Google Cloud SDK&lt;/a&gt;. I would recommend using the interactive installer for developer machine setup just be careful to choose the correct terminal profile. The default for me was &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt; but I still had to source it to get it to work properly after the initiate step: &lt;code class=&quot;highlighter-rouge&quot;&gt;source ~/.bash_profile&lt;/code&gt;. If you have set this up correctly to your Google Cloud Project and user account you should be able to start running commands like the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcloud &lt;span class=&quot;nt&quot;&gt;--help&lt;/span&gt;
+gcloud projects list
+gcloud app describe
+gcloud app logs &lt;span class=&quot;nb&quot;&gt;read
+&lt;/span&gt;gcloud app instances list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;go-hello-world-example&quot;&gt;Go Hello World Example&lt;/h3&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;net/http&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HandleFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ResponseWriter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fmt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Fprint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello, world!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;kubernetes-yaml-configuration&quot;&gt;Kubernetes yaml configuration:&lt;/h3&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;runtime&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;go&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;api_version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;go1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;handlers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/.*&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;_go_app&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;execute-hello-world-go-example-application&quot;&gt;Execute Hello World Go Example application&lt;/h3&gt;
+
+&lt;h4 id=&quot;temporary-deployment-for-development-testing&quot;&gt;Temporary deployment for development testing:&lt;/h4&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;goapp serve app.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;google-cloud-platform-web-preview&quot;&gt;&lt;a href=&quot;https://cloud.google.com/shell/docs/features#web_preview&quot;&gt;Google Cloud Platform Web Preview&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Once you have the application up and running the tutorial prompts the use to open up the &lt;code class=&quot;highlighter-rouge&quot;&gt;Web Preview&lt;/code&gt; which will provide temporary routing to your web application via your browser and the &lt;code class=&quot;highlighter-rouge&quot;&gt;Cloud Shell proxy service&lt;/code&gt;. There is an implicit restriction on this proxy service to only allow HTTP requests over the port range &lt;code class=&quot;highlighter-rouge&quot;&gt;8080&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;8084&lt;/code&gt;. Its also worth mentioning that by default the speed of access is limited unless you enable the &lt;code class=&quot;highlighter-rouge&quot;&gt;Boost Mode&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;deployment&quot;&gt;Deployment:&lt;/h4&gt;
+
+&lt;p&gt;You can deploy the example application via Google Shell by executing:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;goapp deploy &lt;span class=&quot;nt&quot;&gt;-application&lt;/span&gt; mywebsite-1045 &lt;span class=&quot;nt&quot;&gt;-version&lt;/span&gt; 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The tutorial will display the application url for you but you can also get it from your local machine using:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcloud app browse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;The Google Cloud tutorials are very well structured for new developers. Everything is step-by-step focused to constantly build on your experience. There are some complex concepts to get up to speed on such as Kubernetes, Cloud Shell and installing and configuring the SDK tools on your local machine but the process is fairly straightforward to anyone with a bit of development or DevOps experience. However it does feel like there is a lot content that you will need to master and therefore you will need to set aside quite a bit of time to get to grips with everything.&lt;/p&gt;
+
+&lt;p&gt;The next tutorials I’m planning to look at should cover the &lt;code class=&quot;highlighter-rouge&quot;&gt;Google Cloud Datastore&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Google Cloud Storage&lt;/code&gt; which hopefully will provide some useful insights for building and deploying my own Go web based application via the Google Cloud Platform.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="GoogleCloudPlatform" /><category term="Go" /><category term="GoLang" /><summary type="html">Google Cloud Platform Hello World example with GoLang</summary></entry><entry><title type="html">AWS IAM Overview</title><link href="https://m-x-k.github.io/aws/AWS-IAM-Overview/" rel="alternate" type="text/html" title="AWS IAM Overview" /><published>2018-01-01T12:40:00+00:00</published><updated>2018-01-01T12:40:00+00:00</updated><id>https://m-x-k.github.io/aws/AWS-IAM-Overview</id><content type="html" xml:base="https://m-x-k.github.io/aws/AWS-IAM-Overview/">&lt;p&gt;Over at the AWS Training center they provide a set of tutorials, which in some cases are free.
 I recently registered to and watched the IAM tutorial &lt;code class=&quot;highlighter-rouge&quot;&gt;Authentication and Authorization with AWS Identity and Access Management&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;In an attempt to capture some of the detail for future reference and learning I have provided the following synopsis:&lt;/p&gt;
@@ -246,7 +427,9 @@ The course presenter &lt;code class=&quot;highlighter-rouge&quot;&gt;Blaine Sund
 &lt;h4 id=&quot;a-word-of-caution&quot;&gt;A word of caution:&lt;/h4&gt;
 &lt;p&gt;At this point I wish I could say one way or another whether these tools can live up to the hype. Amazon use them internally so they should already be tried and tested. Most organisations I know are only investing in them for deployment of their AWS Lambda functions but not for their more complex applications.&lt;/p&gt;
 
-&lt;p&gt;Personally I would urge some caution when depending on too many different deployment tools within your organisation in order to avoid unnecessary complexity and confusion and over time. Otherwise it could leave your organisation with a lot of potential technical debt to sort out down the line.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="DeveloperTools" /><summary type="html">AWS API Gateway</summary></entry><entry><title type="html">Java 9 Collection Literals</title><link href="https://m-x-k.github.io/java/Java-9-Collection-Literals/" rel="alternate" type="text/html" title="Java 9 Collection Literals" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-Collection-Literals</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-Collection-Literals/">&lt;h2 id=&quot;listof-and-setof&quot;&gt;List.of and Set.of&lt;/h2&gt;
+&lt;p&gt;Personally I would urge some caution when depending on too many different deployment tools within your organisation in order to avoid unnecessary complexity and confusion and over time. Otherwise it could leave your organisation with a lot of potential technical debt to sort out down the line.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="AWS" /><category term="DeveloperTools" /><summary type="html">AWS API Gateway</summary></entry><entry><title type="html">Java 9 Collection Literals</title><link href="https://m-x-k.github.io/java/Java-9-Collection-Literals/" rel="alternate" type="text/html" title="Java 9 Collection Literals" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-Collection-Literals</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-Collection-Literals/">&lt;p&gt;An outline of some of the Java 9 changes to Collection literals and other areas of the core API.&lt;/p&gt;
+
+&lt;h2 id=&quot;listof-and-setof&quot;&gt;List.of and Set.of&lt;/h2&gt;
 
 &lt;p&gt;Example:&lt;/p&gt;
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;digits&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -307,11 +490,45 @@ The course presenter &lt;code class=&quot;highlighter-rouge&quot;&gt;Blaine Sund
 
 &lt;hr /&gt;
 
+&lt;h2 id=&quot;optional&quot;&gt;&lt;a href=&quot;https://docs.oracle.com/javase/9/docs/api/java/util/Optional.html&quot;&gt;Optional&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Java 8 introduced the concept of Optional as an operator to help prevent constantly checking for nulls. With Java 9 we now see more enhanced Optional support in the form of:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;New API methods yielding optional values:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;HttpClient.authenticator/cookieManager/proxy/sslParameters&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ServiceLoader.findFirst()&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Runtime.version().build/pre/post&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ProcessHandle.of&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ProcessHandle.Info.command/commandLine/arguments/startInstant/totalCpuDuration/user&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;New &lt;code class=&quot;highlighter-rouge&quot;&gt;Optional.or()&lt;/code&gt; method:
+    &lt;ul&gt;
+      &lt;li&gt;If a value is present, returns an Optional describing the value, otherwise returns an Optional produced by the supplying function.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Optional&amp;lt;T&amp;gt; or(Suppplier&amp;lt;? extends Optional&amp;lt;? extends T&amp;gt;&amp;gt; supplier)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Example:
+&lt;script src=&quot;https://gist.github.com/f646aea565927c81dbdd953c42ea6258.js&quot;&gt; &lt;/script&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;New &lt;code class=&quot;highlighter-rouge&quot;&gt;Optional.stream()&lt;/code&gt; method
+    &lt;ul&gt;
+      &lt;li&gt;Yields a stream of length 0 or 1&lt;/li&gt;
+      &lt;li&gt;Can be useful in place of a stream filter to drop empty results&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;Stream&amp;lt;User&amp;gt; users = people.map(Person::name).flatMap(Optional::stream)&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As a result of the above inclusions it is more common now to see code that no longer requires null checks all over the place. The idea here is to assist development teams to create and maintain cleaner code bases but as a result it is necessary to understand the core Java API better. Making better use of functional programming techniques like Java Streams will help to make the above API changes easier to use in the long run.&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
 
 &lt;p&gt;As you can see Java 9 has introduced some useful new functions but in many cases they appear to come with them a number of technical intricacies.&lt;/p&gt;
 
-&lt;p&gt;While the above features do provide syntactical sugar we can only hope that in time they will improve. Perhaps they will begin to serve a foundation for future changes to the core Java language but only time will tell. For the time being they remain useful when programming in a reactive style.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Java 9" /><category term="Collection Literals" /><summary type="html">List.of and Set.of</summary></entry><entry><title type="html">Java 9 JShell overview</title><link href="https://m-x-k.github.io/java/Java-9-JShell-Overview/" rel="alternate" type="text/html" title="Java 9 JShell overview" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-JShell-Overview</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-JShell-Overview/">&lt;h2 id=&quot;jshell&quot;&gt;JShell&lt;/h2&gt;
+&lt;p&gt;While the above features do provide syntactical sugar we can only hope that in time they will improve. Perhaps they will begin to serve a foundation for future changes to the core Java language but only time will tell. For the time being they remain useful when programming in a reactive style.&lt;/p&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Java 9" /><category term="Collection Literals" /><summary type="html">An outline of some of the Java 9 changes to Collection literals and other areas of the core API.</summary></entry><entry><title type="html">Java 9 JShell overview</title><link href="https://m-x-k.github.io/java/Java-9-JShell-Overview/" rel="alternate" type="text/html" title="Java 9 JShell overview" /><published>2017-12-30T11:40:00+00:00</published><updated>2017-12-30T11:40:00+00:00</updated><id>https://m-x-k.github.io/java/Java-9-JShell-Overview</id><content type="html" xml:base="https://m-x-k.github.io/java/Java-9-JShell-Overview/">&lt;h2 id=&quot;jshell&quot;&gt;JShell&lt;/h2&gt;
 
 &lt;p&gt;Originally introduced as project Kulla, JShell is a great tool for new and experienced developers.&lt;/p&gt;
 
@@ -601,27 +818,4 @@ docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactor
   &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Jekyll installation&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/&quot;&gt;GitHub pages help&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/viewing-jekyll-build-error-messages/&quot;&gt;GitHub pages error messages&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Jekyll" /><category term="GitHub" /><summary type="html">Steps to create a sample blog created using Jekyll and hosted on GitHub.</summary></entry><entry><title type="html">Presentation slides with Reveal.js</title><link href="https://m-x-k.github.io/javascript/revealjs/Presentation-slides-with-Reveal/" rel="alternate" type="text/html" title="Presentation slides with Reveal.js" /><published>2017-11-21T20:20:41+00:00</published><updated>2017-11-21T20:20:41+00:00</updated><id>https://m-x-k.github.io/javascript/revealjs/Presentation-slides-with-Reveal</id><content type="html" xml:base="https://m-x-k.github.io/javascript/revealjs/Presentation-slides-with-Reveal/">&lt;p&gt;Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web client over at &lt;a href=&quot;https://slides.com/&quot;&gt;https://slides.com/&lt;/a&gt; I personally prefer to download the latest version directly from the github account &lt;a href=&quot;https://github.com/hakimel/reveal.js/releases/latest&quot;&gt;Latest release&lt;/a&gt; in order to generate your slide presentation by hand.&lt;/p&gt;
-
-&lt;p&gt;Steps to get it all up and running:&lt;/p&gt;
-
-&lt;ol&gt;
-	&lt;li&gt;Create a new folder and extract the latest reveal.js code into a sub-folder called &quot;reveal.js&quot;&lt;/li&gt;
-	&lt;li&gt;In the root of your project copy the following html code into a file named index.html&lt;/li&gt;
-	&lt;li&gt;Open the index.html file with your browser of choice (note: chrome seems to be the preferred option)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;script src=&quot;https://gist.github.com/fd6d40367b49bd811d6f99a9065f919a.js&quot;&gt; &lt;/script&gt;
-
-&lt;p&gt;The above sample is just a quick setup to get you going but there are many features in this library that you can take advantage of:&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;Markdown support using &quot;&amp;lt;&lt;span class=&quot;pl-ent&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;pl-e&quot;&gt;data-markdown&amp;gt; ...&quot;&lt;/span&gt;&lt;/li&gt;
-	&lt;li&gt;PDF support by going to &quot;?print-pdf&quot; in chrome. The sample above provides support for this using a small javascript tag which makes use of some inbuilt javascript libraries.&lt;/li&gt;
-	&lt;li&gt;Hidden notes support using &quot;&amp;lt;section data-separator-notes=...&amp;gt;&quot;&lt;/li&gt;
-	&lt;li&gt;Slide data transitions such as &quot;fading&quot; in and out, zooming as well as controlling the speed&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There are many more features that you can play about with including embedded videos, images and other multimedia. One feature that particularly interests me is embedding external markdown files. In terms of project development teams would be able to provide customer demos along side your versioned code base. It’s also possible to override the existing css but you may find this to be difficult when using the markdown content due to the way that this is converted by reveal.js on the fly.&lt;/p&gt;
-
-&lt;p&gt;For a quick introduction on other features in the current version 3 release have a look at the following slideshare from the author of Reveal.js Hakim El Hattab:&lt;/p&gt;
-
-&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/e3ACCuYrg0rSiG&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
-&lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;//www.slideshare.net/hakimel/revealjs-300&quot; title=&quot;reveal.js 3.0.0&quot; target=&quot;_blank&quot;&gt;reveal.js 3.0.0&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/hakimel&quot; target=&quot;_blank&quot;&gt;Hakim El Hattab&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Javascript" /><category term="RevealJS" /><summary type="html">Using the reveal javascript library its possible to build intricate presentation slides for the browser. While its possible to create a sample using a web client over at https://slides.com/ I personally prefer to download the latest version directly from the github account Latest release in order to generate your slide presentation by hand.</summary></entry><entry><title type="html">Useful List Of Python Resources</title><link href="https://m-x-k.github.io/python/Useful-List-Of-Python-Resources/" rel="alternate" type="text/html" title="Useful List Of Python Resources" /><published>2017-11-19T20:00:10+00:00</published><updated>2017-11-19T20:00:10+00:00</updated><id>https://m-x-k.github.io/python/Useful-List-Of-Python-Resources</id><content type="html" xml:base="https://m-x-k.github.io/python/Useful-List-Of-Python-Resources/">&lt;script src=&quot;https://gist.github.com/dda4cd4647375073e01c293cc56640db.js&quot;&gt; &lt;/script&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Python" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="Jekyll" /><category term="GitHub" /><summary type="html">Steps to create a sample blog created using Jekyll and hosted on GitHub.</summary></entry></feed>

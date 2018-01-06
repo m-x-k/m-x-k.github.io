@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.8.1 by Michael Rose
-  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
 -->
@@ -24,7 +24,7 @@
 
 
 
-<meta name="description" content="List.of and Set.of">
+<meta name="description" content="An outline of some of the Java 9 changes to Collection literals and other areas of the core API.">
 
 
 
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="og:description" content="List.of and Set.of">
+  <meta property="og:description" content="An outline of some of the Java 9 changes to Collection literals and other areas of the core API.">
 
 
 
@@ -228,7 +228,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Java 9 Collection Literals">
-    <meta itemprop="description" content="List.of and Set.of">
+    <meta itemprop="description" content="An outline of some of the Java 9 changes to Collection literals and other areas of the core API.">
     <meta itemprop="datePublished" content="December 30, 2017">
     
 
@@ -243,7 +243,9 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="listof-and-setof">List.of and Set.of</h2>
+        <p>An outline of some of the Java 9 changes to Collection literals and other areas of the core API.</p>
+
+<h2 id="listof-and-setof">List.of and Set.of</h2>
 
 <p>Example:</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">digits</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
@@ -304,6 +306,40 @@
 
 <hr />
 
+<h2 id="optional"><a href="https://docs.oracle.com/javase/9/docs/api/java/util/Optional.html">Optional</a></h2>
+
+<p>Java 8 introduced the concept of Optional as an operator to help prevent constantly checking for nulls. With Java 9 we now see more enhanced Optional support in the form of:</p>
+<ul>
+  <li>New API methods yielding optional values:
+    <ul>
+      <li><code class="highlighter-rouge">HttpClient.authenticator/cookieManager/proxy/sslParameters</code></li>
+      <li><code class="highlighter-rouge">ServiceLoader.findFirst()</code></li>
+      <li><code class="highlighter-rouge">Runtime.version().build/pre/post</code></li>
+      <li><code class="highlighter-rouge">ProcessHandle.of</code></li>
+      <li><code class="highlighter-rouge">ProcessHandle.Info.command/commandLine/arguments/startInstant/totalCpuDuration/user</code></li>
+    </ul>
+  </li>
+  <li>New <code class="highlighter-rouge">Optional.or()</code> method:
+    <ul>
+      <li>If a value is present, returns an Optional describing the value, otherwise returns an Optional produced by the supplying function.</li>
+      <li><code class="highlighter-rouge">Optional&lt;T&gt; or(Suppplier&lt;? extends Optional&lt;? extends T&gt;&gt; supplier)</code></li>
+      <li>Example:
+<script src="https://gist.github.com/f646aea565927c81dbdd953c42ea6258.js"> </script></li>
+    </ul>
+  </li>
+  <li>New <code class="highlighter-rouge">Optional.stream()</code> method
+    <ul>
+      <li>Yields a stream of length 0 or 1</li>
+      <li>Can be useful in place of a stream filter to drop empty results</li>
+      <li>Example: <code class="highlighter-rouge">Stream&lt;User&gt; users = people.map(Person::name).flatMap(Optional::stream)</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>As a result of the above inclusions it is more common now to see code that no longer requires null checks all over the place. The idea here is to assist development teams to create and maintain cleaner code bases but as a result it is necessary to understand the core Java API better. Making better use of functional programming techniques like Java Streams will help to make the above API changes easier to use in the long run.</p>
+
+<hr />
+
 <h3 id="summary">Summary</h3>
 
 <p>As you can see Java 9 has introduced some useful new functions but in many cases they appear to come with them a number of technical intricacies.</p>
@@ -324,7 +360,7 @@
   
 
   <p class="page__taxonomy">
-    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
       
@@ -349,7 +385,7 @@
   
 
   <p class="page__taxonomy">
-    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
     
       
@@ -410,11 +446,11 @@
     
     
     
-      <li><a href="https://github.com/m-x-k"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      <li><a href="https://github.com/m-x-k"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
     
     
     
-    <li><a href="https://m-x-k.github.io/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="https://m-x-k.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -425,11 +461,15 @@
 
     
   <script src="https://m-x-k.github.io/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 
 
 
-  <script src="https://m-x-k.github.io/assets/js/lunr.min.js"></script>
-  <script src="https://m-x-k.github.io/assets/js/lunr-en.js"></script>
+  
+  
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr-en.js"></script>
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

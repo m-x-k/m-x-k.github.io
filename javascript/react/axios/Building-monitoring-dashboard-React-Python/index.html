@@ -1,0 +1,517 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Building a monitoring dashboard with React and Python  MXK Software Craftmanship</title>
+
+
+
+
+<meta name="description" content="Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.">
+
+
+
+
+<meta name="author" content="Martin Kelly">
+
+<meta property="og:locale" content="en_gb">
+<meta property="og:site_name" content="MXK Software Craftmanship">
+<meta property="og:title" content="Building a monitoring dashboard with React and Python">
+
+
+  <link rel="canonical" href="https://m-x-k.github.io//javascript/react/axios/Building-monitoring-dashboard-React-Python/">
+  <meta property="og:url" content="https://m-x-k.github.io//javascript/react/axios/Building-monitoring-dashboard-React-Python/">
+
+
+
+  <meta property="og:description" content="Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2018-01-05T11:00:00+00:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://m-x-k.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="MXK Software Craftmanship Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://m-x-k.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://m-x-k.github.io/">MXK Software Craftmanship</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//recent-posts/" >Recent Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//year-archive/" >Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//categories/" >Categories</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//tags/" >Tags</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://mxk.solutions" >External Link</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      <link rel="stylesheet" href="/assets/css/custom.css">
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/categories/javascript" itemprop="item"><span itemprop="name">Javascript</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/categories/react" itemprop="item"><span itemprop="name">React</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/categories/axios" itemprop="item"><span itemprop="name">Axios</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Building a monitoring dashboard with React and Python</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Building a monitoring dashboard with React and Python">
+    <meta itemprop="description" content="Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.">
+    <meta itemprop="datePublished" content="January 05, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Building a monitoring dashboard with React and Python
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.</p>
+
+<h3 id="codepenio-developing">Codepen.io developing</h3>
+
+<p>As a quick mockup I created this <a href="https://codepen.io/mxk/pen/WdEpVd?editors=0010">codepen</a> using the React and ReactDOM CDN. It uses a static hashmap to represent the individual services. The content was written using <code class="highlighter-rouge">JSX</code> and <code class="highlighter-rouge">ES7</code> synatx so it also requires a <code class="highlighter-rouge">babel transpiler</code> to convert before rendering.</p>
+
+<p data-embed-version="2" data-height="800" data-preview="false" data-theme-id="11473" data-default-tab="result" data-user="mxk" data-slug-hash="WdEpVd" class="codepen">See the <a href="https://codepen.io/mxk/pen/WdEpVd">pen</a> on <a href="//codepen.io">CodePen</a>.</p>
+<script async="" src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="recommended-best-practices-for-react-development">Recommended best practices for React development</h3>
+
+<p>I tried to follow some of the recommended best practices for React development. One the main points in React development is to split your components into two separate types:</p>
+<ul>
+  <li><code class="highlighter-rouge">Presentational</code>:
+    <ul>
+      <li>Are concerned with <code class="highlighter-rouge">how things look</code></li>
+      <li>Should be written as functional components unless they need state, lifecycle hooks, or performance optimizations in which case Class is required</li>
+      <li>Examples: Page, Sidebar, Story, UserInfo, List</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Container</code>:
+    <ul>
+      <li>Are concerned with <code class="highlighter-rouge">how things work</code></li>
+      <li>Provide the data and behavior to presentational or other container components</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="benefits-of-this-approach">Benefits of This Approach</h3>
+
+<ul>
+  <li>Better separation of concerns</li>
+  <li>Better reusability</li>
+</ul>
+
+<blockquote>
+
+  <p>Aside from that I didn’t opt to use any state based frameworks such as <code class="highlighter-rouge">Redux</code>. To be honest I did look into this but the extra effort and complexity made this difficult to implement. I think one of the problems here is the use of different javascript syntax. As a result of recent enchancements into the core langauge from ES5, ES6, up to ES7 and combined with JSX syntax it can be very tricky to find examples to match your own. Personally I would be concerned if javascript was my core development language at minute, the result overtime of such fragmentation in a langauge could make it difficult to maintain different code bases.</p>
+</blockquote>
+
+<h3 id="project-developing">Project developing</h3>
+
+<p><a href="https://github.com/m-x-k/mini-monitoring-dashboard">Mini Monitoring Dashboard - GitHub Project</a></p>
+
+<p>The next stage was to combine the above changes into an all-in-one server side solution. For the most part this was just a copy and paste of the core HTML, CSS and JSX elements into my server side code base.</p>
+
+<blockquote>
+
+  <p>I should point out that I intentionally opted for Python as my server side solution rather than use Nodejs. In hindsight it would have been more convenient to use Nodejs especially for support of Common JS modules but I knew that at some point this project was going to have to be integrated into another python code base.</p>
+</blockquote>
+
+<h3 id="updating-jsx">Updating JSX</h3>
+
+<p>With the dashboard code available in the python flask <code class="highlighter-rouge">templates</code> and <code class="highlighter-rouge">static</code> folders the next step was to provide a solution to transpile the ES7 and JSX syntax into a javascript file. If I had time I could have setup WebPack or some other javascript build tool to do this for me but since I was using Python this seemed overkill. My solution was to build the following script:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+npm install <span class="nt">--save-dev</span> babel-cli babel-plugin-transform-react-jsx babel-preset-es2017
+babel src/static/js/app.jsx <span class="nt">--plugins</span> transform-react-jsx <span class="nt">--presets</span> es2017 <span class="nt">--out-file</span> src/static/js/app.js
+</code></pre></div></div>
+
+<h3 id="axios">Axios</h3>
+
+<p>In the past for Ajax calls I would use <code class="highlighter-rouge">jQuery</code> but these days its a little overkill when combined with other javascript frameworks. As an alternative I decided to go with <code class="highlighter-rouge">Axios</code>. I created the following function to call the <code class="highlighter-rouge">/example</code> endpoint asynchronously and set the state attribute <code class="highlighter-rouge">services</code>.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetchData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s1">'/example'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(({</span><span class="nx">data</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span>
+            <span class="p">{</span><span class="na">services</span><span class="p">:</span> <span class="nx">data</span><span class="p">.</span><span class="nx">services</span><span class="p">}</span>
+        <span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The next step was to periodically update the screen every 10 seconds or so. I could have just refreshed the page with <code class="highlighter-rouge">window.reload</code> or a html meta tag but the user experience isn’t very nice. React Components can use <code class="highlighter-rouge">intervals</code> to periodically update content so I went with that approach:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+
+<span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// on page load</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">componentWillMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// updates every 10 seconds</span>
+    <span class="kd">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">,</span> <span class="mi">10000</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">intervalId</span><span class="p">:</span> <span class="nx">id</span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">intervalId</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">...</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/axios" class="page__taxonomy-item" rel="tag">Axios</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/python" class="page__taxonomy-item" rel="tag">Python</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/react" class="page__taxonomy-item" rel="tag">React</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/categories/axios" class="page__taxonomy-item" rel="tag">Axios</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/categories/javascript" class="page__taxonomy-item" rel="tag">Javascript</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/categories/react" class="page__taxonomy-item" rel="tag">React</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-01-05T11:00:00+00:00">January 05, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/" class="pagination--pager" title="AWS Shared Responsibility Model
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+    
+    
+      <li><a href="https://github.com/m-x-k"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="https://m-x-k.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 MXK Software Craftmanship. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="https://m-x-k.github.io/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr-en.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111584934-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111584934-1');
+</script>
+
+
+
+
+  </body>
+</html>

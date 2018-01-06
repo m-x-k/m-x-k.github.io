@@ -1,0 +1,475 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Google Cloud Platform - GoLang Example  MXK Software Craftmanship</title>
+
+
+
+
+<meta name="description" content="Google Cloud Platform Hello World example with GoLang">
+
+
+
+
+<meta name="author" content="Martin Kelly">
+
+<meta property="og:locale" content="en_gb">
+<meta property="og:site_name" content="MXK Software Craftmanship">
+<meta property="og:title" content="Google Cloud Platform - GoLang Example">
+
+
+  <link rel="canonical" href="https://m-x-k.github.io//googlecloudplatform/GoogleCloudPlatform-Go-Example/">
+  <meta property="og:url" content="https://m-x-k.github.io//googlecloudplatform/GoogleCloudPlatform-Go-Example/">
+
+
+
+  <meta property="og:description" content="Google Cloud Platform Hello World example with GoLang">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2018-01-01T12:40:00+00:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="https://m-x-k.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="MXK Software Craftmanship Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="https://m-x-k.github.io/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="https://m-x-k.github.io/">MXK Software Craftmanship</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//recent-posts/" >Recent Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//year-archive/" >Posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//categories/" >Categories</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//tags/" >Tags</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://m-x-k.github.io//about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://mxk.solutions" >External Link</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      <link rel="stylesheet" href="/assets/css/custom.css">
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io//" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://m-x-k.github.io/categories/googlecloudplatform" itemprop="item"><span itemprop="name">Googlecloudplatform</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Google Cloud Platform - GoLang Example</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Google Cloud Platform - GoLang Example">
+    <meta itemprop="description" content="Google Cloud Platform Hello World example with GoLang">
+    <meta itemprop="datePublished" content="January 01, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Google Cloud Platform - GoLang Example
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="google-cloud-platform-hello-world-example-with-golang">Google Cloud Platform Hello World example with GoLang</h2>
+
+<p>For some time now I’ve been tempted to spend some time learning the Google Cloud Platform for developing my own projects. With so many cloud platform solutions out there it can be difficult to know where best to invest your free learning time. However if you can step back from trying to learn new languages and frameworks you might find that many of the Cloud Platforms out there already offer great tutorials to help you get setup quickly. In this post I will be attempting to follow the Google Cloud Platform tutorial for a simple GoLang application in an attempt to get better up to speed with developing both GoLang and the Google Cloud Platform.</p>
+
+<h3 id="initial-setup">Initial setup:</h3>
+
+<p>After the initial Google Cloud Platform account setup you will be prompted with a tutorial to get started on the app engine. The entire process can take some time so you will probably need to make notes and come back every once in a while.</p>
+
+<h3 id="using-the-github-example-project">Using the github example project</h3>
+
+<p>The tutorial will take you through steps where you copy and paste commands similar to the following into the Google Cloud Shell:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">TUTORIALDIR</span><span class="o">=</span>src/mywebsite-1045/go_gae_quickstart-2018-01-02-15-49
+git clone https://github.com/GoogleCloudPlatform/appengine-guestbook-go.git <span class="nv">$TUTORIALDIR</span>
+<span class="nb">cd</span> <span class="nv">$TUTORIALDIR</span>
+git checkout part1-helloworld
+</code></pre></div></div>
+
+<blockquote>
+
+  <p>The above example just takes the default hello world example but you can of course <a href="https://github.com/GoogleCloudPlatform/appengine-guestbook-go#fork-destination-box">fork this implementation</a> and substitute the endpoints with your forked project to generate your own example. Just remember that there are different branches used here.</p>
+</blockquote>
+
+<h3 id="google-cloud-shell">Google Cloud Shell</h3>
+
+<p>The Google Cloud Shell is a web console which is authorised to your account. This is convenient for first time setup and tutorials but before long you will want to get your favourite terminal setup to work with the <a href="https://cloud.google.com/sdk/gcloud/">gcloud</a> command.</p>
+
+<p>In order to install <code class="highlighter-rouge">gcloud</code> locally you will need to <a href="https://cloud.google.com/sdk/downloads">install and initialise the Google Cloud SDK</a>. I would recommend using the interactive installer for developer machine setup just be careful to choose the correct terminal profile. The default for me was <code class="highlighter-rouge">~/.bash_profile</code> but I still had to source it to get it to work properly after the initiate step: <code class="highlighter-rouge">source ~/.bash_profile</code>. If you have set this up correctly to your Google Cloud Project and user account you should be able to start running commands like the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud <span class="nt">--help</span>
+gcloud projects list
+gcloud app describe
+gcloud app logs <span class="nb">read
+</span>gcloud app instances list
+</code></pre></div></div>
+
+<h3 id="go-hello-world-example">Go Hello World Example</h3>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">hello</span><span class="x">
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+    </span><span class="s">"fmt"</span><span class="x">
+    </span><span class="s">"net/http"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+</span><span class="k">func</span><span class="x"> </span><span class="n">init</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">http</span><span class="o">.</span><span class="n">HandleFunc</span><span class="p">(</span><span class="s">"/"</span><span class="p">,</span><span class="x"> </span><span class="n">handler</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span><span class="k">func</span><span class="x"> </span><span class="n">handler</span><span class="p">(</span><span class="n">w</span><span class="x"> </span><span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span><span class="x"> </span><span class="n">r</span><span class="x"> </span><span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Fprint</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="x"> </span><span class="s">"Hello, world!"</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<h3 id="kubernetes-yaml-configuration">Kubernetes yaml configuration:</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">runtime</span><span class="pi">:</span> <span class="s">go</span>
+<span class="na">api_version</span><span class="pi">:</span> <span class="s">go1</span>
+<span class="na">handlers</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">url</span><span class="pi">:</span> <span class="s">/.*</span>
+  <span class="na">script</span><span class="pi">:</span> <span class="s">_go_app</span>
+</code></pre></div></div>
+
+<h3 id="execute-hello-world-go-example-application">Execute Hello World Go Example application</h3>
+
+<h4 id="temporary-deployment-for-development-testing">Temporary deployment for development testing:</h4>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>goapp serve app.yaml
+</code></pre></div></div>
+
+<h4 id="google-cloud-platform-web-preview"><a href="https://cloud.google.com/shell/docs/features#web_preview">Google Cloud Platform Web Preview</a></h4>
+
+<p>Once you have the application up and running the tutorial prompts the use to open up the <code class="highlighter-rouge">Web Preview</code> which will provide temporary routing to your web application via your browser and the <code class="highlighter-rouge">Cloud Shell proxy service</code>. There is an implicit restriction on this proxy service to only allow HTTP requests over the port range <code class="highlighter-rouge">8080</code> to <code class="highlighter-rouge">8084</code>. Its also worth mentioning that by default the speed of access is limited unless you enable the <code class="highlighter-rouge">Boost Mode</code>.</p>
+
+<h4 id="deployment">Deployment:</h4>
+
+<p>You can deploy the example application via Google Shell by executing:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>goapp deploy <span class="nt">-application</span> mywebsite-1045 <span class="nt">-version</span> 0
+</code></pre></div></div>
+
+<p>The tutorial will display the application url for you but you can also get it from your local machine using:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud app browse
+</code></pre></div></div>
+
+<h2 id="summary">Summary</h2>
+
+<p>The Google Cloud tutorials are very well structured for new developers. Everything is step-by-step focused to constantly build on your experience. There are some complex concepts to get up to speed on such as Kubernetes, Cloud Shell and installing and configuring the SDK tools on your local machine but the process is fairly straightforward to anyone with a bit of development or DevOps experience. However it does feel like there is a lot content that you will need to master and therefore you will need to set aside quite a bit of time to get to grips with everything.</p>
+
+<p>The next tutorials I’m planning to look at should cover the <code class="highlighter-rouge">Google Cloud Datastore</code> and <code class="highlighter-rouge">Google Cloud Storage</code> which hopefully will provide some useful insights for building and deploying my own Go web based application via the Google Cloud Platform.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/go" class="page__taxonomy-item" rel="tag">Go</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/golang" class="page__taxonomy-item" rel="tag">GoLang</a><span class="sep">, </span>
+    
+      
+      
+      <a href="https://m-x-k.github.io/tags/googlecloudplatform" class="page__taxonomy-item" rel="tag">GoogleCloudPlatform</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="https://m-x-k.github.io/categories/googlecloudplatform" class="page__taxonomy-item" rel="tag">GoogleCloudPlatform</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-01-01T12:40:00+00:00">January 01, 2018</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="https://m-x-k.github.io/aws/AWS-IAM-Overview/" class="pagination--pager" title="AWS IAM Overview
+">Previous</a>
+    
+    
+      <a href="https://m-x-k.github.io/aws/AWS-Shared-Responsibility-Model/" class="pagination--pager" title="AWS Shared Responsibility Model
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+  <input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  <div id="results" class="results"></div>
+</div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+    
+    
+      <li><a href="https://github.com/m-x-k"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="https://m-x-k.github.io/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 MXK Software Craftmanship. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="https://m-x-k.github.io/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+
+
+  
+  
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr.min.js"></script>
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr-store.js"></script>
+  <script defer src="https://m-x-k.github.io/assets/js/lunr/lunr-en.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111584934-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111584934-1');
+</script>
+
+
+
+
+  </body>
+</html>
