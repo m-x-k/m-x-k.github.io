@@ -55,7 +55,7 @@ var store = [{
         "url": "https://m-x-k.github.io/javascript/revealjs/Presentation-slides-with-Reveal/",
         "teaser":null},{
         "title": "Creating a Blog with Jekyll and GitHub pages",
-        "excerpt":"Steps to create a sample blog created using Jekyll and hosted on GitHub.SetupIf you want to create a similar blog you can either fork this implementation or create a new one by installing: Ruby Jekyllgem install jekylljekyll new .DevelopmentTo setup your environment with all the required plugins run the command...","categories": ["Jekyll"],
+        "excerpt":"Steps to create a sample blog created using Jekyll and hosted on GitHub.SetupIf you want to create a similar blog you can either fork this implementation or create a new one by installing: Ruby Jekyll gem install jekylljekyll new . DevelopmentTo setup your environment with all the required plugins run...","categories": ["Jekyll"],
         "tags": ["Jekyll","GitHub"],
         "url": "https://m-x-k.github.io/jekyll/creating-blog-with-github-pages-and-jekyll/",
         "teaser":null},{

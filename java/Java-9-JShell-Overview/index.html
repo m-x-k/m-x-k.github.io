@@ -259,6 +259,7 @@
 </code></pre></div></div>
 
 <p>From there you can execute java statements. While it is possible to combine some statements into one line such as a for loop it is preferred practice to got with a more reactive programming style such as java streams. For example:</p>
+
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; import java.util.stream.<span class="k">*</span>
 jshell&gt; IntStream.range<span class="o">(</span>0, 10<span class="o">)</span>.map<span class="o">(</span>i -&gt; i <span class="k">*</span> i<span class="o">)</span>.toArray<span class="o">()</span>
 <span class="nv">$1</span> <span class="o">==&gt;</span> int[10] <span class="o">{</span> 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 <span class="o">}</span>
@@ -327,7 +328,7 @@ jshell&gt; /edit 1
 <p>By default this will save all commands and snippets currently active in your session. There are several variations that you can use with this such as <code class="highlighter-rouge">/save -all | -history | -start</code>. Each of these will extract a slight variation of your commands which you can find more information on through the jshell help.</p>
 
 <p>Conversely if you need to <code class="highlighter-rouge">open</code> files back up again you can execute:</p>
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /open &lt;FILE&gt;
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jshell&gt; /open <span class="o">[</span>FILE]
 </code></pre></div></div>
 
 <p>To be honest I which this feature was a little more intuitive. In most cases you will really want to save either methods or one liners in which case it would seem better to me to have a separate set of commands for this. Also I would really like to automatically preload methods/functions for newly created jshell sessions but so far I haven’t found an ideal way to do this.</p>

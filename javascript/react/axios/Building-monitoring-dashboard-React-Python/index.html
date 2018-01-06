@@ -343,9 +343,7 @@ babel src/static/js/app.jsx <span class="nt">--plugins</span> transform-react-js
 
 <p>The next step was to periodically update the screen every 10 seconds or so. I could have just refreshed the page with <code class="highlighter-rouge">window.reload</code> or a html meta tag but the user experience isn’t very nice. React Components can use <code class="highlighter-rouge">intervals</code> to periodically update content so I went with that approach:</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-
-<span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// on page load</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">fetchData</span><span class="p">();</span>
 <span class="p">}</span>
@@ -359,8 +357,6 @@ babel src/static/js/app.jsx <span class="nt">--plugins</span> transform-react-js
 <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">intervalId</span><span class="p">);</span>
 <span class="p">}</span>
-
-<span class="p">...</span>
 </code></pre></div></div>
 
 <h3 id="configuration">Configuration</h3>

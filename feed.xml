@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2018-01-06T19:36:30+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Building a monitoring dashboard with React and Python</title><link href="https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python/" rel="alternate" type="text/html" title="Building a monitoring dashboard with React and Python" /><published>2018-01-05T11:00:00+00:00</published><updated>2018-01-05T11:00:00+00:00</updated><id>https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python</id><content type="html" xml:base="https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python/">&lt;p&gt;Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://m-x-k.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://m-x-k.github.io/" rel="alternate" type="text/html" /><updated>2018-01-06T19:59:26+00:00</updated><id>https://m-x-k.github.io/</id><title type="html">MXK Software Craftmanship</title><subtitle>Software craftmanship solutions covering various areas of Development, Architecture, Testing, Extreme Programming, Agile and DevOps.</subtitle><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><entry><title type="html">Building a monitoring dashboard with React and Python</title><link href="https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python/" rel="alternate" type="text/html" title="Building a monitoring dashboard with React and Python" /><published>2018-01-05T11:00:00+00:00</published><updated>2018-01-05T11:00:00+00:00</updated><id>https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python</id><content type="html" xml:base="https://m-x-k.github.io/javascript/react/axios/Building-monitoring-dashboard-React-Python/">&lt;p&gt;Recently I needed to build a custom monitoring dashboard to present some realtime system updates. The dashboard interface needed to be flexible and maintainable in order to be customised.&lt;/p&gt;
 
 &lt;h3 id=&quot;codepenio-developing&quot;&gt;Codepen.io developing&lt;/h3&gt;
 
@@ -78,9 +78,7 @@ babel src/static/js/app.jsx &lt;span class=&quot;nt&quot;&gt;--plugins&lt;/span&
 
 &lt;p&gt;The next step was to periodically update the screen every 10 seconds or so. I could have just refreshed the page with &lt;code class=&quot;highlighter-rouge&quot;&gt;window.reload&lt;/code&gt; or a html meta tag but the user experience isn’t very nice. React Components can use &lt;code class=&quot;highlighter-rouge&quot;&gt;intervals&lt;/code&gt; to periodically update content so I went with that approach:&lt;/p&gt;
 
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// on page load&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fetchData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -94,8 +92,6 @@ babel src/static/js/app.jsx &lt;span class=&quot;nt&quot;&gt;--plugins&lt;/span&
 &lt;span class=&quot;nx&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;clearInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;intervalId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;configuration&quot;&gt;Configuration&lt;/h3&gt;
@@ -598,6 +594,7 @@ The course presenter &lt;code class=&quot;highlighter-rouge&quot;&gt;Blaine Sund
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;From there you can execute java statements. While it is possible to combine some statements into one line such as a for loop it is preferred practice to got with a more reactive programming style such as java streams. For example:&lt;/p&gt;
+
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; import java.util.stream.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
 jshell&amp;gt; IntStream.range&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0, 10&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.map&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;i -&amp;gt; i &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; i&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.toArray&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&amp;gt;&lt;/span&gt; int[10] &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -666,7 +663,7 @@ jshell&amp;gt; /edit 1
 &lt;p&gt;By default this will save all commands and snippets currently active in your session. There are several variations that you can use with this such as &lt;code class=&quot;highlighter-rouge&quot;&gt;/save -all | -history | -start&lt;/code&gt;. Each of these will extract a slight variation of your commands which you can find more information on through the jshell help.&lt;/p&gt;
 
 &lt;p&gt;Conversely if you need to &lt;code class=&quot;highlighter-rouge&quot;&gt;open&lt;/code&gt; files back up again you can execute:&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /open &amp;lt;FILE&amp;gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jshell&amp;gt; /open &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;FILE]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;To be honest I which this feature was a little more intuitive. In most cases you will really want to save either methods or one liners in which case it would seem better to me to have a separate set of commands for this. Also I would really like to automatically preload methods/functions for newly created jshell sessions but so far I haven’t found an ideal way to do this.&lt;/p&gt;
@@ -751,24 +748,24 @@ Choice:
 
 &lt;h3 id=&quot;start-minishift&quot;&gt;Start MiniShift:&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  minishift start
-  minishift ip                # Get the MiniShift IP Address
-  oc login -u system:admin    # Login as admin
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  minishift start
+  minishift ip                &lt;span class=&quot;c&quot;&gt;# Get the MiniShift IP Address&lt;/span&gt;
+  oc login &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; system:admin    &lt;span class=&quot;c&quot;&gt;# Login as admin&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;oc&quot;&gt;OC:&lt;/h3&gt;
 
 &lt;p&gt;Interaction with OpenShift is with the command line tool oc. To configure and set this up execute the following:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  eval $(minishift oc-env)    # Setup the OpenShift command line tool
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;minishift oc-env&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;    &lt;span class=&quot;c&quot;&gt;# Setup the OpenShift command line tool&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;sample-application&quot;&gt;Sample application:&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  oc new-app https://github.com/openshift/nodejs-ex -l name=myapp     # Deploy a sample app
-  oc expose svc/nodejs-ex                                             # Expose a route to the service
-  minishift openshift service nodejs-ex --in-browser                  # Open the app in your browser
-  oc status                                                           # View project status
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  oc new-app https://github.com/openshift/nodejs-ex &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;myapp     &lt;span class=&quot;c&quot;&gt;# Deploy a sample app&lt;/span&gt;
+  oc expose svc/nodejs-ex                                             &lt;span class=&quot;c&quot;&gt;# Expose a route to the service&lt;/span&gt;
+  minishift openshift service nodejs-ex &lt;span class=&quot;nt&quot;&gt;--in-browser&lt;/span&gt;                  &lt;span class=&quot;c&quot;&gt;# Open the app in your browser&lt;/span&gt;
+  oc status                                                           &lt;span class=&quot;c&quot;&gt;# View project status&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;hr /&gt;
@@ -789,7 +786,7 @@ If you encounter this specific issue you can resolve it by updating your machine
 
 &lt;p&gt;When your finished playing with MiniShift you can stop it easily with the following command:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  minishift stop
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  minishift stop
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;ok-so-whats-next&quot;&gt;Ok so whats next?&lt;/h2&gt;
@@ -807,8 +804,8 @@ If you encounter this specific issue you can resolve it by updating your machine
   &lt;li&gt;&lt;a href=&quot;https://docs.openshift.org/latest/minishift/getting-started/installing.html&quot;&gt;Installing MiniShift&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Martin Kelly</name><email>mxksolutions@gmail.com</email></author><category term="OpenShift" /><category term="MiniShift" /><category term="Docker" /><summary type="html">OpenShift</summary></entry><entry><title type="html">Python PIP Setup with artifactory</title><link href="https://m-x-k.github.io/python/python-pip-setup-with-artifactory/" rel="alternate" type="text/html" title="Python PIP Setup with artifactory" /><published>2017-12-22T20:00:00+00:00</published><updated>2017-12-22T20:00:00+00:00</updated><id>https://m-x-k.github.io/python/python-pip-setup-with-artifactory</id><content type="html" xml:base="https://m-x-k.github.io/python/python-pip-setup-with-artifactory/">&lt;h2 id=&quot;installing-a-local-artifactory-instance&quot;&gt;Installing a local artifactory instance:&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull docker.bintray.io/jfrog/artifactory-oss:latest
-docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull docker.bintray.io/jfrog/artifactory-oss:latest
+docker run &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; artifactory &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 8081:8081 docker.bintray.io/jfrog/artifactory-oss
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
@@ -827,7 +824,7 @@ docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactor
   &lt;li&gt;You can also perform &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install&lt;/code&gt; commands pointed directly if you want to test it. For example:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install --index-url http://localhost:8081/artifactory/api/pypi/repo-pypi-virtual/simple requests
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install &lt;span class=&quot;nt&quot;&gt;--index-url&lt;/span&gt; http://localhost:8081/artifactory/api/pypi/repo-pypi-virtual/simple requests
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
@@ -839,10 +836,12 @@ docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactor
 &lt;p&gt;If you want to create a similar blog you can either fork this &lt;a href=&quot;https://github.com/m-x-k/m-x-k.github.io&quot;&gt;implementation&lt;/a&gt; or create a new one by installing:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Ruby&lt;/li&gt;
-  &lt;li&gt;Jekyll&lt;/li&gt;
+  &lt;li&gt;Jekyll
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem install jekyll
+jekyll new &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gem install jekyll&lt;br data-jekyll-commonmark-ghpages=&quot;&quot; /&gt;jekyll new .&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3 id=&quot;development&quot;&gt;Development&lt;/h3&gt;
 

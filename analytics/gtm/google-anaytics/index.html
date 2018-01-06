@@ -262,22 +262,22 @@
 <h4 id="adding-google-tag-manager-to-your-website">Adding Google Tag Manager to your website</h4>
 
 <p>After setting up your Google Analytics account and logging in you should get a html snippet which you can embed into your website like:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;
-&lt;script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"&gt;&lt;/script&gt;
-&lt;script&gt;
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-XXXXXXXXX-X');
-&lt;/script&gt;
-</code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--</span> <span class="nx">Global</span> <span class="nx">site</span> <span class="nx">tag</span> <span class="p">(</span><span class="nx">gtag</span><span class="p">.</span><span class="nx">js</span><span class="p">)</span> <span class="o">-</span> <span class="nx">Google</span> <span class="nx">Analytics</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="k">async</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">||</span> <span class="p">[];</span>
+  <span class="kd">function</span> <span class="nx">gtag</span><span class="p">(){</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kr">arguments</span><span class="p">);}</span>
+  <span class="nx">gtag</span><span class="p">(</span><span class="s1">'js'</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+  <span class="nx">gtag</span><span class="p">(</span><span class="s1">'config'</span><span class="p">,</span> <span class="s1">'UA-XXXXXXXXX-X'</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
 
 <p>Ideally you would place the above snippet on each page in your application. If you have designed your website using layout templates you should be able to add this to the bottom of the page inside the body element.</p>
 
 <h4 id="testing-it-all-works">Testing it all works</h4>
 
 <p>Before you upload your website with the new Google Tag Manager support you might like to check that it is indeed loading and registering the tag with google correctly. This is where you can use the chrome browser plugin <code class="highlighter-rouge">GA debugger</code>. If you install the plugin and enable it with the icon at the top right of the chrome window and refresh your website page you should be able to see output in the chrome developer tools console window which should contain the following ascii banner:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                         _                          _       _   _
+<pre><code class="language-asciidoc">                         _                          _       _   _
                         | |                        | |     | | (_)
   __ _  ___   ___   __ _| | ___    __ _ _ __   __ _| |_   _| |_ _  ___ ___
  / _` |/ _ \ / _ \ / _` | |/ _ \  / _` | '_ \ / _` | | | | | __| |/ __/ __|
@@ -285,14 +285,14 @@
  \__, |\___/ \___/ \__, |_|\___|  \__,_|_| |_|\__,_|_|\__, |\__|_|\___|___/
   __/ |             __/ |                              __/ |
  |___/             |___/                              |___/
-</code></pre></div></div>
+</code></pre>
 
 <p>You can trigger custom Google Tag Manager events via the chrome developer tools console window by typing a command like the following:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dataLayer.push({'event': 'event_name'});
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="s1">'event'</span><span class="p">:</span> <span class="s1">'event_name'</span><span class="p">});</span>
 </code></pre></div></div>
 
 <p>You can query the events currently submitted in the chrome developer tools console window by typing the following and examining the output:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dataLayer
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">dataLayer</span>
 </code></pre></div></div>
 
 <p>The dataLayer is periodically submitted by GTM between page submissions. If you are using a single page application with javascript frameworks such as Angular or ReactJS you will need to investigate what plugins you can use in order to capture events such as clicking links etc … Unfortunately these frameworks will use anchor tags (e.g. #) in the url in order to prevent the page from being reloaded.</p>

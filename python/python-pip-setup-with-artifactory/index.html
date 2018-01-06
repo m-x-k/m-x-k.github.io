@@ -245,8 +245,8 @@
         
         <h2 id="installing-a-local-artifactory-instance">Installing a local artifactory instance:</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull docker.bintray.io/jfrog/artifactory-oss:latest
-docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull docker.bintray.io/jfrog/artifactory-oss:latest
+docker run <span class="nt">--name</span> artifactory <span class="nt">-d</span> <span class="nt">-p</span> 8081:8081 docker.bintray.io/jfrog/artifactory-oss
 </code></pre></div></div>
 
 <ul>
@@ -265,7 +265,7 @@ docker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactor
   <li>You can also perform <code class="highlighter-rouge">pip install</code> commands pointed directly if you want to test it. For example:</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install --index-url http://localhost:8081/artifactory/api/pypi/repo-pypi-virtual/simple requests
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install <span class="nt">--index-url</span> http://localhost:8081/artifactory/api/pypi/repo-pypi-virtual/simple requests
 </code></pre></div></div>
 
 <ul>

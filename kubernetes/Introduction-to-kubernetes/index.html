@@ -266,9 +266,9 @@
 
 <p>Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew cask install minikube    # Install
-minikube start                # Start
-minikube dashboard            # Open dashboard browser
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew cask install minikube    <span class="c"># Install</span>
+minikube start                <span class="c"># Start</span>
+minikube dashboard            <span class="c"># Open dashboard browser</span>
 </code></pre></div></div>
 
 <h4 id="kubectl"><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">Kubectl</a></h4>
@@ -277,9 +277,9 @@ minikube dashboard            # Open dashboard browser
 
 <p>Download the latest Kubectl instance, make it executable and move it into you MacOS PATH.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/darwin/amd64/kubectl
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-LO</span> https://storage.googleapis.com/kubernetes-release/release/<span class="sb">`</span>curl <span class="nt">-s</span> https://storage.googleapis.com/kubernetes-release/release/stable.txt<span class="sb">`</span>/bin/darwin/amd64/kubectl
 chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
+<span class="nb">sudo </span>mv ./kubectl /usr/local/bin/kubectl
 </code></pre></div></div>
 
 <p>For a list of different resources that you can get with kubectl run:</p>
@@ -305,12 +305,12 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 </code></pre></div></div>
 
 <p>Create and run this pod inside the minikube vm:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl create -f pod.yaml      # Create the pod
-kubectl get pods                # View all pods
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl create <span class="nt">-f</span> pod.yaml      <span class="c"># Create the pod</span>
+kubectl get pods                <span class="c"># View all pods</span>
 </code></pre></div></div>
 
 <p>Enter the running pod <code class="highlighter-rouge">redis</code> instance:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl exec -it myredispod -- redis-cli
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl <span class="nb">exec</span> <span class="nt">-it</span> myredispod <span class="nt">--</span> redis-cli
 </code></pre></div></div>
 
 <h3 id="kubernetes-service">Kubernetes Service</h3>

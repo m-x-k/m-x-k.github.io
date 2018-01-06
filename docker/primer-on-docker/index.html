@@ -264,7 +264,7 @@
 <p>The efficiency of layers in practical terms means faster build times, uploads and downloads when using images. Images are typically uploaded to a central docker hub or registry. You can use the official docker hub or you can pull down your own and host it locally if you want.</p>
 
 <p>You can pull down pre-built docker images from the official Docker Hub for example:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull hello-world
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull hello-world
 </code></pre></div></div>
 
 <h4 id="docker-container">Docker Container</h4>
@@ -272,19 +272,19 @@
 <p>The Docker engine can take the read-only layers of an image and execute them to create a runtime instance which is known as a <code class="highlighter-rouge">Docker Container</code>.</p>
 
 <p>You can create a container with the the <code class="highlighter-rouge">docker run</code> command. For example:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run hello-world
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run hello-world
 </code></pre></div></div>
 
 <p>You can view all docker containers on your system with either of the following commands:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps           # Display all running docker containers
-docker ps -a        # Display all docker containers (stopped or running)
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps           <span class="c"># Display all running docker containers</span>
+docker ps <span class="nt">-a</span>        <span class="c"># Display all docker containers (stopped or running)</span>
 </code></pre></div></div>
 
 <p>Using the above you can find the container ids for docker containers. A docker container can be modified with commands such as:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stop &lt;CONTAINER_ID&gt;      # Stop a running docker container instance
-docker start &lt;CONTAINER_ID&gt;     # Start a stopped docker container instance
-docker restart &lt;CONTAINER_ID&gt;   # Restart a docker container instance
-docker rm &lt;CONTAINER_ID&gt;        # Delete a stopped container instance
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stop &lt;CONTAINER_ID&gt;      <span class="c"># Stop a running docker container instance</span>
+docker start &lt;CONTAINER_ID&gt;     <span class="c"># Start a stopped docker container instance</span>
+docker restart &lt;CONTAINER_ID&gt;   <span class="c"># Restart a docker container instance</span>
+docker rm &lt;CONTAINER_ID&gt;        <span class="c"># Delete a stopped container instance</span>
 </code></pre></div></div>
 
 <p>For more docker run commands run <code class="highlighter-rouge">docker run --help</code>.</p>
@@ -292,17 +292,17 @@ docker rm &lt;CONTAINER_ID&gt;        # Delete a stopped container instance
 <h4 id="dockerfile">Dockerfile</h4>
 
 <p>In order to build your own <code class="highlighter-rouge">Docker Images</code> you need to create a <code class="highlighter-rouge">Dockerfile</code>. This is a simple text file with name <code class="highlighter-rouge">Dockerfile</code> which can be used to create a Docker Image from another image which we refer to as the <code class="highlighter-rouge">base image</code>. An example docker file is the one below:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM scratch
-COPY hello /
-CMD ["/hello"]
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> scratch</span>
+<span class="k">COPY</span><span class="s"> hello /</span>
+<span class="k">CMD</span><span class="s"> ["/hello"]</span>
 </code></pre></div></div>
 
 <p>If you copy the above content into a new file named <code class="highlighter-rouge">Dockerfile</code> you can then build your own image locally with the following <code class="highlighter-rouge">docker build</code> command executed from the same folder where the <code class="highlighter-rouge">Dockerfile</code> is contained:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build -t hello-world .
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> hello-world <span class="nb">.</span>
 </code></pre></div></div>
 
 <p>When you build a <code class="highlighter-rouge">Docker Image</code> with the above command it will be stored locally using the tag name supplied by <code class="highlighter-rouge">-t hello-world</code>. If you want to find all docker images on your machine you can run the command:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
 </code></pre></div></div>
 
 <h3 id="summary">Summary</h3>

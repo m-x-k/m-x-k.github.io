@@ -298,24 +298,24 @@
 
 <h3 id="start-minishift">Start MiniShift:</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  minishift start
-  minishift ip                # Get the MiniShift IP Address
-  oc login -u system:admin    # Login as admin
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  minishift start
+  minishift ip                <span class="c"># Get the MiniShift IP Address</span>
+  oc login <span class="nt">-u</span> system:admin    <span class="c"># Login as admin</span>
 </code></pre></div></div>
 
 <h3 id="oc">OC:</h3>
 
 <p>Interaction with OpenShift is with the command line tool oc. To configure and set this up execute the following:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  eval $(minishift oc-env)    # Setup the OpenShift command line tool
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">eval</span> <span class="k">$(</span>minishift oc-env<span class="k">)</span>    <span class="c"># Setup the OpenShift command line tool</span>
 </code></pre></div></div>
 
 <h3 id="sample-application">Sample application:</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  oc new-app https://github.com/openshift/nodejs-ex -l name=myapp     # Deploy a sample app
-  oc expose svc/nodejs-ex                                             # Expose a route to the service
-  minishift openshift service nodejs-ex --in-browser                  # Open the app in your browser
-  oc status                                                           # View project status
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  oc new-app https://github.com/openshift/nodejs-ex <span class="nt">-l</span> <span class="nv">name</span><span class="o">=</span>myapp     <span class="c"># Deploy a sample app</span>
+  oc expose svc/nodejs-ex                                             <span class="c"># Expose a route to the service</span>
+  minishift openshift service nodejs-ex <span class="nt">--in-browser</span>                  <span class="c"># Open the app in your browser</span>
+  oc status                                                           <span class="c"># View project status</span>
 </code></pre></div></div>
 
 <hr />
@@ -336,7 +336,7 @@ If you encounter this specific issue you can resolve it by updating your machine
 
 <p>When your finished playing with MiniShift you can stop it easily with the following command:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  minishift stop
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  minishift stop
 </code></pre></div></div>
 
 <h2 id="ok-so-whats-next">Ok so whats next?</h2>
