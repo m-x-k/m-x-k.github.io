@@ -6,7 +6,7 @@ var store = [{
         "teaser":null},{
         "title": "Using Tmuxinator for Python Apps",
         "excerpt":"Using Tmuxinator for Python AppsWith the dawn of Microservices its becoming more common to have to run and maintain multiple applications in your development environments.Recently I found myself having to do this with a number of Python Flask applications. Each morning I would login and find myself creating multiple terminal...","categories": ["Tmux"],
-        "tags": ["Tmux","Tmuxinator","Python"],
+        "tags": ["Tmux","Python"],
         "url": "https://m-x-k.github.io/tmux/Using-Tmuxinator-for-python-apps/",
         "teaser":null},{
         "title": "Primer on Docker",
@@ -60,8 +60,8 @@ var store = [{
         "url": "https://m-x-k.github.io/jekyll/creating-blog-with-github-pages-and-jekyll/",
         "teaser":null},{
         "title": "Python PIP Setup with artifactory",
-        "excerpt":"Installing a local artifactory instance:docker pull docker.bintray.io/jfrog/artifactory-oss:latestdocker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss In browser open http://localhost:8081 Add new remote repository: http://localhost:8081/artifactory/webapp/#/admin/repositories/remote Setup your artifactory instance with PyPI Using the remote repositories that you created you should be able to setup your local environment (or container). I usually script...","categories": ["python"],
-        "tags": ["python","artifactory","pypi"],
+        "excerpt":"Installing a local artifactory instance:docker pull docker.bintray.io/jfrog/artifactory-oss:latestdocker run --name artifactory -d -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss In browser open http://localhost:8081 Add new remote repository: http://localhost:8081/artifactory/webapp/#/admin/repositories/remote Setup your artifactory instance with PyPI Using the remote repositories that you created you should be able to setup your local environment (or container). I usually script...","categories": ["Python"],
+        "tags": ["Python","Artifactory","PyPI"],
         "url": "https://m-x-k.github.io/python/python-pip-setup-with-artifactory/",
         "teaser":null},{
         "title": "Getting started with OpenShift",
