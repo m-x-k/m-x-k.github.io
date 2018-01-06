@@ -256,15 +256,17 @@
         <p>I decided to build a simple ReactJS webpage to render my personal Gists from GitHub as an basic kata.</p>
 
 <p>However while the ReactJS part was fairly straightforward I was once again reminded about Cross Site Scripting (XSS) issues when trying to call API’s from another domain using javascript. Thankfully JQuery jsonp still works:</p>
-<pre><code class="javascript">componentDidMount(){
-    $.ajax({
-      url: "https://api.github.com/users/m-x-k/gists",
-      jsonp: "$jsonp"
-    }).done(function(data) {
-      console.log(data);
-      this.setState({gists: data});
-    }.bind(this));    
-}</code></pre>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">componentDidMount</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s2">"https://api.github.com/users/m-x-k/gists"</span><span class="p">,</span>
+      <span class="na">jsonp</span><span class="p">:</span> <span class="s2">"$jsonp"</span>
+    <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">gists</span><span class="p">:</span> <span class="nx">data</span><span class="p">});</span>
+    <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>Obviously in a production situation this isn’t what we would rely on!!!</p>
 

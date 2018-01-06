@@ -300,7 +300,7 @@
 
 <blockquote>
 
-  <p>Aside from that I didn’t opt to use any state based frameworks such as <code class="highlighter-rouge">Redux</code>. To be honest I did look into this but the extra effort and complexity made this difficult to implement. I think one of the problems here is the use of different javascript syntax. As a result of recent enchancements into the core langauge from ES5, ES6, up to ES7 and combined with JSX syntax it can be very tricky to find examples to match your own. Personally I would be concerned if javascript was my core development language at minute, the result overtime of such fragmentation in a langauge could make it difficult to maintain different code bases.</p>
+  <p>Aside from that I didn’t opt to use any state based frameworks such as <code class="highlighter-rouge">Redux</code>. To be honest I did look into this but the extra effort and complexity made this difficult to implement. I think one of the problems here is the use of different javascript syntax. As a result of recent enchancements into the core langauge from ES5, ES6, up to ES7 and combined with JSX syntax it can be very tricky to find examples to match your own. Personally I would be concerned if javascript was my core development language at the minute, the result overtime of such fragmentation in a language could make it difficult to maintain different code bases.</p>
 </blockquote>
 
 <h3 id="project-developing">Project developing</h3>
@@ -362,6 +362,60 @@ babel src/static/js/app.jsx <span class="nt">--plugins</span> transform-react-js
 
 <span class="p">...</span>
 </code></pre></div></div>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>The project contains the file <code class="highlighter-rouge">example.json</code> which ca be used to update the list of services.</p>
+
+<p>At this point you can only edit the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">service.name</code></td>
+      <td>Service Name displayed in the dashboard panel</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">service.measurements</code></td>
+      <td>An array of measurements for display under the service panel. These are typically of the form <code class="highlighter-rouge">{"Name":"Value"}</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">service.trends</code></td>
+      <td>An array of trends for display under the service panel. These are typically of the form <code class="highlighter-rouge">{"Type": "Value"}</code>. The <code class="highlighter-rouge">type</code> here can be “UP” or “DOWN” in order to display the corresponding icon.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="example-json-file">Example json file:</h4>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service 0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"measurements"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"Submissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"Completed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"trends"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service 1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"measurements"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"Completed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"trends"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"UP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30%"</span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
         
       </section>
