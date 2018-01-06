@@ -16,7 +16,7 @@ var store = [{
         "teaser":null},{
         "title": "Google Analytics with Google Tag Manager",
         "excerpt":"Google AnalyticsIf you want to track user behaviour on your websites Google Analytics combined with Google Tag Manager is an ideal solution with a simple setup process.First up go to the main Google Analytics website and signup to create yourself a new account for your website. This should provide you...","categories": ["Analytics","GTM"],
-        "tags": ["Google Analytics","Google Tag Manager"],
+        "tags": ["GoogleAnalytics","GoogleTagManager"],
         "url": "https://m-x-k.github.io/analytics/gtm/google-anaytics/",
         "teaser":null},{
         "title": "Introduction to Kubernetes",
@@ -71,12 +71,12 @@ var store = [{
         "teaser":null},{
         "title": "Java 9 JShell overview",
         "excerpt":"JShellOriginally introduced as project Kulla, JShell is a great tool for new and experienced developers.JShell is a read-eval-print-loop (REPL) tool which can be used to quickly interact with Java from the command line without the need to compile your code.MacOS setup for JShell:You can start up the JShell console via...","categories": ["Java"],
-        "tags": ["Java 9","JShell"],
+        "tags": ["Java","JShell"],
         "url": "https://m-x-k.github.io/java/Java-9-JShell-Overview/",
         "teaser":null},{
         "title": "Java 9 Collection Literals",
         "excerpt":"An outline of some of the Java 9 changes to Collection literals and other areas of the core API.List.of and Set.ofExample:List&lt;Integer&gt; digits = List.of(3, 1, 4, 5, 9, 2);Set&lt;Integer&gt; digits = Set.of(2, 7, 31, 127, 8191, 131871);Points to note:Similarities to Java 8 Streams We already came across the of function...","categories": ["Java"],
-        "tags": ["Java 9","Collection Literals"],
+        "tags": ["Java"],
         "url": "https://m-x-k.github.io/java/Java-9-Collection-Literals/",
         "teaser":null},{
         "title": "AWS App Services and Dev Tools Overview",
