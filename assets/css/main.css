@@ -1,7 +1,7 @@
 /* ========================================================================== Dark skin ========================================================================== */
 /* Colors */
 /* dark syntax highlighting (base16) */
-.page__footer-follow .social-icons .svg-inline--fa { color: inherit; }
+.author__urls.social-icons .svg-inline--fa, .page__footer-follow .social-icons .svg-inline--fa { color: inherit; }
 
 /*!
  * Minimal Mistakes Jekyll Theme 4.9.0 by Michael Rose
@@ -604,6 +604,8 @@ tr, td, th { vertical-align: middle; }
 .greedy-nav .hidden-links li { display: block; border-bottom: 1px solid #51555d; }
 .greedy-nav .hidden-links li:last-child { border-bottom: none; }
 
+.no-js .greedy-nav .visible-links { -ms-flex-wrap: wrap; flex-wrap: wrap; overflow: visible; }
+
 /* Navigation list ========================================================================== */
 .nav__list { margin-bottom: 1.5em; }
 .nav__list input[type="checkbox"], .nav__list label { display: none; }
@@ -690,8 +692,8 @@ div.highlighter-rouge > pre, div.highlighter-rouge pre.highlight, figure.highlig
 
 .highlight table { margin-bottom: 0; font-size: 1em; border: 0; }
 .highlight table td { padding: 0; width: calc(100% - 1em); border: 0; /* line numbers*/ /* code */ }
-.highlight table td.gutter { padding-right: 1em; width: 1em; color: #000000; border-right: 1px solid #000000; text-align: right; }
-.highlight table td.code { padding-left: 1em; }
+.highlight table td.gutter, .highlight table td.rouge-gutter { padding-right: 1em; width: 1em; color: #000000; border-right: 1px solid #000000; text-align: right; }
+.highlight table td.code, .highlight table td.rouge-code { padding-left: 1em; }
 .highlight table pre { margin: 0; }
 
 .highlight pre { width: 100%; }
@@ -761,6 +763,8 @@ div.highlighter-rouge > pre, div.highlighter-rouge pre.highlight, figure.highlig
 .highlight .vg { /* Name.Variable.Global */ color: #ff0086; }
 .highlight .vi { /* Name.Variable.Instance */ color: #ff0086; }
 .highlight .il { /* Literal.Number.Integer.Long */ color: #fd8900; }
+
+.gist th, .gist td { border-bottom: 0; }
 
 /* Utility classes */
 /* ========================================================================== UTILITY CLASSES ========================================================================== */
@@ -1000,12 +1004,12 @@ a.reversefootnote:hover { text-decoration: underline; }
 .archive { margin-bottom: 2em; }
 @media (min-width: 64em) { .archive { float: right; width: calc(100% - 200px); padding-right: 200px; } }
 @media (min-width: 80em) { .archive { width: calc(100% - 300px); padding-right: 300px; } }
-.archive a { color: inherit; text-decoration: none; }
 
 .archive__subtitle { margin: 1.414em 0 0; padding-bottom: 0.5em; font-size: 1em; color: #f1f1f1; border-bottom: 1px solid #51555d; }
 .archive__subtitle + .list__item .archive__item-title { margin-top: 0.5em; }
 
 .archive__item-title { margin-bottom: 0.25em; font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif; line-height: initial; overflow: hidden; text-overflow: ellipsis; }
+.archive__item-title a { color: inherit; }
 .archive__item-title a + a { opacity: 0.5; }
 
 /* remove border*/
@@ -1017,11 +1021,8 @@ a.reversefootnote:hover { text-decoration: underline; }
 .archive__item-teaser { border-radius: 4px; overflow: hidden; }
 .archive__item-teaser img { width: 100%; }
 
-.archive__item:hover .archive__item-teaser { box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); }
-.archive__item:hover .archive__item-title { text-decoration: underline; }
-
 /* List view ========================================================================== */
-.list__item .page__meta, .list__item .comment__date { margin: 0 0 4px; }
+.list__item .page__meta, .list__item .comment__date { margin: 0 0 4px; font-size: 0.6em; }
 
 /* Grid view ========================================================================== */
 .archive .grid__wrapper { /* extend grid elements to the right */ }
@@ -1038,7 +1039,7 @@ a.reversefootnote:hover { text-decoration: underline; }
   .grid__item:nth-child(4n + 2) { clear: none; margin-left: 1.6949152542%; }
   .grid__item:nth-child(4n + 3) { clear: none; margin-left: 1.6949152542%; }
   .grid__item:nth-child(4n + 4) { clear: none; margin-left: 1.6949152542%; } }
-.grid__item .page__meta, .grid__item .comment__date { margin: 0 0 4px; }
+.grid__item .page__meta, .grid__item .comment__date { margin: 0 0 4px; font-size: 0.6em; }
 .grid__item .archive__item-title { margin-top: 0.5em; font-size: 1em; }
 .grid__item .archive__item-excerpt { display: none; }
 @media (min-width: 48em) { .grid__item .archive__item-excerpt { display: block; font-size: 0.75em; } }
@@ -1069,6 +1070,10 @@ a.reversefootnote:hover { text-decoration: underline; }
 @media (min-width: 37.5em) { .feature__item--center { text-align: center; }
   .feature__item--center .archive__item-teaser { margin: 0 auto; width: 40.6779661017%; }
   .feature__item--center .archive__item-body { margin: 0 auto; width: 57.6271186441%; } }
+
+/* Place inside an archive layout */
+.archive .feature__wrapper .archive__item-title { margin-top: 0.25em; font-size: 1em; }
+.archive .feature__item, .archive .feature__item--left, .archive .feature__item--center, .archive .feature__item--right { font-size: 1em; }
 
 /* ========================================================================== SIDEBAR ========================================================================== */
 /* Default ========================================================================== */
